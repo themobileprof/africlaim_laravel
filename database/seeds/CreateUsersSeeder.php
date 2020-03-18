@@ -18,11 +18,11 @@ class CreateUsersSeeder extends Seeder
 
                'name'=>'Admin',
 
-               'email'=>'admin@itsolutionstuff.com',
+               'email'=>'admin@africlaim.com',
 
                 'is_admin'=>'1',
 
-               'password'=> bcrypt('123456'),
+               'password'=> bcrypt('9876543210'),
 
             ],
 
@@ -30,11 +30,11 @@ class CreateUsersSeeder extends Seeder
 
                'name'=>'User',
 
-               'email'=>'user@itsolutionstuff.com',
+               'email'=>'user@africlaim.com',
 
                 'is_admin'=>'0',
 
-               'password'=> bcrypt('123456'),
+               'password'=> bcrypt('0123456789'),
 
             ],
 

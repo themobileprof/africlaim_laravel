@@ -16,9 +16,20 @@ class CreateAirportsTable extends Migration
         Schema::create('airports', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('city');
             $table->string('country');
-            $table->enum('location', ['Europe', 'Africa', 'US', 'Americas', 'Asia', 'Australia', 'North America']);
-            $table->timestamps();
+            $table->string('IATA');
+            $table->string('ICAO');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('altitude');
+            $table->string('timezone');
+            $table->string('DST');
+            $table->string('db_timezone');
+            $table->string('type');
+            $table->string('source');
+            //$table->enum('location', ['Europe', 'Africa', 'US', 'Americas', 'Asia', 'Australia', 'North America']);
+            //$table->timestamps();
         });
     }
 

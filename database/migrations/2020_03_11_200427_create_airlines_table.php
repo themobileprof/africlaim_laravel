@@ -16,9 +16,14 @@ class CreateAirlinesTable extends Migration
         Schema::create('airlines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('alias');
+            $table->string('IATA');
+            $table->string('ICAO');
+            $table->string('callsign');
             $table->string('country');
-            $table->enum('location', ['Europe', 'Africa', 'US', 'Americas', 'Asia', 'Australia', 'North America']);
-            $table->timestamps();
+            $table->string('active');
+            //$table->enum('location', ['Europe', 'Africa', 'US', 'Americas', 'Asia', 'Australia', 'North America']);
+            //$table->timestamps();
         });
     }
 
