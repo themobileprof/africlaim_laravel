@@ -16,9 +16,13 @@ class CreateUsersSeeder extends Seeder
 
             [
 
-               'name'=>'Admin',
+                'firstname'=>'Admin',
+
+                'lastname' => 'Admin',
 
                'email'=>'admin@africlaim.com',
+
+               'phone'=>'08012345678',
 
                 'is_admin'=>'1',
 
@@ -28,9 +32,13 @@ class CreateUsersSeeder extends Seeder
 
             [
 
-               'name'=>'User',
+                'firstname'=>'Samuel',
+
+                'lastname'=>'Anyaele',
 
                'email'=>'user@africlaim.com',
+
+               'phone'=>'08098765432',
 
                 'is_admin'=>'0',
 
