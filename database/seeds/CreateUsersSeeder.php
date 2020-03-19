@@ -16,25 +16,33 @@ class CreateUsersSeeder extends Seeder
 
             [
 
-               'name'=>'Admin',
+                'firstname'=>'Admin',
 
-               'email'=>'admin@itsolutionstuff.com',
+                'lastname' => 'Admin',
+
+               'email'=>'admin@africlaim.com',
+
+               'phone'=>'08012345678',
 
                 'is_admin'=>'1',
 
-               'password'=> bcrypt('123456'),
+               'password'=> bcrypt('9876543210'),
 
             ],
 
             [
 
-               'name'=>'User',
+                'firstname'=>'Samuel',
 
-               'email'=>'user@itsolutionstuff.com',
+                'lastname'=>'Anyaele',
+
+               'email'=>'user@africlaim.com',
+
+               'phone'=>'08098765432',
 
                 'is_admin'=>'0',
 
-               'password'=> bcrypt('123456'),
+               'password'=> bcrypt('0123456789'),
 
             ],
 
