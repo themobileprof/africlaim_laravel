@@ -29,5 +29,5 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 //Route::get('db/seeder', 'SeedingController@index')->name('db.seeder');
 
 Route::get('/claims/{any}', function(){
-        return view('vueapp');
+        return view('claims');
 })->where('any', '.*');
