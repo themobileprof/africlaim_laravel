@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 18, 2020 at 09:19 AM
+-- Generation Time: Mar 23, 2020 at 01:53 AM
 -- Server version: 5.7.29-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.3
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -20,27 +21,11 @@ SET time_zone = "+00:00";
 -- Database: `africlaim_db`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `airlines`
---
-
-CREATE TABLE `airlines` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `IATA` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ICAO` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `callsign` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `active` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `airlines`
 --
 
-INSERT INTO `airlines` (`id`, `name`, `IATA`, `ICAO`, `callsign`, `country`, `active`) VALUES
+INSERT IGNORE INTO `airlines` (`id`, `name`, `IATA`, `ICAO`, `callsign`, `country`, `active`) VALUES
 (1, 'Private flight', '-', 'N/A', '', '', 'Y'),
 (2, '135 Airways', '', 'GNL', 'GENERAL', 'United States', 'N'),
 (3, '1Time Airline', '1T', 'RNX', 'NEXTIME', 'South Africa', 'Y'),
@@ -565,29 +550,11 @@ INSERT INTO `airlines` (`id`, `name`, `IATA`, `ICAO`, `callsign`, `country`, `ac
 (522, 'AV8 Helicopters', '', 'AVK', 'AVIATE-COPTER', 'South Africa', 'N'),
 (523, 'Aviacion Ejecutiva Mexicana', '', 'AVM', ' S.A.', 'AVEMEX', 'N');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `airports`
---
-
-CREATE TABLE `airports` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `IATA` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ICAO` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `latitude` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `longitude` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `timezone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `airports`
 --
 
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
 (1, 'Goroka Airport', 'Goroka', 'Papua New Guinea', 'GKA', 'AYGA', '-6.081689834590001', '145.391998291', '10'),
 (2, 'Madang Airport', 'Madang', 'Papua New Guinea', 'MAG', 'AYMD', '-5.20707988739', '145.789001465', '10'),
 (3, 'Mount Hagen Kagamuga Airport', 'Mount Hagen', 'Papua New Guinea', 'HGU', 'AYMH', '-5.826789855957031', '144.29600524902344', '10'),
@@ -1036,7 +1003,7 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (449, 'Pudasjärvi Airport', 'Pudasjarvi', 'Finland', '\\N', 'EFPU', '65.4021987915', '26.946899414100002', '2'),
 (450, 'Pyhäsalmi Airport', 'Pyhasalmi', 'Finland', '\\N', 'EFPY', '63.7318992615', '25.926300048799998', '2'),
 (451, 'Raahe Pattijoki Airport', 'Pattijoki', 'Finland', '\\N', 'EFRH', '64.6881027222', '24.6958007812', '2');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
 (452, 'Rantasalmi Airport', 'Rantasalmi', 'Finland', '\\N', 'EFRN', '62.0654983521', '28.3565006256', '2'),
 (453, 'Rovaniemi Airport', 'Rovaniemi', 'Finland', 'RVN', 'EFRO', '66.564796447754', '25.830400466919', '2'),
 (454, 'Rayskala Airport', 'Rayskala', 'Finland', '\\N', 'EFRY', '60.74470138549805', '24.107799530029297', '2'),
@@ -1481,9 +1448,9 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (909, 'Mongu Airport', 'Mongu', 'Zambia', 'MNR', 'FLMG', '-15.254500389099121', '23.16230010986328', '2'),
 (910, 'Simon Mwansa Kapwepwe International Airport', 'Ndola', 'Zambia', 'NLA', 'FLND', '-12.998100280762', '28.66489982605', '2'),
 (911, 'Southdowns Airport', 'Southdowns', 'Zambia', 'KIW', 'FLSO', '-12.900500297546387', '28.149900436401367', '2'),
-(912, 'Prince Said Ibrahim International Airport', 'Moroni', 'Comoros', 'HAH', 'FMCH', '-11.5337', '43.2719', '3'),
-(913, 'Mohéli Bandar Es Eslam Airport', 'Moheli', 'Comoros', 'NWA', 'FMCI', '-12.298100471496582', '43.76639938354492', '3');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(912, 'Prince Said Ibrahim International Airport', 'Moroni', 'Comoros', 'HAH', 'FMCH', '-11.5337', '43.2719', '3');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(913, 'Mohéli Bandar Es Eslam Airport', 'Moheli', 'Comoros', 'NWA', 'FMCI', '-12.298100471496582', '43.76639938354492', '3'),
 (914, 'Ouani Airport', 'Anjouan', 'Comoros', 'AJN', 'FMCV', '-12.131699562072754', '44.430301666259766', '3'),
 (915, 'Dzaoudzi Pamandzi International Airport', 'Dzaoudzi', 'Mayotte', 'DZA', 'FMCZ', '-12.804699897766113', '45.28110122680664', '3'),
 (916, 'Roland Garros Airport', 'St.-denis', 'Reunion', 'RUN', 'FMEE', '-20.887100219726562', '55.51029968261719', '4'),
@@ -1924,10 +1891,10 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (1367, 'Paris Beauvais Tillé Airport', 'Beauvais', 'France', 'BVA', 'LFOB', '49.45439910888672', '2.1127800941467285', '1'),
 (1368, 'Châteaudun (BA 279) Air Base', 'Chateaudun', 'France', '\\N', 'LFOC', '48.058102', '1.37662', '1'),
 (1369, 'Saumur-Saint-Florent Airport', 'Saumur', 'France', '\\N', 'LFOD', '47.256802', '-0.115142', '1'),
-(1370, 'Évreux-Fauville (BA 105) Air Base', 'Evreux', 'France', 'EVX', 'LFOE', '49.02870178222656', '1.2198599576950073', '1'),
+(1370, 'Évreux-Fauville (BA 105) Air Base', 'Evreux', 'France', 'EVX', 'LFOE', '49.02870178222656', '1.2198599576950073', '1');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
 (1371, 'Le Havre Octeville Airport', 'Le Havre', 'France', 'LEH', 'LFOH', '49.53390121459961', '0.08805599808692932', '1'),
-(1372, 'Abbeville', 'Abbeville', 'France', 'XAB', 'LFOI', '50.143501', '1.831891', '1');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(1372, 'Abbeville', 'Abbeville', 'France', 'XAB', 'LFOI', '50.143501', '1.831891', '1'),
 (1373, 'Orléans-Bricy (BA 123) Air Base', 'Orleans', 'France', 'ORE', 'LFOJ', '47.9878005981', '1.7605600357100002', '1'),
 (1374, 'Châlons-Vatry Airport', 'Chalons', 'France', 'XCR', 'LFOK', '48.7733333333', '4.206111111', '1'),
 (1375, 'Rouen Airport', 'Rouen', 'France', 'URO', 'LFOP', '49.38420104980469', '1.1748000383377075', '1'),
@@ -2370,10 +2337,10 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (1834, 'Piedras Negras International Airport', 'Piedras Negras', 'Mexico', 'PDS', 'MMPG', '28.627399', '-100.535004', '-6'),
 (1835, 'Licenciado y General Ignacio Lopez Rayon Airport', 'Uruapan', 'Mexico', 'UPN', 'MMPN', '19.396699905395508', '-102.03900146484375', '-6'),
 (1836, 'Licenciado Gustavo Díaz Ordaz International Airport', 'Puerto Vallarta', 'Mexico', 'PVR', 'MMPR', '20.680099487304688', '-105.25399780273438', '-6'),
-(1837, 'Puerto Escondido International Airport', 'Puerto Escondido', 'Mexico', 'PXM', 'MMPS', '15.8769', '-97.089103', '-6'),
+(1837, 'Puerto Escondido International Airport', 'Puerto Escondido', 'Mexico', 'PXM', 'MMPS', '15.8769', '-97.089103', '-6');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
 (1838, 'Querétaro Intercontinental Airport', 'Queretaro', 'Mexico', 'QRO', 'MMQT', '20.6173', '-100.185997', '-6'),
-(1839, 'General Lucio Blanco International Airport', 'Reynosa', 'Mexico', 'REX', 'MMRX', '26.0089', '-98.2285', '-6');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(1839, 'General Lucio Blanco International Airport', 'Reynosa', 'Mexico', 'REX', 'MMRX', '26.0089', '-98.2285', '-6'),
 (1840, 'Los Cabos International Airport', 'San Jose Del Cabo', 'Mexico', 'SJD', 'MMSD', '23.15180015563965', '-109.72100067138672', '-7'),
 (1841, 'San Felipe International Airport', 'San Filipe', 'Mexico', 'SFH', 'MMSF', '30.930200576782', '-114.80899810791', '-8'),
 (1842, 'Ponciano Arriaga International Airport', 'San Luis Potosi', 'Mexico', 'SLP', 'MMSP', '22.254299163800003', '-100.930999756', '-6'),
@@ -2796,10 +2763,10 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (2300, 'Okushiri Airport', 'Okushiri', 'Japan', 'OIR', 'RJEO', '42.0717010498', '139.432998657', '9'),
 (2301, 'Rishiri Airport', 'Rishiri Island', 'Japan', 'RIS', 'RJER', '45.2420005798', '141.186004639', '9'),
 (2302, 'Ashiya Airport', 'Ashiya', 'Japan', '\\N', 'RJFA', '33.88309860229492', '130.6529998779297', '9'),
-(2303, 'Yakushima Airport', 'Yakushima', 'Japan', 'KUM', 'RJFC', '30.3855991364', '130.658996582', '9'),
+(2303, 'Yakushima Airport', 'Yakushima', 'Japan', 'KUM', 'RJFC', '30.3855991364', '130.658996582', '9');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
 (2304, 'Fukue Airport', 'Fukue', 'Japan', 'FUJ', 'RJFE', '32.66630172729492', '128.83299255371094', '9'),
-(2305, 'Fukuoka Airport', 'Fukuoka', 'Japan', 'FUK', 'RJFF', '33.585899353027344', '130.4510040283203', '9');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(2305, 'Fukuoka Airport', 'Fukuoka', 'Japan', 'FUK', 'RJFF', '33.585899353027344', '130.4510040283203', '9'),
 (2306, 'New Tanegashima Airport', 'Tanegashima', 'Japan', 'TNE', 'RJFG', '30.605100631699997', '130.990997314', '9'),
 (2307, 'Kagoshima Airport', 'Kagoshima', 'Japan', 'KOJ', 'RJFK', '31.80340003967285', '130.718994140625', '9'),
 (2308, 'Miyazaki Airport', 'Miyazaki', 'Japan', 'KMI', 'RJFM', '31.877199173', '131.449005127', '9'),
@@ -3236,9 +3203,9 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (2777, 'Alferez FAP Alfredo Vladimir Sara Bauer Airport', 'Andoas', 'Peru', 'AOP', 'SPAS', '-2.79612994194', '-76.46659851070001', '-5'),
 (2778, 'Teniente General Gerardo Pérez Pinedo Airport', 'Atalaya', 'Peru', '\\N', 'SPAY', '-10.7291002274', '-73.7665023804', '-5'),
 (2780, 'Iberia Airport', 'Iberia', 'Peru', 'IBP', 'SPBR', '-11.411600112915039', '-69.48870086669922', '-5'),
-(2781, 'Cap FAP David Abenzur Rengifo International Airport', 'Pucallpa', 'Peru', 'PCL', 'SPCL', '-8.37794017791748', '-74.57430267333984', '-5'),
-(2782, 'Teniente FAP Jaime A De Montreuil Morales Airport', 'Chimbote', 'Peru', 'CHM', 'SPEO', '-9.149609565734863', '-78.5238037109375', '-5');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(2781, 'Cap FAP David Abenzur Rengifo International Airport', 'Pucallpa', 'Peru', 'PCL', 'SPCL', '-8.37794017791748', '-74.57430267333984', '-5');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(2782, 'Teniente FAP Jaime A De Montreuil Morales Airport', 'Chimbote', 'Peru', 'CHM', 'SPEO', '-9.149609565734863', '-78.5238037109375', '-5'),
 (2783, 'Puerto Esperanza Airport', 'Puerto Esperanza', 'Peru', '\\N', 'SPEP', '-9.7681303024292', '-70.70649719238281', '-5'),
 (2784, 'Cesar Torke Podesta Airport', 'Moquegua', 'Peru', '\\N', 'SPEQ', '-17.179000854492188', '-70.93080139160156', '-5'),
 (2785, 'Capitan FAP Jose A Quinones Gonzales International Airport', 'Chiclayo', 'Peru', 'CIX', 'SPHI', '-6.787479877471924', '-79.8281021118164', '-5'),
@@ -3668,9 +3635,9 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (3258, 'Kaimana Airport', 'Kaimana', 'Indonesia', 'KNG', 'WASK', '-3.6445200443267822', '133.6959991455078', '9'),
 (3259, 'Babo Airport', 'Babo', 'Indonesia', 'BXB', 'WASO', '-2.5322399139404297', '133.43899536132812', '9'),
 (3260, 'Rendani Airport', 'Manokwari', 'Indonesia', 'MKW', 'WASR', '-0.8918330073356628', '134.0489959716797', '9'),
-(3261, 'Dominique Edward Osok Airport', 'Sorong', 'Indonesia', 'SOQ', 'WAXX', '-0.894', '131.287', '9'),
-(3262, 'Bintulu Airport', 'Bintulu', 'Malaysia', 'BTU', 'WBGB', '3.12385010719', '113.019996643', '8');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(3261, 'Dominique Edward Osok Airport', 'Sorong', 'Indonesia', 'SOQ', 'WAXX', '-0.894', '131.287', '9');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(3262, 'Bintulu Airport', 'Bintulu', 'Malaysia', 'BTU', 'WBGB', '3.12385010719', '113.019996643', '8'),
 (3263, 'Kuching International Airport', 'Kuching', 'Malaysia', 'KCH', 'WBGG', '1.4846999645233154', '110.34700012207031', '8'),
 (3264, 'Limbang Airport', 'Limbang', 'Malaysia', 'LMN', 'WBGJ', '4.808300018310547', '115.01000213623047', '8'),
 (3265, 'Marudi Airport', 'Marudi', 'Malaysia', 'MUR', 'WBGM', '4.178979873657227', '114.3290023803711', '8'),
@@ -4077,9 +4044,9 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (3679, 'Millville Municipal Airport', 'Millville', 'United States', 'MIV', 'KMIV', '39.367802', '-75.072197', '-5'),
 (3680, 'Sheppard Air Force Base-Wichita Falls Municipal Airport', 'Wichita Falls', 'United States', 'SPS', 'KSPS', '33.9888', '-98.491898', '-6'),
 (3681, 'Cincinnati Municipal Airport Lunken Field', 'Cincinnati', 'United States', 'LUK', 'KLUK', '39.10329819', '-84.41860199', '-5'),
-(3682, 'Hartsfield Jackson Atlanta International Airport', 'Atlanta', 'United States', 'ATL', 'KATL', '33.6367', '-84.428101', '-5'),
-(3683, 'Castle Airport', 'Merced', 'United States', 'MER', 'KMER', '37.38050079', '-120.5680008', '-8');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(3682, 'Hartsfield Jackson Atlanta International Airport', 'Atlanta', 'United States', 'ATL', 'KATL', '33.6367', '-84.428101', '-5');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(3683, 'Castle Airport', 'Merced', 'United States', 'MER', 'KMER', '37.38050079', '-120.5680008', '-8'),
 (3684, 'Mc Clellan Airfield', 'Sacramento', 'United States', 'MCC', 'KMCC', '38.66759872', '-121.401001', '-8'),
 (3685, 'Gerald R. Ford International Airport', 'Grand Rapids', 'United States', 'GRR', 'KGRR', '42.88079834', '-85.52279663', '-5'),
 (3686, 'Winkler County Airport', 'Wink', 'United States', 'INK', 'KINK', '31.779600143399996', '-103.200996399', '-6'),
@@ -4486,9 +4453,9 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (4110, 'Yibin Caiba Airport', 'Yibin', 'China', 'YBP', 'ZUYB', '28.8005555556', '104.545', '8'),
 (4111, 'Roshchino International Airport', 'Tyumen', 'Russia', 'TJM', 'USTR', '57.189601898199996', '65.3243026733', '5'),
 (4112, 'Akron Canton Regional Airport', 'Akron', 'United States', 'CAK', 'KCAK', '40.916099548339844', '-81.44219970703125', '-5'),
-(4113, 'Huntsville International Carl T Jones Field', 'Huntsville', 'United States', 'HSV', 'KHSV', '34.637199401855', '-86.775100708008', '-6'),
-(4114, 'Mid Ohio Valley Regional Airport', 'PARKERSBURG', 'United States', 'PKB', 'KPKB', '39.34510040283203', '-81.43920135498047', '-5');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(4113, 'Huntsville International Carl T Jones Field', 'Huntsville', 'United States', 'HSV', 'KHSV', '34.637199401855', '-86.775100708008', '-6');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(4114, 'Mid Ohio Valley Regional Airport', 'PARKERSBURG', 'United States', 'PKB', 'KPKB', '39.34510040283203', '-81.43920135498047', '-5'),
 (4115, 'Montgomery Regional (Dannelly Field) Airport', 'MONTGOMERY', 'United States', 'MGM', 'KMGM', '32.30059814', '-86.39399719', '-6'),
 (4116, 'Tri-Cities Regional TN/VA Airport', 'BRISTOL', 'United States', 'TRI', 'KTRI', '36.475201', '-82.407401', '-5'),
 (4117, 'Barkley Regional Airport', 'PADUCAH', 'United States', 'PAH', 'KPAH', '37.06079864501953', '-88.7738037109375', '-6'),
@@ -4921,9 +4888,9 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (5618, 'Maintirano Airport', 'Maintirano', 'Madagascar', 'MXT', 'FMMO', '-18.049999', '44.033001', '3'),
 (5619, 'Morafenobe Airport', 'Morafenobe', 'Madagascar', 'TVA', 'FMMR', '-17.850083', '44.920467', '3'),
 (5620, 'Tambohorano Airport', 'Tambohorano', 'Madagascar', 'WTA', 'FMMU', '-17.47610092163086', '43.972801208496094', '3'),
-(5621, 'Tsiroanomandidy Airport', 'Tsiroanomandidy', 'Madagascar', 'WTS', 'FMMX', '-18.759677', '46.054065', '3'),
-(5622, 'Ambatondrazaka Airport', 'Ambatondrazaka', 'Madagascar', 'WAM', 'FMMZ', '-17.795378', '48.442583', '3');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(5621, 'Tsiroanomandidy Airport', 'Tsiroanomandidy', 'Madagascar', 'WTS', 'FMMX', '-18.759677', '46.054065', '3');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(5622, 'Ambatondrazaka Airport', 'Ambatondrazaka', 'Madagascar', 'WAM', 'FMMZ', '-17.795378', '48.442583', '3'),
 (5623, 'Port Bergé Airport', 'Port Bergé', 'Madagascar', 'WPB', 'FMNG', '-15.584286', '47.623587', '3'),
 (5624, 'Ambanja Airport', 'Ambanja', 'Madagascar', '\\N', 'FMNJ', '-13.645705', '48.459427', '3'),
 (5625, 'Soalala Airport', 'Soalala', 'Madagascar', 'DWB', 'FMNO', '-16.10169', '45.358837', '3'),
@@ -5358,9 +5325,9 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (6118, 'Kyzyl Airport', 'Kyzyl', 'Russia', 'KYZ', 'UNKY', '51.66939926147461', '94.40059661865234', '7'),
 (6119, 'Spichenkovo Airport', 'Novokuznetsk', 'Russia', 'NOZ', 'UNWW', '53.811401', '86.877197', '7'),
 (6120, 'Khatanga Airport', 'Khatanga', 'Russia', 'HTG', 'UOHH', '71.97810363769531', '102.49099731445312', '7'),
-(6121, 'Igarka Airport', 'Igarka', 'Russia', 'IAA', 'UOII', '67.43720245361328', '86.62190246582031', '7'),
-(6122, 'Khankala Air Base', 'Grozny', 'Russia', '\\N', 'URMG', '43.298099517822266', '45.78409957885742', '3');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(6121, 'Igarka Airport', 'Igarka', 'Russia', 'IAA', 'UOII', '67.43720245361328', '86.62190246582031', '7');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(6122, 'Khankala Air Base', 'Grozny', 'Russia', '\\N', 'URMG', '43.298099517822266', '45.78409957885742', '3'),
 (6123, 'Nalchik Airport', 'Nalchik', 'Russia', 'NAL', 'URMN', '43.512901306152344', '43.636600494384766', '3'),
 (6124, 'Beslan Airport', 'Beslan', 'Russia', 'OGZ', 'URMO', '43.2051010132', '44.6066017151', '3'),
 (6125, 'Elista Airport', 'Elista', 'Russia', 'ESL', 'URWI', '46.3739013671875', '44.33089828491211', '3'),
@@ -5810,9 +5777,9 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (6845, 'Seward Airport', 'Seward', 'United States', 'SWD', 'PAWD', '60.12689971923828', '-149.41900634765625', '-9'),
 (6849, 'Grand Marais Cook County Airport', 'Grand Marais', 'United States', 'GRM', 'KCKC', '47.8382987976', '-90.38289642330001', '-6'),
 (6853, 'Wausau Downtown Airport', 'Wausau', 'United States', 'AUW', 'KAUW', '44.9262008667', '-89.6266021729', '-6'),
-(6855, 'Kalundborg Airport', 'Kalundborg', 'Denmark', '\\N', 'EKKL', '55.70029830932617', '11.25', '1'),
-(6859, 'Mary Airport', 'Mary', 'Turkmenistan', 'MYP', 'UTAM', '37.6194', '61.896702', '5');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(6855, 'Kalundborg Airport', 'Kalundborg', 'Denmark', '\\N', 'EKKL', '55.70029830932617', '11.25', '1');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(6859, 'Mary Airport', 'Mary', 'Turkmenistan', 'MYP', 'UTAM', '37.6194', '61.896702', '5'),
 (6860, 'Bungle Bungle Airport', 'Bungle Bungle', 'Australia', '\\N', 'YBUU', '-17.545299530029297', '128.3070068359375', '8'),
 (6862, 'Sazená Airport', 'Sazena', 'Czech Republic', '\\N', 'LKSZ', '50.3246994019', '14.2588996887', '1'),
 (6866, 'Spray View Airport', 'Spray View', 'Zimbabwe', '\\N', 'FVSV', '-17.91699981689453', '25.816999435424805', '2'),
@@ -6253,9 +6220,9 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (7531, 'Maturacá Airport', 'Maturaca', 'Brazil', '\\N', 'SWMK', '0.6282690167427063', '-66.11509704589844', '-4'),
 (7532, 'Carajás Airport', 'Parauapebas', 'Brazil', 'CKS', 'SBCJ', '-6.11527776718', '-50.0013885498', '-3'),
 (7533, 'Centro de Lançamento de Alcântara Airport', 'Alcantara', 'Brazil', '\\N', 'SNCW', '-2.372999906539917', '-44.396400451660156', '-3'),
-(7536, 'Tarempa Airport', 'Anambas Islands', 'Indonesia', 'MWK', 'WIOM', '3.3481199741363525', '106.25800323486328', '7'),
-(7538, 'Würzburg-Schenkenturm Airport', 'Wuerzburg', 'Germany', '\\N', 'EDFW', '49.81778', '9.8975', '1');
-INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(7536, 'Tarempa Airport', 'Anambas Islands', 'Indonesia', 'MWK', 'WIOM', '3.3481199741363525', '106.25800323486328', '7');
+INSERT IGNORE INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitude`, `longitude`, `timezone`) VALUES
+(7538, 'Würzburg-Schenkenturm Airport', 'Wuerzburg', 'Germany', '\\N', 'EDFW', '49.81778', '9.8975', '1'),
 (7542, 'São Jacinto Airport', 'Aveiro', 'Portugal', '\\N', 'LPAV', '40.656741', '-8.741544', '0'),
 (7544, 'Hopsten Air Base', 'Hopsten', 'Germany', '\\N', 'ETNP', '52.33869934082031', '7.541329860687256', '1'),
 (7546, 'Persian Gulf International Airport', 'Khalije Fars', 'Iran', 'PGU', 'OIBP', '27.379601', '52.737701', '3.5'),
@@ -6329,59 +6296,11 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `IATA`, `ICAO`, `latitu
 (7650, 'Olympia Regional Airport', 'Olympia', 'United States', 'OLM', 'KOLM', '46.9693985', '-122.9029999', '-8'),
 (7651, 'Yolo County Davis Woodland Winters Airport', 'Davis-Woodland-Winters', 'United States', '\\N', 'KDWA', '38.57910156', '-121.8570023', '-8');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `cancelled`
---
-
-CREATE TABLE `cancelled` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `option` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `disqualification` enum('1','0') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `claims`
---
-
-CREATE TABLE `claims` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `airline_id` bigint(20) UNSIGNED NOT NULL,
-  `departure_id` bigint(20) UNSIGNED NOT NULL,
-  `arrival_id` bigint(20) UNSIGNED NOT NULL,
-  `dof` date NOT NULL,
-  `tof` time NOT NULL,
-  `complaint` enum('delayed','denied','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `complaint_duration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `complaint_option` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `countries`
---
-
-CREATE TABLE `countries` (
-  `id` int(11) NOT NULL,
-  `continent_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `countries`
 --
 
-INSERT INTO `countries` (`id`, `continent_code`, `country_name`, `cc`) VALUES
+INSERT IGNORE INTO `countries` (`id`, `continent_code`, `country_name`, `cc`) VALUES
 (1, 'Continent_Code', 'Country_Name', 'Two_Letter_Country_Code'),
 (2, 'AS', 'Afghanistan, Islamic Republic of', 'AF'),
 (3, 'EU', 'Albania, Republic of', 'AL'),
@@ -6645,252 +6564,7 @@ INSERT INTO `countries` (`id`, `continent_code`, `country_name`, `cc`) VALUES
 (261, 'AS', 'Iraq-Saudi Arabia Neutral Zone', 'XE'),
 (262, 'AS', 'United Nations Neutral Zone', 'XD'),
 (263, 'AS', 'Spratly Islands', 'XS');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `delayed`
---
-
-CREATE TABLE `delayed` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `option` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `disqualification` enum('1','0') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `denied`
---
-
-CREATE TABLE `denied` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `option` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `disqualification` enum('1','0') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `failed_jobs`
---
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(52, '2014_10_12_000000_create_users_table', 1),
-(53, '2014_10_12_100000_create_password_resets_table', 1),
-(54, '2019_08_19_000000_create_failed_jobs_table', 1),
-(55, '2020_03_11_200035_create_airports_table', 1),
-(56, '2020_03_11_200427_create_airlines_table', 1),
-(57, '2020_03_11_200535_create_claims_table', 1),
-(58, '2020_03_11_200603_create_delayed_table', 1),
-(59, '2020_03_11_200624_create_cancelled_table', 1),
-(60, '2020_03_11_200923_create_denied_table', 1),
-(61, '2020_03_18_003628_create_countries_table', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` tinyint(1) DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `airlines`
---
-ALTER TABLE `airlines`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `airports`
---
-ALTER TABLE `airports`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cancelled`
---
-ALTER TABLE `cancelled`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `claims`
---
-ALTER TABLE `claims`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `claims_user_id_foreign` (`user_id`),
-  ADD KEY `claims_airline_id_foreign` (`airline_id`),
-  ADD KEY `claims_departure_id_foreign` (`departure_id`),
-  ADD KEY `claims_arrival_id_foreign` (`arrival_id`);
-
---
--- Indexes for table `countries`
---
-ALTER TABLE `countries`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `delayed`
---
-ALTER TABLE `delayed`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `denied`
---
-ALTER TABLE `denied`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`),
-  ADD UNIQUE KEY `users_phone_unique` (`phone`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `airlines`
---
-ALTER TABLE `airlines`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=524;
---
--- AUTO_INCREMENT for table `airports`
---
-ALTER TABLE `airports`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7652;
---
--- AUTO_INCREMENT for table `cancelled`
---
-ALTER TABLE `cancelled`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `claims`
---
-ALTER TABLE `claims`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `countries`
---
-ALTER TABLE `countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
---
--- AUTO_INCREMENT for table `delayed`
---
-ALTER TABLE `delayed`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `denied`
---
-ALTER TABLE `denied`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `claims`
---
-ALTER TABLE `claims`
-  ADD CONSTRAINT `claims_airline_id_foreign` FOREIGN KEY (`airline_id`) REFERENCES `airlines` (`id`),
-  ADD CONSTRAINT `claims_arrival_id_foreign` FOREIGN KEY (`arrival_id`) REFERENCES `airports` (`id`),
-  ADD CONSTRAINT `claims_departure_id_foreign` FOREIGN KEY (`departure_id`) REFERENCES `airports` (`id`),
-  ADD CONSTRAINT `claims_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
