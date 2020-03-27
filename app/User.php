@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'last_name',  'email', 'phone', 'password',
     ];
 
     /**
@@ -28,6 +28,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function getFullNameAttribute() {
+    return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function setFirstNameAttribute($value) {
+    $this->attributes['first_name'] = ucfirst($value);
+    }
+
+    public function setLastNameAttribute($value) {
+    $this->attributes['last_name'] = ucfirst($value);
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -36,4 +48,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /*
+     * Get Claims for the User
+     */
+    public function claims()
+    {
+        return $this->hasMany('App\Claim');
+    }
+
 }
+
+

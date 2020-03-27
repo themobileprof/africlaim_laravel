@@ -28,7 +28,6 @@ class CreateAirportsTable extends Migration
             $table->string('db_timezone');
             $table->string('type');
             $table->string('source');
-            //$table->enum('location', ['Europe', 'Africa', 'US', 'Americas', 'Asia', 'Australia', 'North America']);
             //$table->timestamps();
         });
     }
