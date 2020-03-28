@@ -22,7 +22,6 @@ class CreateAirlinesTable extends Migration
             $table->string('callsign');
             $table->string('country');
             $table->string('active');
-            //$table->enum('location', ['Europe', 'Africa', 'US', 'Americas', 'Asia', 'Australia', 'North America']);
             //$table->timestamps();
         });
     }
