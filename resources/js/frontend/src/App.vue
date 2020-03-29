@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <ViewAirports />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import ViewAirports from './components/view1_airports.vue'
 
 export default {
   name: 'App',
   components: {
-    ViewAirports
+  
   }
 }
 </script>

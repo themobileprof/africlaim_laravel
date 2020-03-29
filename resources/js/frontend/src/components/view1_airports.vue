@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'ViewAirports',
+  name: 'view1_airports',
   props: {
     msg: String
   }
