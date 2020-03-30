@@ -10,7 +10,7 @@ class Airline extends Model
 
     public function country()
     {
-        return $this->belongsTo('App\Country','country','cc');
+        return $this->belongsTo('App\Country');
     }
 
     /*
