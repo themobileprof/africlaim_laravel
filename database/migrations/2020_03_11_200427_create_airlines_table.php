@@ -20,7 +20,7 @@ class CreateAirlinesTable extends Migration
             $table->string('IATA');
             $table->string('ICAO');
             $table->string('callsign');
-            $table->string('country');
+            $table->string('country_id', 3)->references('id')->on('users');
             $table->string('active');
             //$table->timestamps();
         });

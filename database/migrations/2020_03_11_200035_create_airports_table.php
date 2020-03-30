@@ -17,7 +17,7 @@ class CreateAirportsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('city');
-            $table->string('country');
+            $table->string('country_id', 3)->references('id')->on('users');
             $table->string('IATA');
             $table->string('ICAO');
             $table->string('latitude');
