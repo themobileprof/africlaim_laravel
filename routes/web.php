@@ -26,5 +26,8 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 
 
 // Routes for database prepopulation
-Route::get('db/seeder', 'SeedingController@index')->name('db.seeder');
+//Route::get('db/seeder', 'SeedingController@index')->name('db.seeder');
 
+Route::get('/claims/{any}', function(){
+        return view('claims');
+})->where('any', '.*');
