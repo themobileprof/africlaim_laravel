@@ -1,8 +1,8 @@
     <template>
         <div>
-            <main class="p-4">
+			<form class="jumbotron-autocomplete__form-wrapper">
                 <router-view></router-view>
-            </main>
+			</form>
         </div>
     </template>
     <script>

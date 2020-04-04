@@ -1945,13 +1945,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'view1_airports',
-  props: {
-    msg: String
+  data: function data() {
+    return {
+      startquery: '',
+      endquery: '',
+      departures: [],
+      arrivals: []
+    };
   },
-  mounted: function mounted() {
-    console.log('Departure and Arrival mounted.');
+  methods: {
+    autoComplete: function autoComplete(airport) {
+      var _this = this;
+
+      var query = '';
+
+      if (airport == 'departure') {
+        this.departures = [];
+        query = this.startquery;
+      } else if (airport == 'arrival') {
+        this.arrivals = [];
+        query = this.endquery;
+      }
+
+      if (query.length > 2) {
+        axios.get('/api/airports/' + query).then(function (response) {
+          // console.log(response.data);
+          // response.data = JSON.parse(response.data);
+          // response.data.forEach((airport)=>{
+          //   console.log(airport);
+          //   this.airports.push(airport);
+          // });
+          if (airport == 'departure') {
+            _this.departures = response.data;
+          } else if (airport == 'arrival') {
+            _this.arrivals = response.data;
+          }
+        });
+      }
+    }
   }
 });
 
@@ -6599,7 +6654,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Departure */\n.jumbotron-autocomplete__start-airport-input {\n    background-image: url(https://static.airhelp.com/images/front-page/marker.svg?ver=1534257192);\n    background-position: 16px center;\n    background-repeat: no-repeat;\n    background-size: 24px;  \n    border-left: 1px solid #c6d5e6;\n    padding-right: 16px;\n    height: 56px;\n    width: 100%;\n    padding-left: 56px;\n    font-size: 17px;\n    font-weight: 400;\n    line-height: 1.53;\n    border-radius: 3px;\n    color: #536273;\n    outline: none;\n}\ninput{\n    text-rendering: auto;\n    letter-spacing: normal;\n    word-spacing: normal;\n    text-transform: none;\n    text-indent: 0px;\n    text-shadow: none;\n    display: inline-block;\n    text-align: start;\n    background-color: -internal-light-dark-color(white, black);\n}\n\n\n/* Destination */\n.jumbotron-autocomplete__flight-destination-input {\n    background-image: url(https://static.airhelp.com/images/front-page/marker.svg?ver=1534257192);\n    background-position: 16px center;\n    background-repeat: no-repeat;\n    background-size: 24px;\n    padding-right: 16px;\n    border: 1px solid #c6d5e6;\n    height: 56px;\n    width: 100%;\n    padding-left: 56px;\n    font-size: 17px;\n    font-weight: 400;\n    line-height: 1.53;\n    border-radius: 3px;\n    color: #536273;\n    outline: none;\n}\n\n/* Button */\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    max-width: 360px;\n    float: none;\n}\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    margin-bottom: 32px;\n}\n.col-xs-12 {\n    width: 100%;\n}\n.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {\n    position: relative;\n    min-height: 1px;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n.ah-btn-large {\n    height: 72px;\n    font-size: 19px;\n}\n.ah-btn--positive {\n    box-shadow: 0 8px 16px 0 rgba(83,99,115,0.32);\n    transition: box-shadow 0.2s ease-in-out;\n    color: #fff;\n    background-color: #1b8eff;\n    font-weight: 600;\n}\n.ah-btn, .ah-btn-large, .ah-btn-small {\n    white-space: normal;\n    word-wrap: break-word;\n    display: inline-flex;\n    text-align: center;\n    justify-content: center;\n    align-items: center;\n    border-radius: 3px;\n    text-decoration: none;\n}\ncol-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {\n    float: left;\n}", ""]);
+exports.push([module.i, ".claims-desc {\n    font-size: 18px;\n    margin-top: 50px;\n    margin-bottom: 25px;\n}\ninput {\n    text-rendering: auto;\n    letter-spacing: normal;\n    word-spacing: normal;\n    text-transform: none;\n    text-indent: 0px;\n    text-shadow: none;\n    display: inline-block;\n    text-align: start;\n    background-color: -internal-light-dark-color(white, black);\n}\n.control-label {\n    padding-right: 16px;\n    height: 26px;\n    width: 100%;\n    padding-left: 26px;\n    font-size: 13px;\n    font-weight: bold;\n    line-height: 1.53;\n    color: #536273;\n    outline: none;\n    clear: both;\n}\n\n/* Destination */\n.autocomplete-input {\n    padding-right: 16px;\n    border: 1px solid #c6d5e6;\n    height: 46px;\n    width: 100%;\n    padding-left: 26px;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.53;\n    border-radius: 3px;\n    color: #536273;\n    outline: none;\n}\n\n/* Button */\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    max-width: 360px;\n    float: none;\n}\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    margin-bottom: 32px;\n}\n.col-xs-12 {\n    width: 100%;\n}\n.ah-btn-large {\n    height: 72px;\n    font-size: 19px;\n}\n.ah-btn--positive {\n    box-shadow: 0 8px 16px 0 rgba(83, 99, 115, 0.32);\n    transition: box-shadow 0.2s ease-in-out;\n    color: #fff;\n    background-color: #1b8eff;\n    font-weight: 600;\n}\n.ah-btn,\n.ah-btn-large,\n.ah-btn-small {\n    white-space: normal;\n    word-wrap: break-word;\n    display: inline-flex;\n    text-align: center;\n    justify-content: center;\n    align-items: center;\n    border-radius: 3px;\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -38071,7 +38126,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("main", { staticClass: "p-4" }, [_c("router-view")], 1)])
+  return _c("div", [
+    _c(
+      "form",
+      { staticClass: "jumbotron-autocomplete__form-wrapper" },
+      [_c("router-view")],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38095,97 +38157,135 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-style" }, [
-      _c("form", { staticClass: "jumbotron-autocomplete__form-wrapper" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "jumbotron-autocomplete__start-airport col-xs-12 col-md-4"
-          },
-          [
-            _c(
-              "label",
-              { staticClass: "sr-only", attrs: { for: "start-airport" } },
-              [_vm._v("Departed from")]
-            ),
-            _vm._v(" "),
-            _c("meta", { attrs: { property: "target", itemprop: "target" } }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass:
-                "jumbotron-autocomplete__start-airport-input c-autocomplete__input js-autocomplete-start-airport",
-              attrs: {
-                id: "start-airport",
-                type: "text",
-                name: "query-input",
-                placeholder: "Departed from",
-                autocomplete: "off",
-                airport_code: "",
-                "data-gtm": "Body,clicked,InputFrom,InputFrom",
-                maxlength: "25"
-              }
-            })
-          ]
-        ),
+  return _c("div", { staticClass: "col-md-12 form-style" }, [
+    _c("div", { staticClass: "row claims-desc" }, [
+      _vm._v(
+        "\n\t\t\tTo find out if you are eligible for compensation, kindly fill out your flight information\n\t\t"
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-xs-12 col-md-4" }, [
+        _c("label", { staticClass: "control-label" }, [
+          _vm._v("\n\t\t\t\tDeparture\n\t\t\t")
+        ]),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "jumbotron-autocomplete__flight-destination col-xs-12 col-md-4"
-          },
-          [
-            _c(
-              "label",
-              { staticClass: "sr-only", attrs: { for: "flight-destination" } },
-              [_vm._v("Final destination")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              staticClass:
-                "jumbotron-autocomplete__flight-destination-input c-autocomplete__input js-autocomplete-destination-airport",
-              attrs: {
-                id: "flight-destination",
-                type: "text",
-                name: "query",
-                placeholder: "Final destination",
-                autocomplete: "off",
-                airport_code: "",
-                "data-gtm": "Body,clicked,InputTo,InputTo",
-                maxlength: "25"
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass:
-              "jumbotron-autocomplete__cta-btn ah-btn-large ah-btn--positive col-xs-12 col-md-4 js-autocomplete-submit",
-            attrs: {
-              id: "check-compensation-button",
-              href: "https://app.airhelp.com/claims/new?lang=en",
-              "data-gtm":
-                "Body,clicked,check_your_flight,CheckYourCompensation",
-              "data-mpt": "CheckYourCompensation",
-              title: "Check Compensation"
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.startquery,
+              expression: "startquery"
             }
+          ],
+          staticClass: "autocomplete-input",
+          attrs: {
+            id: "start-airport",
+            name: "start-airport",
+            type: "text",
+            placeholder: "Departed from",
+            autocomplete: "off",
+            maxlength: "25"
           },
-          [_vm._v("Check Compensation")]
-        )
+          domProps: { value: _vm.startquery },
+          on: {
+            keyup: function($event) {
+              return _vm.autoComplete("departure")
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.startquery = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.departures.length
+          ? _c("div", { staticClass: "panel-footer" }, [
+              _c(
+                "ul",
+                { staticClass: "list-group" },
+                _vm._l(_vm.departures, function(departure) {
+                  return _c(
+                    "li",
+                    { key: departure, staticClass: "list-group-item" },
+                    [
+                      _vm._v(
+                        "\n\t\t\t\t\t" + _vm._s(departure.name) + "\n\t\t\t\t\t"
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xs-12 col-md-4" }, [
+        _c("label", { staticClass: "control-label" }, [
+          _vm._v("\n\t\t\t\tFinal destination\n\t\t\t")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.endquery,
+              expression: "endquery"
+            }
+          ],
+          staticClass: "autocomplete-input",
+          attrs: {
+            id: "end-airport",
+            name: "end-airport",
+            type: "text",
+            placeholder: "Arrived at",
+            autocomplete: "off",
+            maxlength: "25"
+          },
+          domProps: { value: _vm.endquery },
+          on: {
+            keyup: function($event) {
+              return _vm.autoComplete("arrival")
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.endquery = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.arrivals.length
+          ? _c("div", { staticClass: "panel-footer" }, [
+              _c(
+                "ul",
+                { staticClass: "list-group" },
+                _vm._l(_vm.arrivals, function(arrival) {
+                  return _c(
+                    "li",
+                    { key: arrival, staticClass: "list-group-item" },
+                    [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t" + _vm._s(arrival.name) + "\n\t\t\t\t\t"
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          : _vm._e()
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

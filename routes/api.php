@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Airport;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // ROUTE FOR AIRLINES API
 Route::get('/airlines/{search?}', 'api\AirlineController@index');
+//Route::get('/airlines/{search?}', 'api\AirlineController@index');
 Route::get('/airline/{airline}', 'api\AirlineController@show');
+
+
+Route::get('/search', 'api\AirlineController@search');
+
 
 // ROUTE FOR AIRPORT API
 Route::get('/airports/{search?}', 'api\AirportController@index');

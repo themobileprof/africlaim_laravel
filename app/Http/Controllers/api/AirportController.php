@@ -10,9 +10,9 @@ use App\Airport;
 class AirportController extends Controller
 {
     public function __construct()
-   {
-    $this->middleware('auth:api')->except(['index', 'show']);
-   }
+    {
+        $this->middleware('auth:api')->except(['index', 'show']);
+    }
 
     /**
      * Display a listing of the resource.
@@ -22,12 +22,15 @@ class AirportController extends Controller
     public function index($search = null)
     {
         //
-        if ($search){
-            return AirportResource::collection(Airport::where('name', 'like', '%' . $search . '%')->paginate(25));
-        } else {
-            return AirportResource::collection(Airport::paginate(25));
-        }
+        if ($search) {
+            $airport_search = Airport::where('name', 'like', '%' . $search . '%')->take(10)->get();
+            return response()->json($airport_search);
 
+            //$airport_search = Airport::where('name', 'like', '%' . $search . '%')->paginate(25);
+            //return AirportResource::collection($airport_search);
+        } else {
+            return response()->json(Airport::get());
+        }
     }
 
     /**
@@ -41,5 +44,4 @@ class AirportController extends Controller
     {
         return new AirportResource($airport);
     }
-
 }

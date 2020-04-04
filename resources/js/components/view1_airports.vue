@@ -1,45 +1,84 @@
 <template>
-  <div class='form-style'>
-    <input type="text" placeholder="what are you looking for?" v-model="query" v-on:keyup="autoComplete" class="form-control">
-  <div class="panel-footer" v-if="results.length">
-   <ul class="list-group">
-    <li class="list-group-item" v-for="result in results">
-     {{ result.name }}
-    </li>
-   </ul>
-  </div>
+  <div class='col-md-12 form-style'>
+		<div class="row claims-desc">
+			To find out if you are eligible for compensation, kindly fill out your flight information
+		</div>
+		<div class="row">
+    
+		<div class="col-xs-12 col-md-4">
+			<label class="control-label">
+				Departure
+			</label>
+			<input id="start-airport" name="start-airport" v-model="startquery" v-on:keyup="autoComplete('departure')" class="autocomplete-input" type="text" placeholder="Departed from" autocomplete="off" maxlength="25">
+			<div class="panel-footer" v-if="departures.length">
+				<ul class="list-group">
+					<li class="list-group-item" v-for="departure in departures" v-bind:key="departure">
+					{{ departure.name }}
+					</li>
+				</ul>
+			</div>
+	  </div>
+  
+	  <div class="col-xs-12 col-md-4">
+			<label class="control-label">
+				Final destination
+			</label>
+		<input id="end-airport" name="end-airport" v-model="endquery" v-on:keyup="autoComplete('arrival')" class="autocomplete-input" type="text" placeholder="Arrived at" autocomplete="off" maxlength="25">
+			<div class="panel-footer" v-if="arrivals.length">
+				<ul class="list-group">
+					<li class="list-group-item" v-for="arrival in arrivals" v-bind:key="arrival">
+						{{ arrival.name }}
+					</li>
+				</ul>
+			</div>
+		  </div>
+  
 
+    </div>
+	<div>
 
-
-    <form class="jumbotron-autocomplete__form-wrapper">
-    <div class="jumbotron-autocomplete__start-airport col-xs-12 col-md-4">
-    <label class="sr-only" for="start-airport">Departed from</label>
-    <meta property="target" itemprop="target">
-    <input id="start-airport" class="jumbotron-autocomplete__start-airport-input c-autocomplete__input js-autocomplete-start-airport" type="text" name="query-input" placeholder="Departed from" autocomplete="off" airport_code="" data-gtm="Body,clicked,InputFrom,InputFrom" maxlength="25">
-  </div>
-  <div class="jumbotron-autocomplete__flight-destination col-xs-12 col-md-4">
-    <label class="sr-only" for="flight-destination">Final destination</label>
-    <input id="flight-destination" class="jumbotron-autocomplete__flight-destination-input c-autocomplete__input js-autocomplete-destination-airport" type="text" name="query" placeholder="Final destination" autocomplete="off" airport_code="" data-gtm="Body,clicked,InputTo,InputTo" maxlength="25">
-  </div>
-    <a id="check-compensation-button" href="https://app.airhelp.com/claims/new?lang=en" class="jumbotron-autocomplete__cta-btn ah-btn-large ah-btn--positive col-xs-12 col-md-4 js-autocomplete-submit" data-gtm="Body,clicked,check_your_flight,CheckYourCompensation" data-mpt="CheckYourCompensation" title="Check Compensation">Check Compensation</a>
-    </form>
-  </div>
+	</div>
+</div>
 </template>
 
 <script>
     export default {
         data(){
            return {
-            query: '',
-            results: []
+            startquery: '',
+            endquery: '',
+            departures: [],
+            arrivals: []
            }
           },
           methods: {
-           autoComplete(){
-            this.results = [];
-            if(this.query.length > 2){
-             axios.get('/api/airports',{params: {query: this.query}}).then(response => {
-              this.results = response.data;
+           autoComplete(airport){
+               let query = '';
+
+               if (airport == 'departure'){
+                   this.departures = [];
+                   query = this.startquery;
+               } else if (airport == 'arrival') {
+                   this.arrivals = [];
+                   query = this.endquery;
+               }
+
+
+            if(query.length > 2){
+             axios.get('/api/airports/' + query).then(response => {
+                 // console.log(response.data);
+                 // response.data = JSON.parse(response.data);
+                 // response.data.forEach((airport)=>{
+                 //   console.log(airport);
+                 //   this.airports.push(airport);
+
+                 // });
+
+               if (airport == 'departure'){
+                    this.departures = response.data;
+               } else if (airport == 'arrival') {
+                    this.arrivals = response.data;
+               }
              });
             }
            }
