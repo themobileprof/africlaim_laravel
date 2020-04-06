@@ -9,14 +9,17 @@
 			<label for="start-airport" class="control-label">
 				Departure
 			</label>
-			<airport></airport>	
+			<airport 
+				input_text='departure' 
+				placehold_text='Departed from' 
+		    ></airport>
 	  </div>
   
 	  <div class="col-xs-12 col-md-4">
 			<label for="end-airport" class="control-label">
 				Final destination
 			</label>
-			<airport></airport>
+			<airport input_text='destination' placehold_text='Arrived at'></airport>
 	  </div>
 		<div class="col-md-4">
 		
@@ -40,23 +43,21 @@
 			<label for="connecting_flight_list" class="control-label">
 				List your connecting flight locations?
 			</label>
-			<airport></airport>
+			<airport input_text='connecting1' placehold_text='What is your connecting airport'></airport>
 		</div>
 	</div>
 </div>
 </template>
 
 <script>
+	import airport from './subcomponents/airports'
+
     export default {
-        data(){
-           return {
-            startquery: '',
-            endquery: '',
-            departures: [],
-            arrivals: []
-           }
-          },
-    }
+		components: {
+			airport
+		}
+	}
+
 
 </script>
 

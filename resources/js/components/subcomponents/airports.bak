@@ -21,8 +21,8 @@
         data(){
            return {
             input_name: this.input_text,
-			   placehold: this.placehold_text,
-			   query: '',
+		    placehold: this.placehold_text,
+			query: '',
             airports: []
            }
           },

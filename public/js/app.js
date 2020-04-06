@@ -1919,10 +1919,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/view1_airports.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/view1_airports.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/airports.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/subcomponents/airports.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1944,90 +1944,104 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['input_text', 'placehold_text'],
   data: function data() {
     return {
-      startquery: '',
-      endquery: '',
-      departures: [],
-      arrivals: []
+      input_name: this.input_text,
+      placehold: this.placehold_text,
+      query: '',
+      airports: []
     };
   },
   methods: {
-    autoComplete: function autoComplete(airport) {
+    autoComplete: function autoComplete() {
       var _this = this;
 
-      var query = '';
+      this.airports = [];
 
-      if (airport == 'departure') {
-        this.departures = [];
-        query = this.startquery;
-      } else if (airport == 'arrival') {
-        this.arrivals = [];
-        query = this.endquery;
-      }
-
-      if (query.length > 2) {
-        axios.get('/api/airports/' + query).then(function (response) {
+      if (this.query.length > 2) {
+        axios.get('/api/airports/' + this.query).then(function (response) {
           // console.log(response.data);
           // response.data = JSON.parse(response.data);
           // response.data.forEach((airport)=>{
           //   console.log(airport);
           //   this.airports.push(airport);
           // });
-          if (airport == 'departure') {
-            _this.departures = response.data;
-          } else if (airport == 'arrival') {
-            _this.arrivals = response.data;
-          }
+          _this.airports = response.data;
         });
       }
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/view1_airports.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/view1_airports.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _subcomponents_airports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./subcomponents/airports */ "./resources/js/components/subcomponents/airports.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    airport: _subcomponents_airports__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -38180,6 +38194,77 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/airports.vue?vue&type=template&id=47fa212c&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/subcomponents/airports.vue?vue&type=template&id=47fa212c& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.query,
+          expression: "query"
+        }
+      ],
+      staticClass: "autocomplete-input",
+      attrs: {
+        id: _vm.input_name,
+        name: _vm.input_name,
+        type: "text",
+        placeholder: _vm.placehold,
+        autocomplete: "off",
+        maxlength: "25"
+      },
+      domProps: { value: _vm.query },
+      on: {
+        keyup: _vm.autoComplete,
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.query = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm.airports.length
+      ? _c("div", { staticClass: "panel-footer" }, [
+          _c(
+            "ul",
+            { staticClass: "list-group" },
+            _vm._l(_vm.airports, function(airport) {
+              return _c(
+                "li",
+                { key: airport, staticClass: "list-group-item" },
+                [_vm._v("\n\t\t\t\t" + _vm._s(airport.name) + "\n\t\t\t")]
+              )
+            }),
+            0
+          )
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/view1_airports.vue?vue&type=template&id=18834174&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/view1_airports.vue?vue&type=template&id=18834174& ***!
@@ -38203,134 +38288,69 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-xs-12 col-md-4" }, [
-        _c(
-          "label",
-          { staticClass: "control-label", attrs: { for: "start-airport" } },
-          [_vm._v("\n\t\t\t\tDeparture\n\t\t\t")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.startquery,
-              expression: "startquery"
-            }
-          ],
-          staticClass: "autocomplete-input",
-          attrs: {
-            id: "start-airport",
-            name: "start-airport",
-            type: "text",
-            placeholder: "Departed from",
-            autocomplete: "off",
-            maxlength: "25"
-          },
-          domProps: { value: _vm.startquery },
-          on: {
-            keyup: function($event) {
-              return _vm.autoComplete("departure")
-            },
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.startquery = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _vm.departures.length
-          ? _c("div", { staticClass: "panel-footer" }, [
-              _c(
-                "ul",
-                { staticClass: "list-group" },
-                _vm._l(_vm.departures, function(departure) {
-                  return _c(
-                    "li",
-                    { key: departure, staticClass: "list-group-item" },
-                    [
-                      _vm._v(
-                        "\n\t\t\t\t\t" + _vm._s(departure.name) + "\n\t\t\t\t\t"
-                      )
-                    ]
-                  )
-                }),
-                0
-              )
-            ])
-          : _vm._e()
-      ]),
+      _c(
+        "div",
+        { staticClass: "col-xs-12 col-md-4" },
+        [
+          _c(
+            "label",
+            { staticClass: "control-label", attrs: { for: "start-airport" } },
+            [_vm._v("\n\t\t\t\tDeparture\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c("airport", {
+            attrs: { input_text: "departure", placehold_text: "Departed from" }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "col-xs-12 col-md-4" }, [
-        _c(
-          "label",
-          { staticClass: "control-label", attrs: { for: "end-airport" } },
-          [_vm._v("\n\t\t\t\tFinal destination\n\t\t\t")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.endquery,
-              expression: "endquery"
-            }
-          ],
-          staticClass: "autocomplete-input",
-          attrs: {
-            id: "end-airport",
-            name: "end-airport",
-            type: "text",
-            placeholder: "Arrived at",
-            autocomplete: "off",
-            maxlength: "25"
-          },
-          domProps: { value: _vm.endquery },
-          on: {
-            keyup: function($event) {
-              return _vm.autoComplete("arrival")
-            },
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.endquery = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _vm.arrivals.length
-          ? _c("div", { staticClass: "panel-footer" }, [
-              _c(
-                "ul",
-                { staticClass: "list-group" },
-                _vm._l(_vm.arrivals, function(arrival) {
-                  return _c(
-                    "li",
-                    { key: arrival, staticClass: "list-group-item" },
-                    [
-                      _vm._v(
-                        "\n\t\t\t\t\t\t" + _vm._s(arrival.name) + "\n\t\t\t\t\t"
-                      )
-                    ]
-                  )
-                }),
-                0
-              )
-            ])
-          : _vm._e()
-      ]),
+      _c(
+        "div",
+        { staticClass: "col-xs-12 col-md-4" },
+        [
+          _c(
+            "label",
+            { staticClass: "control-label", attrs: { for: "end-airport" } },
+            [_vm._v("\n\t\t\t\tFinal destination\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c("airport", {
+            attrs: { input_text: "destination", placehold_text: "Arrived at" }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" })
     ]),
     _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
-    _vm._m(1)
+    _c("div", { staticClass: "row p-4 mt-4" }, [
+      _c(
+        "div",
+        { staticClass: "col-xs-12 col-md-12 pt-2" },
+        [
+          _c(
+            "label",
+            {
+              staticClass: "control-label",
+              attrs: { for: "connecting_flight_list" }
+            },
+            [_vm._v("\n\t\t\t\tList your connecting flight locations?\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c("airport", {
+            attrs: {
+              input_text: "connecting1",
+              placehold_text: "What is your connecting airport"
+            }
+          })
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -38359,23 +38379,6 @@ var staticRenderFns = [
             "data-width": "100"
           }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row p-4 mt-4" }, [
-      _c("div", { staticClass: "col-xs-12 col-md-12 pt-2" }, [
-        _c(
-          "label",
-          {
-            staticClass: "control-label",
-            attrs: { for: "connecting_flight_list" }
-          },
-          [_vm._v("\n\t\t\t\tList your connecting flight locations?\n\t\t\t")]
-        )
       ])
     ])
   }
@@ -53783,6 +53786,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/subcomponents/airports.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/subcomponents/airports.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _airports_vue_vue_type_template_id_47fa212c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./airports.vue?vue&type=template&id=47fa212c& */ "./resources/js/components/subcomponents/airports.vue?vue&type=template&id=47fa212c&");
+/* harmony import */ var _airports_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./airports.vue?vue&type=script&lang=js& */ "./resources/js/components/subcomponents/airports.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _airports_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _airports_vue_vue_type_template_id_47fa212c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _airports_vue_vue_type_template_id_47fa212c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/subcomponents/airports.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/subcomponents/airports.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/subcomponents/airports.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_airports_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./airports.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/airports.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_airports_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/subcomponents/airports.vue?vue&type=template&id=47fa212c&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/subcomponents/airports.vue?vue&type=template&id=47fa212c& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_airports_vue_vue_type_template_id_47fa212c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./airports.vue?vue&type=template&id=47fa212c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/airports.vue?vue&type=template&id=47fa212c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_airports_vue_vue_type_template_id_47fa212c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_airports_vue_vue_type_template_id_47fa212c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
