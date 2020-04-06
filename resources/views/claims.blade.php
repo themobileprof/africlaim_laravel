@@ -79,8 +79,8 @@
 	</div>
 	<!-- /#wrapper -->
 
+	<script src="{{ mix('js/app.js') }}"></script>
 
-	<script type="text/javascript" src="{{ mix('js/claims.js') }}"></script>
 	<!-- Menu Toggle Script -->
 	<script>
 		$("#menu-toggle").click(function(e) {

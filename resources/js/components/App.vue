@@ -1,6 +1,6 @@
     <template>
         <div>
-			<form class="jumbotron-autocomplete__form-wrapper">
+			<form class="form-wrapper">
                 <router-view></router-view>
 			</form>
         </div>
