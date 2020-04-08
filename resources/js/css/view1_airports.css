@@ -36,12 +36,33 @@ input {
     height: 46px;
     width: 100%;
     padding-left: 26px;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 400;
     line-height: 1.53;
     border-radius: 3px;
     color: #536273;
     outline: none;
+}
+
+.autocomplete-results-panel {
+    position: relative;
+}
+
+.autocomplete-results {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.autocomplete-result {
+    cursor: pointer;
+}
+
+.autocomplete-result.is-active,
+.autocomplete-result:hover {
+    background-color: #181c49;
+    color: white;
 }
 
 /* Button */

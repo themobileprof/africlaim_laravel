@@ -1,10 +1,10 @@
 
 <template>
 	<div>		
-		<input :id="input_name" :name="input_name" v-model="query" v-on:keyup="autoComplete" class="autocomplete-input" type="text" :placeholder="placehold" autocomplete="off" maxlength="25">
-		<div class="panel-footer" v-if="airports.length">
-			<ul class="list-group">
-				<li class="list-group-item" v-for="airport in airports" v-bind:key="airport">
+		<input :id="input_name" :name="input_name" v-model="query" v-on:keyup="autoComplete" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.enter="onEnter" maxlength="25">
+		<div class="panel-footer autocomplete-results-panel" v-if="airports.length">
+			<ul class="list-group autocomplete-results">
+				<li class="list-group-item autocomplete-result" v-for="(airport, i) in airports" v-bind:key="i" v-on:click="setResult(airport.name)" :class="{ 'is-active': i === arrowCounter }">
 					{{ airport.name }}
 				</li>
 			</ul>
@@ -23,31 +23,57 @@
             input_name: this.input_text,
 		    placehold: this.placehold_text,
 			query: '',
-            airports: []
+            airports: [],
+			arrowCounter: -1,
            }
           },
           methods: {
-           autoComplete(){
+			   autoComplete(){
+				if(this.query.length > 2){
+				 axios.get('/api/airports/' + this.query).then(response => {
 
-                   this.airports = [];
+					this.airports = response.data;
+				 });
+				}
+			   },
+			  
+			  setResult(airport) {
+					this.query = airport;
+					this.airports = []; // reset dropdown
+			  },
 
+			  onArrowDown() {
+				if (this.arrowCounter < this.airports.length) {
+				  this.arrowCounter = this.arrowCounter + 1;
+				}
+			  },
+			  onArrowUp() {
+				if (this.arrowCounter > 0) {
+				  this.arrowCounter = this.arrowCounter - 1;
+				}
+			  },
+			  onEnter() {
+				this.query = this.airports[this.arrowCounter].name;
+				this.arrowCounter = -1;
+				this.airports = []; // reset dropdown
+			  },
 
-            if(this.query.length > 2){
-             axios.get('/api/airports/' + this.query).then(response => {
-                 // console.log(response.data);
-                 // response.data = JSON.parse(response.data);
-                 // response.data.forEach((airport)=>{
-                 //   console.log(airport);
-                 //   this.airports.push(airport);
+			  handleClickOutside(evt) {
+				  if (!this.$el.contains(evt.target)) {
+					this.airports = []; // reset dropdown
+					this.arrowCounter = -1;
+				  }
+				}
+          },
 
-                 // });
-
-				this.airports = response.data;
-             });
-            }
-           }
-          }
+		mounted() {
+			document.addEventListener('click', this.handleClickOutside);
+		  },
+		  destroyed() {
+			document.removeEventListener('click', this.handleClickOutside);
+		  }
     }
+
 
 </script>
 

@@ -1,4 +1,6 @@
 <template>
+<transition name="slide">
+
 <div class='col-md-12 form-style'>
 	<div class="row claims-desc">
 		To find out if you are eligible for compensation, kindly fill out your flight information
@@ -28,7 +30,7 @@
 	</div>
 	<div class="row p-4 mt-4">
 		<div class="col-xs-8 col-md-4 pt-2">
-			<label for="connecting_flight" class="control-label">
+			<label for="connecting_flight" class="control-label text-xs-right">
 				Were there any connecting flights?
 			</label>
 		</div>
@@ -38,23 +40,20 @@
 	</div>
 
 	<div class="row p-4 mt-4">
-
-		<div class="col-xs-12 col-md-12 pt-2">
-			<label for="connecting_flight_list" class="control-label">
-				List your connecting flight locations?
-			</label>
-			<airport input_text='connecting1' placehold_text='What is your connecting airport'></airport>
-		</div>
+				<connecting></connecting>
 	</div>
 </div>
+</transition>
 </template>
 
 <script>
 	import airport from './subcomponents/airports'
+	import connecting from './subcomponents/connecting'
 
     export default {
 		components: {
-			airport
+			airport,
+			connecting
 		}
 	}
 
