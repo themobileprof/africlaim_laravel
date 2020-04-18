@@ -1,15 +1,16 @@
 <template>
 <div class="col-md-12">
 	<div class="row">
-		<button type="button" class="btn btn-primary" v-on:click="addConnection"> <strong>+</strong> Add Connecting Flight</button>
+		<button type="button" class="btn bg-danger text-white btn-sm" v-on:click="addConnection"> <i class="fas fa-plus"></i> Add Connecting Flight</button>
 	</div>
-	<div class="row p-2" v-if="connections.length" v-for="(connection, conn) in connections" v-bind:key="conn">
-		<div class="col-xs-10 col-md-7">
+	<div class="row py-2" v-if="connections.length" v-for="(connection, conn) in connections" v-bind:key="conn">
+		<div class="input-group col-md-8 col-11">
 			<airport :input_text="connection" placehold_text='What is your next connecting airport'></airport>
+			<button class="btn bg-transparent" style="position:relative; margin-left: -40px; z-index: 100;">
+				<i class="fa fa-close" v-on:click="removeConnection(conn)" style="color:red"></i>
+			</button>
 		</div>
-		<div class="col-xs-2 col-md-1 p-1">
-			<button v-on:click="removeConnection(conn)" class="btn btn-danger btn-sm">x</button>
-		</div>
+		<div class="col-md-4 col-1"></div>
 	</div>
 </div>
 </template>
@@ -28,7 +29,7 @@
 		},
 		methods: {
 			addConnection(){
-				this.connections.push("'conn' + this.connCount")
+				this.connections.push('conn' + this.connCount)
 				this.connCount = this.connCount + 1
 			},
 

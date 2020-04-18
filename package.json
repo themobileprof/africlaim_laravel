@@ -24,7 +24,11 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.13.0",
+        "bootstrap-select": "^1.13.12",
         "bootstrap4-toggle": "^3.6.1",
+        "font-awesome": "^4.7.0",
+        "v-calendar": "^1.0.3",
         "vue-router": "^3.1.6"
     }
 }

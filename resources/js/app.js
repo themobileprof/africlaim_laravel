@@ -1,9 +1,16 @@
 require("./bootstrap");
-require("./../../node_modules/bootstrap4-toggle/js/bootstrap4-toggle.min");
+require("bootstrap4-toggle/js/bootstrap4-toggle.min");
+require("bootstrap-select/js/bootstrap-select");
 import Vue from "vue";
 import VueRouter from "vue-router";
+import VCalendar from "v-calendar";
 
 Vue.use(VueRouter);
+
+// Use v-calendar & v-date-picker components
+Vue.use(VCalendar, {
+    componentPrefix: "vc" // Use <vc-calendar /> instead of <v-calendar />
+});
 
 import App from "./components/App";
 import Start from "./components/view1_airports";
@@ -45,3 +52,4 @@ const app = new Vue({
     components: { App },
     router
 });
+

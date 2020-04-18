@@ -11,7 +11,8 @@
 
 	<title>Claims Form</title>
 
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 	<!-- Custom styles for this template -->
 	<link href="{{ asset('css/simple-sidebar.css') }}" rel="stylesheet">
@@ -25,7 +26,6 @@
 
 		<!-- Sidebar -->
 		<div class="bg-light border-right" id="sidebar-wrapper">
-			<div class="sidebar-heading"> <img src="{{ asset('img/africlaim_logo.png') }}" alt=""> </div>
 			<div class="sideover list-group list-group-flush">
 				<a href="/claims/start" class="list-group-item list-group-item-action bg-light"><strong>Step 1:</strong> Departure and Arrival</a>
 				<a href="/claims/flight_date" class="list-group-item list-group-item-action bg-light"><strong>Step 2:</strong> Flight Date</a>
@@ -39,7 +39,8 @@
 		<div id="page-content-wrapper">
 
 			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-				<button class="btn btn-primary"> Dashboard </button>
+				<i class="fas fa-share-square text-primary d-md-none" id="menu-toggle" style="font-size:20px;"></i>
+				<div class="sidebar-heading"> <img src="{{ asset('img/africlaim_logo.png') }}" alt=""> </div>
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>

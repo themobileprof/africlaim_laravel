@@ -1,11 +1,11 @@
-
 <template>
-	<div>		
-		<input :id="input_name" :name="input_name" v-model="query" v-on:keyup="autoComplete" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.enter="onEnter" maxlength="25">
+	<div class="col-12" style="padding-left: 0px; padding-right: 0px;">		
+		<input :id="input_name" :name="input_name" v-model="query" v-on:keyup="autoComplete" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.tab="onEnter" maxlength="25">
 		<div class="panel-footer autocomplete-results-panel" v-if="airports.length">
 			<ul class="list-group autocomplete-results">
 				<li class="list-group-item autocomplete-result" v-for="(airport, i) in airports" v-bind:key="i" v-on:click="setResult(airport.name)" :class="{ 'is-active': i === arrowCounter }">
-					{{ airport.name }}
+					{{ airport.name }} <br />
+					<small class="text-secondary" style="font-weight: bold;"><i class="fas fa-map-marker-alt"></i> {{ airport.city }}, {{ airport.country_id }} </small>
 				</li>
 			</ul>
 		</div>

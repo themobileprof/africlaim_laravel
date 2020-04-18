@@ -1,23 +1,44 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Flight Date</div>
-
-                    <div class="card-body">
-                        This is the second component that contains Flight Date.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class='col-md-12 form-style'>
+	<div class="row claims-desc">
+		What date was your flight?
+	</div>
+	<div class="row">
+		<div class="col-md-8 my-4">
+				  <vc-date-picker 
+					  :mode='mode' 
+					  v-model="flightDate"
+					  :input-props='{
+					  class: "w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 hover:border-blue-5",
+					  placeholder: "Please enter Flight date",
+					  readonly: true
+					  }'
+				  />
+				  <i class="fas fa-calendar-alt" style="position:relative; margin-left: -30px; z-index: 100;"></i>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<a class="btn btn-primary btn-lg" href="/claims/route" role="button" style="width: 200px;">Next <i class=" 	fas fa-angle-double-right"></i></a>
+		</div>
+	</div>
+</div>
 </template>
 
 <script>
     export default {
+		data() {
+		  return {
+			mode: 'single',
+			flightDate: null,
+		  }
+		},
         mounted() {
             console.log('Flight date component mounted.')
         }
     }
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style src="../css/claims.css">
+</style>

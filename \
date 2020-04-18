@@ -50,8 +50,8 @@
 </template>
 
 <script>
-	import airport from './subcomponents/view1/airports'
-	import connecting from './subcomponents/view1/connecting'
+	import airport from './subcomponents/airports'
+	import connecting from './subcomponents/connecting'
 
     export default {
 		components: {

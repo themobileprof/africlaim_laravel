@@ -1,23 +1,138 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Flight route and Time</div>
-
-                    <div class="card-body">
-                        This is the component for Flight route and Time selection.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class='col-md-12 form-style'>
+	<div class="row claims-desc">
+		Select your flight below
+	</div>
+	<div class="row">
+		<div class="col-md-8 my-4">
+			 <div class="list-group list-group-flush">
+			  <div class="list-group-item list-group-item-light">
+				  <label class="top_label row">
+					  <div class="col-1"></div>
+					  <div class="col-4">Scheduled Time</div>
+					  <div class="col-4">Airline</div>
+					  <div class="col-3">Flight Number</div>
+				  </label>
+			  </div>
+			 </div>
+			 <ul class="list-group">
+			  <li class="list-group-item list-group-item-action list-group-item-success">
+				  <label class="flight_label row" for="flight1">
+					  <div class="flight_input col-1"><input type="radio" name="route" id="flight1"><span class="checkmark"></span></div>
+					  <div class="flight_time col-4">7:55am <i class="fas fa-plane-departure fa-xs"></i> 6:30pm</div>
+					  <div class="airline col-4">British Airways</div>
+					  <div class="flight_number col-3">BA 178</div>
+				  </label>
+			  </li>
+			  <li class="list-group-item  list-group-item-action list-group-item-success">
+				  <label class="flight_label row" for="flight2">
+					  <div class="flight_input col-1"><input type="radio" name="route" id="flight2"><span class="checkmark"></span></div>
+					  <div class="flight_time col-4">7:55am <i class="fas fa-plane-departure fa-xs"></i> 6:30pm</div>
+					  <div class="airline col-4">British Airways</div>
+					  <div class="flight_number col-3">BA 178</div>
+				  </label>
+			  </li>
+			  <li class="list-group-item  list-group-item-action list-group-item-success">
+				  <label class="flight_label row" for="flight3">
+					  <div class="flight_input col-1"><input type="radio" name="route" id="flight3"><span class="checkmark"></span></div>
+					  <div class="flight_time col-4">7:55am <i class="fas fa-plane-departure fa-xs"></i> 6:30pm</div>
+					  <div class="airline col-4">British Airways</div>
+					  <div class="flight_number col-3">BA 178</div>
+				  </label>
+			  </li>
+			</ul> 
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<a class="btn btn-primary btn-lg" href="/claims/complaint" role="button" style="width: 200px;">Next <i class=" 	fas fa-angle-double-right"></i></a>
+		</div>
+	</div>
+</div>
 </template>
 
 <script>
     export default {
+		data() {
+		  return {
+			mode: 'single',
+			flightDate: null,
+		  }
+		},
         mounted() {
-            console.log('Flight route mounted.')
+            console.log('Flight date component mounted.')
         }
     }
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style src="../css/claims.css">
+</style>
+<style scoped>
+.top_label {
+	font-size: 11px;
+}
+
+
+/* The container */
+.flight_label {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+/* Hide the browser's default radio button */
+.flight_label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.flight_label:hover input ~ .checkmark {
+  background-color: #FFFFFF;
+}
+
+/* When the radio button is checked, add a blue background */
+.flight_label input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.flight_label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.flight_label .checkmark:after {
+ 	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+</style>
+</style>
