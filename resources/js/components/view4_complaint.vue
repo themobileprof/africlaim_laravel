@@ -42,8 +42,8 @@
 
 	
 	<div class="row">
-		<div class="col-md-8">
-			<a class="btn btn-primary btn-lg" href="/claims/route" role="button" style="width: 200px;">Next <i class="fas fa-angle-double-right"></i></a>
+		<div class="col-md-8 pt-4">
+			<button class="btn btn-success btn-lg" type="submit" style="width: 200px;" v-if="reasonDiv">Submit for Review </button>
 		</div>
 	</div>
 </div>
@@ -52,13 +52,15 @@
 <script>
 import delayedTime from './subcomponents/view4/delayedTime';   
 import advanceNotify from './subcomponents/view4/advanceNotify';   
-import first from './subcomponents/view4/first';   
+import bumped from './subcomponents/view4/bumped';   
+import reason from './subcomponents/view4/reason';   
 
 export default {
 		components: {
 			delayedTime,
 			advanceNotify,
 			bumped,
+			reason,
 		},	
 		data() {
 		  return {
@@ -87,11 +89,12 @@ export default {
 			} else {
 				this.reasonDiv = true;
 			}
-		},
-        mounted() {
-            console.log('Flight date component mounted.')
-        }
-    }
+		}    
+	},
+	mounted() {
+		console.log('Flight date component mounted.')
+	}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

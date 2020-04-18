@@ -22,6 +22,12 @@ const router = new VueRouter({
     mode: "history",
     routes: [
         {
+            path: "/claims/",
+            redirect: {
+                name: "start"
+            }
+        },
+        {
             path: "/claims/start",
             name: "start",
             component: Start

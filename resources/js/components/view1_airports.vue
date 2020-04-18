@@ -30,20 +30,19 @@
 	</div>
 	<div class="row p-4 mt-4">
 		<div class="col-7 col-md-4">
-			<label for="connecting_flight" class="control-label text-xs-right">
+			<label for="connectingFlight" class="control-label text-xs-right">
 				Were there any connecting flights?
 			</label>
 		</div>
-		<div class="col-5 col-md-4"  data-toggle="collapse" href="#connectDiv">
-			<input id="connecting_flight" name="connecting_flight" v-model="connecting_flight" type="checkbox" data-on="Yes" data-off="No" data-toggle="toggle" data-width="100">
+		<div class="col-5 col-md-4">
+			<input id="connectingFlight" name="connectingFlight" v-model="connectingFlight" type="checkbox" data-on="Yes" data-off="No" data-toggle="toggle" data-width="100" @change="toggleConnecting">
 		</div>
 	</div>
 
-	<div class="row p-4 mt-4 collapse" id="connectDiv">
-				<connecting></connecting>
-	</div>
+	<connecting v-if="connectingFlight"></connecting>
+
 	<div class="row mt-4 pt-4" style="padding-left: 15px;">
-		<a class="btn btn-primary btn-lg" href="/claims/flight_date" role="button" style="width: 200px;">Next <i class=" 	fas fa-angle-double-right"></i></a>
+		<router-link class="btn btn-primary btn-lg" to="/claims/flight_date" role="button" style="width: 200px;">Next <i class="fas fa-angle-double-right"></i></router-link>
 	</div>
 </div>
 </transition>
@@ -60,15 +59,15 @@
 		},
 		data(){
 			return {
-				connecting_flight: false,
+				connectingFlight: '',
 			}
 		},
 		methods: {
 			toggleConnecting(){
-				if (this.connecting_flight === false){
-					this.connecting_flight = true
+				if (this.connectingFlight == false){
+					this.connectingFlight = true
 				} else {
-					this.connecting_flight = false
+					this.connectingFlight = false
 				}
 			}
 		}

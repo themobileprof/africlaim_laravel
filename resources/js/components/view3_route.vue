@@ -45,7 +45,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-8">
-			<a class="btn btn-primary btn-lg" href="/claims/complaint" role="button" style="width: 200px;">Next <i class=" 	fas fa-angle-double-right"></i></a>
+			<router-link class="btn btn-primary btn-lg" to="/claims/complaint" role="button" style="width: 200px;">Next <i class=" 	fas fa-angle-double-right"></i></router-link>
 		</div>
 	</div>
 </div>

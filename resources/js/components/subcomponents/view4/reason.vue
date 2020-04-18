@@ -25,6 +25,9 @@ export default {
 		return {
 			airlineReason: ''
 		}
+	},
+	mounted() {
+		$('select').selectpicker();
 	}
 }
 </script>

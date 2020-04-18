@@ -2078,7 +2078,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      advanceCancel: ''
+    };
+  },
+  mounted: function mounted() {
+    $('select').selectpicker();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/bumped.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/subcomponents/view4/bumped.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      bumped: ''
+    };
+  },
+  mounted: function mounted() {
+    $('select').selectpicker();
+  }
+});
 
 /***/ }),
 
@@ -2117,15 +2163,18 @@ __webpack_require__.r(__webpack_exports__);
     return {
       delayedHours: ''
     };
+  },
+  mounted: function mounted() {
+    $('select').selectpicker();
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/first.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/subcomponents/view4/first.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/reason.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/subcomponents/view4/reason.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2152,17 +2201,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      claimType: ''
+      airlineReason: ''
     };
   },
   mounted: function mounted() {
-    $(".btn").click(function () {
-      $(this).button('toggle');
-    });
+    $('select').selectpicker();
   }
 });
 
@@ -2229,7 +2275,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2239,15 +2284,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      connecting_flight: false
+      connectingFlight: ''
     };
   },
   methods: {
     toggleConnecting: function toggleConnecting() {
-      if (this.connecting_flight === false) {
-        this.connecting_flight = true;
+      if (this.connectingFlight == false) {
+        this.connectingFlight = true;
       } else {
-        this.connecting_flight = false;
+        this.connectingFlight = false;
       }
     }
   }
@@ -2392,7 +2437,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _subcomponents_view4_delayedTime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./subcomponents/view4/delayedTime */ "./resources/js/components/subcomponents/view4/delayedTime.vue");
 /* harmony import */ var _subcomponents_view4_advanceNotify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./subcomponents/view4/advanceNotify */ "./resources/js/components/subcomponents/view4/advanceNotify.vue");
-/* harmony import */ var _subcomponents_view4_first__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subcomponents/view4/first */ "./resources/js/components/subcomponents/view4/first.vue");
+/* harmony import */ var _subcomponents_view4_bumped__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subcomponents/view4/bumped */ "./resources/js/components/subcomponents/view4/bumped.vue");
+/* harmony import */ var _subcomponents_view4_reason__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./subcomponents/view4/reason */ "./resources/js/components/subcomponents/view4/reason.vue");
 //
 //
 //
@@ -2444,21 +2490,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -2466,7 +2498,8 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     delayedTime: _subcomponents_view4_delayedTime__WEBPACK_IMPORTED_MODULE_0__["default"],
     advanceNotify: _subcomponents_view4_advanceNotify__WEBPACK_IMPORTED_MODULE_1__["default"],
-    first: _subcomponents_view4_first__WEBPACK_IMPORTED_MODULE_2__["default"]
+    bumped: _subcomponents_view4_bumped__WEBPACK_IMPORTED_MODULE_2__["default"],
+    reason: _subcomponents_view4_reason__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -2480,11 +2513,19 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     showDelayTime: function showDelayTime(event) {
       this.claimType = event.target.value;
-      this.delayedDiv = true;
+      this.delayedDiv = true; // reset others
+
+      this.notifyDiv = false;
+      this.bumpedDiv = false;
+      this.reasonDiv = false;
     },
     nextStep: function nextStep() {
-      if (this.claimType == "delayClaim") {
+      if (this.claimType == "cancelClaim") {
         this.notifyDiv = true;
+      } else if (this.claimType == "denyClaim") {
+        this.bumpedDiv = true;
+      } else {
+        this.reasonDiv = true;
       }
     }
   },
@@ -43239,40 +43280,145 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("transition", { attrs: { name: "fade" } }, [
-    _c(
-      "div",
-      { staticClass: "claims-box col-md-8", attrs: { id: "advanceNotifyDiv" } },
-      [
-        _c("div", { staticClass: "row p-4 claims-bold" }, [
-          _vm._v(
-            "\n\t\t\tHow many days in advance did the airline notify you of the cancellation?\n\t\t"
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row p-4" }, [
-          _c(
-            "select",
-            {
-              staticClass: "fine-select",
-              attrs: {
-                id: "advance_cancel",
-                name: "advance_cancel",
-                title: "Advanced Notification"
+    _c("div", { staticClass: "claims-box col-md-8" }, [
+      _c("div", { staticClass: "row p-4 claims-bold" }, [
+        _vm._v(
+          "\n\t\t\tHow many days in advance did the airline notify you of the cancellation?\n\t\t"
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row p-4" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.advanceCancel,
+                expression: "advanceCancel"
               }
+            ],
+            staticClass: "selectpicker show-tick",
+            attrs: {
+              id: "advanceCancel",
+              name: "advanceCancel",
+              "data-style": "btn-primary",
+              title: "Advanced Notification"
             },
-            [
-              _c("option", { attrs: { value: "less14" } }, [
-                _vm._v("Less than 14 days")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "more14" } }, [
-                _vm._v("More than 14 days")
-              ])
-            ]
-          )
-        ])
-      ]
-    )
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.advanceCancel = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.$emit("notified")
+                }
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { value: "less14" } }, [
+              _vm._v("Less than 14 days")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "more14" } }, [
+              _vm._v("More than 14 days")
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/bumped.vue?vue&type=template&id=dbece84e&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/subcomponents/view4/bumped.vue?vue&type=template&id=dbece84e& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: "fade" } }, [
+    _c("div", { staticClass: "claims-box col-md-8" }, [
+      _c(
+        "div",
+        { staticClass: "row p-4 claims-bold", attrs: { id: "bumpedDiv" } },
+        [_vm._v("\n\t\t\tDid you volunteer to get bumped?\n\t\t")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row p-4" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.bumped,
+                expression: "bumped"
+              }
+            ],
+            staticClass: "selectpicker show-tick",
+            attrs: {
+              id: "bumped",
+              name: "bumped",
+              title: "Were you bumped?",
+              "data-style": "btn-primary"
+            },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.bumped = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.$emit("bumped")
+                }
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { value: "yes" } }, [_vm._v("Yes")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "no" } }, [_vm._v("No")])
+          ]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -43320,11 +43466,12 @@ var render = function() {
                   expression: "delayedHours"
                 }
               ],
-              staticClass: "fine-select",
+              staticClass: "selectpicker show-tick",
               attrs: {
                 id: "delayedHours",
                 name: "delayedHours",
-                title: "Total Delay"
+                title: "Total Delay",
+                "data-style": "btn-primary"
               },
               on: {
                 change: [
@@ -43379,10 +43526,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/first.vue?vue&type=template&id=227a6c5c&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/subcomponents/view4/first.vue?vue&type=template&id=227a6c5c& ***!
-  \****************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/reason.vue?vue&type=template&id=641ba648&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/subcomponents/view4/reason.vue?vue&type=template&id=641ba648& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43395,110 +43542,84 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("transition", { attrs: { name: "fade" } }, [
-    _c("div", { staticClass: "row claims-desc" }, [
-      _vm._v("\n\t\tWhat happened to the flight?\n\t")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-8 my-4" }, [
-        _c(
-          "div",
-          {
-            staticClass: "btn-group btn-group-toggle",
-            attrs: { "data-toggle": "buttons" }
-          },
-          [
-            _c("label", { staticClass: "btn btn-primary" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.claimType,
-                    expression: "claimType"
-                  }
-                ],
-                attrs: {
-                  type: "radio",
-                  name: "claimType",
-                  id: "delayClaim",
-                  value: "delayClaim",
-                  autocomplete: "off"
-                },
-                domProps: { checked: _vm._q(_vm.claimType, "delayClaim") },
-                on: {
-                  click: function($event) {
-                    return _vm.$emit("claimType")
-                  },
-                  change: function($event) {
-                    _vm.claimType = "delayClaim"
-                  }
+    _c(
+      "div",
+      { staticClass: "claims-box col-md-8", attrs: { id: "reasonDiv" } },
+      [
+        _c("div", { staticClass: "row p-4 claims-bold" }, [
+          _vm._v("\n\t\tWhat did the airline say was the reason?\n\t\t")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row p-4" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.airlineReason,
+                  expression: "airlineReason"
                 }
-              }),
-              _vm._v(" Delayed Flight\n\t\t\t\t")
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-primary" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.claimType,
-                    expression: "claimType"
-                  }
-                ],
-                attrs: {
-                  type: "radio",
-                  name: "claimType",
-                  id: "cancelClaim",
-                  value: "cancelClaim"
-                },
-                domProps: { checked: _vm._q(_vm.claimType, "cancelClaim") },
-                on: {
-                  click: function($event) {
-                    return _vm.$emit("claimType")
-                  },
-                  change: function($event) {
-                    _vm.claimType = "cancelClaim"
-                  }
+              ],
+              staticClass: "selectpicker show-tick",
+              attrs: {
+                id: "airlineReason",
+                name: "airlineReason",
+                title: "Reason for delay",
+                "data-style": "btn-primary"
+              },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.airlineReason = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
                 }
-              }),
-              _vm._v(" Canceled Flight\n\t\t\t\t")
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-primary" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.claimType,
-                    expression: "claimType"
-                  }
-                ],
-                attrs: {
-                  type: "radio",
-                  name: "claimType",
-                  id: "denyclaim",
-                  value: "denyClaim"
-                },
-                domProps: { checked: _vm._q(_vm.claimType, "denyClaim") },
-                on: {
-                  click: function($event) {
-                    return _vm.$emit("claimType")
-                  },
-                  change: function($event) {
-                    _vm.claimType = "denyClaim"
-                  }
-                }
-              }),
-              _vm._v(" Denied Boarding\n\t\t\t\t")
-            ])
-          ]
-        )
-      ])
-    ])
+              }
+            },
+            [
+              _c("option", { attrs: { value: "technical" } }, [
+                _vm._v("Technical problem")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "bad_weather" } }, [
+                _vm._v("Bad weather conditions")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "other_flights" } }, [
+                _vm._v("Influence by other flights")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "airport" } }, [
+                _vm._v("Issues with airport")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "strike" } }, [_vm._v("Strike")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "no_reason" } }, [
+                _vm._v("No reason given")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "forgot" } }, [
+                _vm._v("Don't Remember")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "force_majeure" } }, [
+                _vm._v("Force majeure")
+              ])
+            ]
+          )
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -43524,91 +43645,91 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("transition", { attrs: { name: "slide" } }, [
-    _c("div", { staticClass: "col-md-12 form-style" }, [
-      _c("div", { staticClass: "row claims-desc" }, [
-        _vm._v(
-          "\n\t\tTo find out if you are eligible for compensation, kindly fill out your flight information\n\t"
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-xs-12 col-md-4" },
-          [
-            _c(
-              "label",
-              {
-                staticClass: "control-label pt-2",
-                attrs: { for: "start-airport" }
-              },
-              [_vm._v("\n\t\t\t\tDeparture\n\t\t\t")]
-            ),
-            _vm._v(" "),
-            _c("airport", {
-              attrs: {
-                input_text: "departure",
-                placehold_text: "Departed from"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-xs-12 col-md-4" },
-          [
-            _c(
-              "label",
-              {
-                staticClass: "control-label pt-2",
-                attrs: { for: "end-airport" }
-              },
-              [_vm._v("\n\t\t\t\tFinal destination\n\t\t\t")]
-            ),
-            _vm._v(" "),
-            _c("airport", {
-              attrs: { input_text: "destination", placehold_text: "Arrived at" }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-4" })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row p-4 mt-4" }, [
-        _c("div", { staticClass: "col-7 col-md-4" }, [
-          _c(
-            "label",
-            {
-              staticClass: "control-label text-xs-right",
-              attrs: { for: "connecting_flight" }
-            },
-            [_vm._v("\n\t\t\t\tWere there any connecting flights?\n\t\t\t")]
+    _c(
+      "div",
+      { staticClass: "col-md-12 form-style" },
+      [
+        _c("div", { staticClass: "row claims-desc" }, [
+          _vm._v(
+            "\n\t\tTo find out if you are eligible for compensation, kindly fill out your flight information\n\t"
           )
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "col-5 col-md-4",
-            attrs: { "data-toggle": "collapse", href: "#connectDiv" }
-          },
-          [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-xs-12 col-md-4" },
+            [
+              _c(
+                "label",
+                {
+                  staticClass: "control-label pt-2",
+                  attrs: { for: "start-airport" }
+                },
+                [_vm._v("\n\t\t\t\tDeparture\n\t\t\t")]
+              ),
+              _vm._v(" "),
+              _c("airport", {
+                attrs: {
+                  input_text: "departure",
+                  placehold_text: "Departed from"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-xs-12 col-md-4" },
+            [
+              _c(
+                "label",
+                {
+                  staticClass: "control-label pt-2",
+                  attrs: { for: "end-airport" }
+                },
+                [_vm._v("\n\t\t\t\tFinal destination\n\t\t\t")]
+              ),
+              _vm._v(" "),
+              _c("airport", {
+                attrs: {
+                  input_text: "destination",
+                  placehold_text: "Arrived at"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row p-4 mt-4" }, [
+          _c("div", { staticClass: "col-7 col-md-4" }, [
+            _c(
+              "label",
+              {
+                staticClass: "control-label text-xs-right",
+                attrs: { for: "connectingFlight" }
+              },
+              [_vm._v("\n\t\t\t\tWere there any connecting flights?\n\t\t\t")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-5 col-md-4" }, [
             _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.connecting_flight,
-                  expression: "connecting_flight"
+                  value: _vm.connectingFlight,
+                  expression: "connectingFlight"
                 }
               ],
               attrs: {
-                id: "connecting_flight",
-                name: "connecting_flight",
+                id: "connectingFlight",
+                name: "connectingFlight",
                 type: "checkbox",
                 "data-on": "Yes",
                 "data-off": "No",
@@ -43616,65 +43737,62 @@ var render = function() {
                 "data-width": "100"
               },
               domProps: {
-                checked: Array.isArray(_vm.connecting_flight)
-                  ? _vm._i(_vm.connecting_flight, null) > -1
-                  : _vm.connecting_flight
+                checked: Array.isArray(_vm.connectingFlight)
+                  ? _vm._i(_vm.connectingFlight, null) > -1
+                  : _vm.connectingFlight
               },
               on: {
                 change: function($event) {
-                  var $$a = _vm.connecting_flight,
+                  var $$a = _vm.connectingFlight,
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
                     var $$v = null,
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
-                      $$i < 0 && (_vm.connecting_flight = $$a.concat([$$v]))
+                      $$i < 0 && (_vm.connectingFlight = $$a.concat([$$v]))
                     } else {
                       $$i > -1 &&
-                        (_vm.connecting_flight = $$a
+                        (_vm.connectingFlight = $$a
                           .slice(0, $$i)
                           .concat($$a.slice($$i + 1)))
                     }
                   } else {
-                    _vm.connecting_flight = $$c
+                    _vm.connectingFlight = $$c
                   }
                 }
               }
             })
-          ]
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.connectingFlight ? _c("connecting") : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "row mt-4 pt-4",
+            staticStyle: { "padding-left": "15px" }
+          },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary btn-lg",
+                staticStyle: { width: "200px" },
+                attrs: { to: "/claims/flight_date", role: "button" }
+              },
+              [
+                _vm._v("Next "),
+                _c("i", { staticClass: "fas fa-angle-double-right" })
+              ]
+            )
+          ],
+          1
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row p-4 mt-4 collapse", attrs: { id: "connectDiv" } },
-        [_c("connecting")],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "row mt-4 pt-4",
-          staticStyle: { "padding-left": "15px" }
-        },
-        [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-primary btn-lg",
-              staticStyle: { width: "200px" },
-              attrs: { href: "/claims/flight_date", role: "button" }
-            },
-            [
-              _vm._v("Next "),
-              _c("i", { staticClass: " \tfas fa-angle-double-right" })
-            ]
-          )
-        ]
-      )
-    ])
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -43741,32 +43859,30 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-8" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-primary btn-lg",
+              staticStyle: { width: "200px" },
+              attrs: { to: "/claims/route", role: "button" }
+            },
+            [
+              _vm._v("Next "),
+              _c("i", { staticClass: " \tfas fa-angle-double-right" })
+            ]
+          )
+        ],
+        1
+      )
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-primary btn-lg",
-            staticStyle: { width: "200px" },
-            attrs: { href: "/claims/route", role: "button" }
-          },
-          [
-            _vm._v("Next "),
-            _c("i", { staticClass: " \tfas fa-angle-double-right" })
-          ]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -43788,173 +43904,163 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col-md-12 form-style" }, [
+    _c("div", { staticClass: "row claims-desc" }, [
+      _vm._v("\n\t\tSelect your flight below\n\t")
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-8" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-primary btn-lg",
+              staticStyle: { width: "200px" },
+              attrs: { to: "/claims/complaint", role: "button" }
+            },
+            [
+              _vm._v("Next "),
+              _c("i", { staticClass: " \tfas fa-angle-double-right" })
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 form-style" }, [
-      _c("div", { staticClass: "row claims-desc" }, [
-        _vm._v("\n\t\tSelect your flight below\n\t")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 my-4" }, [
-          _c("div", { staticClass: "list-group list-group-flush" }, [
-            _c(
-              "div",
-              { staticClass: "list-group-item list-group-item-light" },
-              [
-                _c("label", { staticClass: "top_label row" }, [
-                  _c("div", { staticClass: "col-1" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-4" }, [
-                    _vm._v("Scheduled Time")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-4" }, [_vm._v("Airline")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-3" }, [_vm._v("Flight Number")])
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "list-group" }, [
-            _c(
-              "li",
-              {
-                staticClass:
-                  "list-group-item list-group-item-action list-group-item-success"
-              },
-              [
-                _c(
-                  "label",
-                  {
-                    staticClass: "flight_label row",
-                    attrs: { for: "flight1" }
-                  },
-                  [
-                    _c("div", { staticClass: "flight_input col-1" }, [
-                      _c("input", {
-                        attrs: { type: "radio", name: "route", id: "flight1" }
-                      }),
-                      _c("span", { staticClass: "checkmark" })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flight_time col-4" }, [
-                      _vm._v("7:55am "),
-                      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-                      _vm._v(" 6:30pm")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "airline col-4" }, [
-                      _vm._v("British Airways")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flight_number col-3" }, [
-                      _vm._v("BA 178")
-                    ])
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              {
-                staticClass:
-                  "list-group-item  list-group-item-action list-group-item-success"
-              },
-              [
-                _c(
-                  "label",
-                  {
-                    staticClass: "flight_label row",
-                    attrs: { for: "flight2" }
-                  },
-                  [
-                    _c("div", { staticClass: "flight_input col-1" }, [
-                      _c("input", {
-                        attrs: { type: "radio", name: "route", id: "flight2" }
-                      }),
-                      _c("span", { staticClass: "checkmark" })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flight_time col-4" }, [
-                      _vm._v("7:55am "),
-                      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-                      _vm._v(" 6:30pm")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "airline col-4" }, [
-                      _vm._v("British Airways")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flight_number col-3" }, [
-                      _vm._v("BA 178")
-                    ])
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              {
-                staticClass:
-                  "list-group-item  list-group-item-action list-group-item-success"
-              },
-              [
-                _c(
-                  "label",
-                  {
-                    staticClass: "flight_label row",
-                    attrs: { for: "flight3" }
-                  },
-                  [
-                    _c("div", { staticClass: "flight_input col-1" }, [
-                      _c("input", {
-                        attrs: { type: "radio", name: "route", id: "flight3" }
-                      }),
-                      _c("span", { staticClass: "checkmark" })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flight_time col-4" }, [
-                      _vm._v("7:55am "),
-                      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-                      _vm._v(" 6:30pm")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "airline col-4" }, [
-                      _vm._v("British Airways")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flight_number col-3" }, [
-                      _vm._v("BA 178")
-                    ])
-                  ]
-                )
-              ]
-            )
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 my-4" }, [
+        _c("div", { staticClass: "list-group list-group-flush" }, [
+          _c("div", { staticClass: "list-group-item list-group-item-light" }, [
+            _c("label", { staticClass: "top_label row" }, [
+              _c("div", { staticClass: "col-1" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }, [_vm._v("Scheduled Time")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }, [_vm._v("Airline")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-3" }, [_vm._v("Flight Number")])
+            ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8" }, [
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "list-group" }, [
           _c(
-            "a",
+            "li",
             {
-              staticClass: "btn btn-primary btn-lg",
-              staticStyle: { width: "200px" },
-              attrs: { href: "/claims/complaint", role: "button" }
+              staticClass:
+                "list-group-item list-group-item-action list-group-item-success"
             },
             [
-              _vm._v("Next "),
-              _c("i", { staticClass: " \tfas fa-angle-double-right" })
+              _c(
+                "label",
+                { staticClass: "flight_label row", attrs: { for: "flight1" } },
+                [
+                  _c("div", { staticClass: "flight_input col-1" }, [
+                    _c("input", {
+                      attrs: { type: "radio", name: "route", id: "flight1" }
+                    }),
+                    _c("span", { staticClass: "checkmark" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flight_time col-4" }, [
+                    _vm._v("7:55am "),
+                    _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
+                    _vm._v(" 6:30pm")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "airline col-4" }, [
+                    _vm._v("British Airways")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flight_number col-3" }, [
+                    _vm._v("BA 178")
+                  ])
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass:
+                "list-group-item  list-group-item-action list-group-item-success"
+            },
+            [
+              _c(
+                "label",
+                { staticClass: "flight_label row", attrs: { for: "flight2" } },
+                [
+                  _c("div", { staticClass: "flight_input col-1" }, [
+                    _c("input", {
+                      attrs: { type: "radio", name: "route", id: "flight2" }
+                    }),
+                    _c("span", { staticClass: "checkmark" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flight_time col-4" }, [
+                    _vm._v("7:55am "),
+                    _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
+                    _vm._v(" 6:30pm")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "airline col-4" }, [
+                    _vm._v("British Airways")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flight_number col-3" }, [
+                    _vm._v("BA 178")
+                  ])
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass:
+                "list-group-item  list-group-item-action list-group-item-success"
+            },
+            [
+              _c(
+                "label",
+                { staticClass: "flight_label row", attrs: { for: "flight3" } },
+                [
+                  _c("div", { staticClass: "flight_input col-1" }, [
+                    _c("input", {
+                      attrs: { type: "radio", name: "route", id: "flight3" }
+                    }),
+                    _c("span", { staticClass: "checkmark" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flight_time col-4" }, [
+                    _vm._v("7:55am "),
+                    _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
+                    _vm._v(" 6:30pm")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "airline col-4" }, [
+                    _vm._v("British Airways")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flight_number col-3" }, [
+                    _vm._v("BA 178")
+                  ])
+                ]
+              )
             ]
           )
         ])
@@ -44090,127 +44196,48 @@ var render = function() {
         ? _c("delayedTime", { on: { delayedHours: _vm.nextStep } })
         : _vm._e(),
       _vm._v(" "),
-      _vm.notifyDiv ? _c("advanceNotify") : _vm._e(),
+      _vm.notifyDiv
+        ? _c("advanceNotify", {
+            on: {
+              notified: function($event) {
+                _vm.reasonDiv = true
+              }
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _vm._m(0),
+      _vm.bumpedDiv
+        ? _c("bumped", {
+            on: {
+              bumped: function($event) {
+                _vm.reasonDiv = true
+              }
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _vm._m(1),
+      _vm.reasonDiv ? _c("reason") : _vm._e(),
       _vm._v(" "),
-      _vm._m(2)
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-8 pt-4" }, [
+          _vm.reasonDiv
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-success btn-lg",
+                  staticStyle: { width: "200px" },
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Submit for Review ")]
+              )
+            : _vm._e()
+        ])
+      ])
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "claims-box col-md-8" }, [
-      _c(
-        "div",
-        { staticClass: "row p-4 claims-bold", attrs: { id: "bumpedDiv" } },
-        [_vm._v("\n\t\t\tDid you volunteer to get bumped?\n\t\t")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "row p-4" }, [
-        _c(
-          "select",
-          {
-            staticClass: "select-css",
-            attrs: { id: "bumped", name: "bumped", title: "Were you bumped?" }
-          },
-          [
-            _c("option", { attrs: { value: "yes" } }, [_vm._v("Yes")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "no" } }, [_vm._v("No")])
-          ]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "claims-box col-md-8", attrs: { id: "reasonDiv" } },
-      [
-        _c("div", { staticClass: "row p-4 claims-bold" }, [
-          _vm._v("\n\t\tWhat did the airline say was the reason?\n\t\t")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row p-4" }, [
-          _c(
-            "select",
-            {
-              staticClass: "selectpicker show-tick",
-              attrs: {
-                id: "airline_reason",
-                name: "airline_reason",
-                title: "Reason for delay",
-                "data-style": "btn-primary"
-              }
-            },
-            [
-              _c("option", { attrs: { value: "technical" } }, [
-                _vm._v("Technical problem")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "bad_weather" } }, [
-                _vm._v("Bad weather conditions")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "other_flights" } }, [
-                _vm._v("Influence by other flights")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "airport" } }, [
-                _vm._v("Issues with airport")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "strike" } }, [_vm._v("Strike")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "no_reason" } }, [
-                _vm._v("No reason given")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "forgot" } }, [
-                _vm._v("Don't Remember")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "force_majeure" } }, [
-                _vm._v("Force majeure")
-              ])
-            ]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-primary btn-lg",
-            staticStyle: { width: "200px" },
-            attrs: { href: "/claims/route", role: "button" }
-          },
-          [
-            _vm._v("Next "),
-            _c("i", { staticClass: "fas fa-angle-double-right" })
-          ]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -59347,6 +59374,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_calendar__WEBPACK_IMPORTED_MODU
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: "history",
   routes: [{
+    path: "/claims/",
+    redirect: {
+      name: "start"
+    }
+  }, {
     path: "/claims/start",
     name: "start",
     component: _components_view1_airports__WEBPACK_IMPORTED_MODULE_4__["default"] //props: { title: "Where did you fly to?" }
@@ -59735,6 +59767,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/subcomponents/view4/bumped.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/subcomponents/view4/bumped.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _bumped_vue_vue_type_template_id_dbece84e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bumped.vue?vue&type=template&id=dbece84e& */ "./resources/js/components/subcomponents/view4/bumped.vue?vue&type=template&id=dbece84e&");
+/* harmony import */ var _bumped_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bumped.vue?vue&type=script&lang=js& */ "./resources/js/components/subcomponents/view4/bumped.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _bumped_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _bumped_vue_vue_type_template_id_dbece84e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _bumped_vue_vue_type_template_id_dbece84e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/subcomponents/view4/bumped.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/subcomponents/view4/bumped.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/subcomponents/view4/bumped.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_bumped_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./bumped.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/bumped.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_bumped_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/subcomponents/view4/bumped.vue?vue&type=template&id=dbece84e&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/subcomponents/view4/bumped.vue?vue&type=template&id=dbece84e& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_bumped_vue_vue_type_template_id_dbece84e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./bumped.vue?vue&type=template&id=dbece84e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/bumped.vue?vue&type=template&id=dbece84e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_bumped_vue_vue_type_template_id_dbece84e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_bumped_vue_vue_type_template_id_dbece84e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/subcomponents/view4/delayedTime.vue":
 /*!*********************************************************************!*\
   !*** ./resources/js/components/subcomponents/view4/delayedTime.vue ***!
@@ -59822,17 +59923,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/subcomponents/view4/first.vue":
-/*!***************************************************************!*\
-  !*** ./resources/js/components/subcomponents/view4/first.vue ***!
-  \***************************************************************/
+/***/ "./resources/js/components/subcomponents/view4/reason.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/subcomponents/view4/reason.vue ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _first_vue_vue_type_template_id_227a6c5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./first.vue?vue&type=template&id=227a6c5c& */ "./resources/js/components/subcomponents/view4/first.vue?vue&type=template&id=227a6c5c&");
-/* harmony import */ var _first_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./first.vue?vue&type=script&lang=js& */ "./resources/js/components/subcomponents/view4/first.vue?vue&type=script&lang=js&");
+/* harmony import */ var _reason_vue_vue_type_template_id_641ba648___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reason.vue?vue&type=template&id=641ba648& */ "./resources/js/components/subcomponents/view4/reason.vue?vue&type=template&id=641ba648&");
+/* harmony import */ var _reason_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reason.vue?vue&type=script&lang=js& */ "./resources/js/components/subcomponents/view4/reason.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -59842,9 +59943,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _first_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _first_vue_vue_type_template_id_227a6c5c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _first_vue_vue_type_template_id_227a6c5c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _reason_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _reason_vue_vue_type_template_id_641ba648___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _reason_vue_vue_type_template_id_641ba648___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -59854,38 +59955,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/subcomponents/view4/first.vue"
+component.options.__file = "resources/js/components/subcomponents/view4/reason.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/subcomponents/view4/first.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/components/subcomponents/view4/first.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************/
+/***/ "./resources/js/components/subcomponents/view4/reason.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/subcomponents/view4/reason.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_first_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./first.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/first.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_first_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_reason_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./reason.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/reason.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_reason_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/subcomponents/view4/first.vue?vue&type=template&id=227a6c5c&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/subcomponents/view4/first.vue?vue&type=template&id=227a6c5c& ***!
-  \**********************************************************************************************/
+/***/ "./resources/js/components/subcomponents/view4/reason.vue?vue&type=template&id=641ba648&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/subcomponents/view4/reason.vue?vue&type=template&id=641ba648& ***!
+  \***********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_first_vue_vue_type_template_id_227a6c5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./first.vue?vue&type=template&id=227a6c5c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/first.vue?vue&type=template&id=227a6c5c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_first_vue_vue_type_template_id_227a6c5c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_reason_vue_vue_type_template_id_641ba648___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./reason.vue?vue&type=template&id=641ba648& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/subcomponents/view4/reason.vue?vue&type=template&id=641ba648&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_reason_vue_vue_type_template_id_641ba648___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_first_vue_vue_type_template_id_227a6c5c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_reason_vue_vue_type_template_id_641ba648___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
