@@ -29,7 +29,7 @@
 
 
 	<!-- Component for hours delayed  -->
-	<delayedTime v-if="delayedDiv" v-on:delayedHours="nextStep"></delayedTime>	
+	<delayedTime v-if="delayedDiv" v-on:delayedHours="nextStep" :key="delayKey"></delayedTime>	
 
 	<!-- advance notify div  -->
 	<advanceNotify v-if="notifyDiv" v-on:notified="reasonDiv = true"></advanceNotify>
@@ -42,7 +42,7 @@
 
 	
 	<div class="row">
-		<div class="col-md-8 pt-4">
+		<div class="col-md-8 py-4">
 			<button class="btn btn-success btn-lg" type="submit" style="width: 200px;" v-if="reasonDiv">Submit for Review </button>
 		</div>
 	</div>
@@ -69,10 +69,13 @@ export default {
 			  bumpedDiv: false,
 			  reasonDiv: false,
 			  claimType: '',
+			  delayKey: 0,
 		  }
 		},
 	methods: {
 		showDelayTime(event) {
+			this.delayKey += 1; 
+			
 			this.claimType = event.target.value;
 			this.delayedDiv = true;
 

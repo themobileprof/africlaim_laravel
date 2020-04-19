@@ -1915,7 +1915,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  updated: function updated() {
+    document.body.scrollTop = document.body.scrollHeight;
+  }
+});
 
 /***/ }),
 
@@ -2507,11 +2511,13 @@ __webpack_require__.r(__webpack_exports__);
       notifyDiv: false,
       bumpedDiv: false,
       reasonDiv: false,
-      claimType: ''
+      claimType: '',
+      delayKey: 0
     };
   },
   methods: {
     showDelayTime: function showDelayTime(event) {
+      this.delayKey += 1;
       this.claimType = event.target.value;
       this.delayedDiv = true; // reset others
 
@@ -43021,7 +43027,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { attrs: { id: "app" } }, [
     _c("form", { staticClass: "form-wrapper" }, [_c("router-view")], 1)
   ])
 }
@@ -43742,25 +43748,28 @@ var render = function() {
                   : _vm.connectingFlight
               },
               on: {
-                change: function($event) {
-                  var $$a = _vm.connectingFlight,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.connectingFlight = $$a.concat([$$v]))
+                change: [
+                  function($event) {
+                    var $$a = _vm.connectingFlight,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.connectingFlight = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.connectingFlight = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
                     } else {
-                      $$i > -1 &&
-                        (_vm.connectingFlight = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
+                      _vm.connectingFlight = $$c
                     }
-                  } else {
-                    _vm.connectingFlight = $$c
-                  }
-                }
+                  },
+                  _vm.toggleConnecting
+                ]
               }
             })
           ])
@@ -44193,7 +44202,10 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm.delayedDiv
-        ? _c("delayedTime", { on: { delayedHours: _vm.nextStep } })
+        ? _c("delayedTime", {
+            key: _vm.delayKey,
+            on: { delayedHours: _vm.nextStep }
+          })
         : _vm._e(),
       _vm._v(" "),
       _vm.notifyDiv
@@ -44219,7 +44231,7 @@ var render = function() {
       _vm.reasonDiv ? _c("reason") : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 pt-4" }, [
+        _c("div", { staticClass: "col-md-8 py-4" }, [
           _vm.reasonDiv
             ? _c(
                 "button",
