@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Auth::routes();
@@ -28,6 +28,10 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 // Routes for database prepopulation
 //Route::get('db/seeder', 'SeedingController@index')->name('db.seeder');
 
-Route::get('/claims/{any}', function(){
-        return view('claims');
+
+Route::get('/claims/', 'HomeController@index')->name('home');
+
+Route::get('/claims/{any}', function () {
+	return view('claims');
 })->where('any', '.*');
+

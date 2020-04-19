@@ -22,7 +22,7 @@ const router = new VueRouter({
     mode: "history",
     routes: [
         {
-            path: "/claims/",
+            path: "/claims/*",
             redirect: {
                 name: "start"
             }
