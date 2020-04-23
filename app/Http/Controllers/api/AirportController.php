@@ -42,6 +42,8 @@ class AirportController extends Controller
 
 	public function show(airport $airport)
 	{
-		return new AirportResource($airport);
+		//return new AirportResource($airport);
+
+		return response()->json(Airport::find($airport)->first());
 	}
 }

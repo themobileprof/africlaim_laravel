@@ -17,21 +17,21 @@ import Start from "./components/view1_airports";
 import Flight_date from "./components/view2_flight_date";
 import Route from "./components/view3_route";
 import Complaint from "./components/view4_complaint";
+import NotFound from "./components/notFound";
 
 const router = new VueRouter({
     mode: "history",
     routes: [
         {
-            path: "/claims/*",
-            redirect: {
-                name: "start"
-            }
-        },
-        {
             path: "/claims/start",
             name: "start",
-            component: Start
+            component: Start,
             //props: { title: "Where did you fly to?" }
+            props: route => ({
+                destinationParam: route.query.destination.substr(0, 6),
+                departureParam: route.query.departure.substr(0, 6)
+            })
+            //props: true,
         },
         {
             path: "/claims/flight_date",
@@ -50,6 +50,16 @@ const router = new VueRouter({
             name: "complaint",
             component: Complaint
             //props: { title: "What is the nature of the complaint?" }
+        },
+        {
+            path: "/claims/404",
+            component: NotFound
+        },
+        {
+            path: "/claims/*",
+            redirect: {
+                name: "start"
+            }
         }
     ]
 });
@@ -58,4 +68,3 @@ const app = new Vue({
     components: { App },
     router
 });
-

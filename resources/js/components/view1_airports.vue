@@ -14,6 +14,7 @@
 			<airport 
 				input_text='departure' 
 				placehold_text='Departed from' 
+				:airportParam="departureParam"
 		    ></airport>
 	  </div>
   
@@ -21,7 +22,12 @@
 			<label for="end-airport" class="control-label pt-2">
 				Final destination
 			</label>
-			<airport input_text='destination' placehold_text='Arrived at'></airport>
+			<airport 
+				input_text='destination' 
+				placehold_text='Arrived at'
+				:airportParam="destinationParam"
+			></airport>
+			Uchechi Edeh
 	  </div>
 		<div class="col-md-4">
 		
@@ -53,14 +59,23 @@
 	import connecting from './subcomponents/view1/connecting'
 
     export default {
+		props: ['departureParam','destinationParam'],
 		components: {
 			airport,
-			connecting
+			connecting,
 		},
 		data(){
 			return {
-				connectingFlight: '',
+				connectingFlight: false,
+				departureId: this.departureParam,
+				destinationId: this.destinationParam,
 			}
+		},
+		mounted(){
+			// if (this.$route.query.destinationId && this.$route.query.departureId){
+			//	this.departureId = this.$route.query.depId;
+			//	this.destinationId = this.$route.query.destId;
+			//}
 		},
 		methods: {
 			toggleConnecting(){
