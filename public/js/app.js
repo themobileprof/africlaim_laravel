@@ -2026,9 +2026,12 @@ __webpack_require__.r(__webpack_exports__);
 
     document.addEventListener('click', this.handleClickOutside);
 
-    if (this.airportId != '') {
-      axios.get('/api/airport/' + this.airportId).then(function (response) {
+    if (this.airportId != undefined) {
+      var thisAirportId = this.airportId;
+      axios.get('/api/airport/' + thisAirportId.substr(0, 6)).then(function (response) {
         _this2.query = response.data.name;
+      }, function (error) {
+        console.log("Invalid " + _this2.input_text);
       });
     }
   },
@@ -2318,6 +2321,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2328,22 +2337,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      connectingFlight: false,
+      connectingFlight: 'No',
       departureId: this.departureParam,
       destinationId: this.destinationParam
     };
   },
-  mounted: function mounted() {// if (this.$route.query.destinationId && this.$route.query.departureId){
+  mounted: function mounted() {//if (this.$route.query.destinationId && this.$route.query.departureId){
     //	this.departureId = this.$route.query.depId;
     //	this.destinationId = this.$route.query.destId;
     //}
   },
   methods: {
     toggleConnecting: function toggleConnecting() {
-      if (this.connectingFlight == false) {
-        this.connectingFlight = true;
+      if (this.connectingFlight == 'No') {
+        this.connectingFlight = 'Yes';
       } else {
-        this.connectingFlight = false;
+        this.connectingFlight = 'No';
       }
     }
   }
@@ -43818,8 +43827,7 @@ var render = function() {
                   placehold_text: "Arrived at",
                   airportParam: _vm.destinationParam
                 }
-              }),
-              _vm._v("\n\t\t\tUchechi Edeh\n\t  ")
+              })
             ],
             1
           ),
@@ -43829,69 +43837,78 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "row p-4 mt-4" }, [
           _c("div", { staticClass: "col-7 col-md-4" }, [
-            _c(
-              "label",
-              {
-                staticClass: "control-label text-xs-right",
-                attrs: { for: "connectingFlight" }
-              },
-              [_vm._v("\n\t\t\t\tWere there any connecting flights?\n\t\t\t")]
-            )
+            _c("label", { staticClass: "h4 control-label text-md-right" }, [
+              _vm._v("\n\t\t\t\tWere there any connecting flights?\n\t\t\t")
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-5 col-md-4" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.connectingFlight,
-                  expression: "connectingFlight"
-                }
-              ],
-              attrs: {
-                id: "connectingFlight",
-                name: "connectingFlight",
-                type: "checkbox",
-                "data-on": "Yes",
-                "data-off": "No",
-                "data-toggle": "toggle",
-                "data-width": "100"
+            _c(
+              "div",
+              {
+                staticClass: "btn-group btn-group-toggle",
+                attrs: { "data-toggle": "buttons" }
               },
-              domProps: {
-                checked: Array.isArray(_vm.connectingFlight)
-                  ? _vm._i(_vm.connectingFlight, null) > -1
-                  : _vm.connectingFlight
-              },
-              on: {
-                change: [
-                  function($event) {
-                    var $$a = _vm.connectingFlight,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 && (_vm.connectingFlight = $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          (_vm.connectingFlight = $$a
-                            .slice(0, $$i)
-                            .concat($$a.slice($$i + 1)))
+              [
+                _c("label", { staticClass: "btn btn-primary" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.connectingFlight,
+                        expression: "connectingFlight"
                       }
-                    } else {
-                      _vm.connectingFlight = $$c
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: "connectingFlight",
+                      id: "connectingYes",
+                      value: "Yes"
+                    },
+                    domProps: { checked: _vm._q(_vm.connectingFlight, "Yes") },
+                    on: {
+                      click: _vm.toggleConnecting,
+                      change: function($event) {
+                        _vm.connectingFlight = "Yes"
+                      }
                     }
-                  },
-                  _vm.toggleConnecting
-                ]
-              }
-            })
+                  }),
+                  _vm._v(" Yes\n\t\t\t\t")
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "btn btn-primary" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.connectingFlight,
+                        expression: "connectingFlight"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: "connectingFlight",
+                      id: "connectingNo",
+                      value: "No"
+                    },
+                    domProps: { checked: _vm._q(_vm.connectingFlight, "No") },
+                    on: {
+                      click: _vm.toggleConnecting,
+                      change: function($event) {
+                        _vm.connectingFlight = "No"
+                      }
+                    }
+                  }),
+                  _vm._v(" No\n\t\t\t\t")
+                ])
+              ]
+            )
           ])
         ]),
         _vm._v(" "),
-        _vm.connectingFlight ? _c("connecting") : _vm._e(),
+        _vm.connectingFlight == "Yes" ? _c("connecting") : _vm._e(),
         _vm._v(" "),
         _c(
           "div",
@@ -59510,8 +59527,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     //props: { title: "Where did you fly to?" }
     props: function props(route) {
       return {
-        destinationParam: route.query.destination.substr(0, 6),
-        departureParam: route.query.departure.substr(0, 6)
+        destinationParam: route.query.destination,
+        departureParam: route.query.departure
       };
     } //props: true,
 

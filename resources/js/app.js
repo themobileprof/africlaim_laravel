@@ -28,8 +28,8 @@ const router = new VueRouter({
             component: Start,
             //props: { title: "Where did you fly to?" }
             props: route => ({
-                destinationParam: route.query.destination.substr(0, 6),
-                departureParam: route.query.departure.substr(0, 6)
+                destinationParam: route.query.destination,
+                departureParam: route.query.departure
             })
             //props: true,
         },

@@ -70,10 +70,12 @@
 
 		 mounted() {
 			document.addEventListener('click', this.handleClickOutside);
-			 if (this.airportId != ''){
-				 axios.get('/api/airport/' + this.airportId).then(response => {
+			 if (this.airportId != undefined){
+				 var thisAirportId = this.airportId;
+				 axios.get('/api/airport/' + thisAirportId.substr(0, 6)).then(response => {
 					this.query = response.data.name;
-				 });
+				 },
+				 error => { console.log("Invalid " + this.input_text) });
 			 }
 		  },
 		  destroyed() {
