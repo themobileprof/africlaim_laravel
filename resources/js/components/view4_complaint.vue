@@ -1,5 +1,4 @@
 <template>
-<transition name="slide-fade">
 <div class='col-md-12 form-style'>
 
 
@@ -29,17 +28,25 @@
 
 
 
+	<transition name="fade">
 	<!-- Component for hours delayed  -->
 	<delayedTime v-if="delayedDiv" v-on:delayedHours="nextStep" :key="delayKey"></delayedTime>	
+	</transition>
 
+	<transition name="fade">
 	<!-- advance notify div  -->
 	<advanceNotify v-if="notifyDiv" v-on:notified="reasonDiv = true"></advanceNotify>
+	</transition>
 
+	<transition name="fade">
 	<!-- Bumped Div -->
 	<bumped v-if="bumpedDiv" v-on:bumped="reasonDiv = true"></bumped>
+	</transition>
 
+	<transition name="fade">
 	<!-- Reason Div -->
 	<reason v-if="reasonDiv"></reason>
+	</transition>
 
 	
 	<div class="row">
@@ -49,7 +56,6 @@
 		</div>
 	</div>
 </div>
-</transition>
 </template>
 
 <script>
@@ -100,21 +106,6 @@ export default {
 		changetest(val){
 			this.testing = val; // Random var for testing Vuex getter value
 		}
-	},
-	beforeRouteEnter(to, from, next) {
-	  next(vm => {
-	  })
-		// Redirect to first page if user is not coming from the correct previous page
-		if (from.path !== '/claims/route') {
-			next('/claims/start');
-		}
-
-		// Work in progress
-		// Redirect to first page if user is not coming from the correct previous page and has not previously visited here // challenges with Vuex
-	//	if (from.path !== '/claims/route' && this.$store.getters.isVisited(this.page === false)) {
-	//		next('/claims/start');
-	//	}
-
 	},
 	mounted() {
 

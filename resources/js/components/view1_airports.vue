@@ -1,5 +1,4 @@
 <template>
-<transition name="slide-fade">
 
 <div class='col-md-12 form-style'>
 	<div class="row claims-desc">
@@ -59,7 +58,6 @@
 		<router-link class="btn btn-primary btn-lg mr-2" v-bind:class="{ disable: !showNext }" to="/claims/flight_date" role="button" style="width: 200px;">Next <i class="fas fa-angle-double-right"></i></router-link>
 	</div>
 </div>
-</transition>
 </template>
 
 <script>

@@ -8,10 +8,10 @@
 		<!-- /#sidebar-wrapper -->
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sideover list-group list-group-flush">
-				<router-link to="/claims/start" class="list-group-item list-group-item-action bg-light"><strong>Step 1:</strong> Departure and Arrival</router-link>
-				<router-link to="/claims/flight_date" class="list-group-item list-group-item-action bg-light"><strong>Step 2:</strong> Flight Date</router-link>
-				<router-link to="/claims/route" class="list-group-item list-group-item-action bg-light"><strong>Step 3:</strong> Select Route</router-link>
-				<router-link to="/claims/complaint" class="list-group-item list-group-item-action bg-light"><strong>Step 4:</strong> Finishing</router-link>
+				<li to="/claims/start" class="list-group-item list-group-item-action bg-light" v-bind:class="{ 'bg-dark': isStart,  'text-white': isStart }"><strong>Step 1:</strong> Departure and Arrival</li>
+				<li to="/claims/flight_date" class="list-group-item list-group-item-action bg-light" v-bind:class="{ 'bg-dark': isDate,  'text-white': isDate }"><strong>Step 2:</strong> Flight Date</li>
+				<li to="/claims/route" class="list-group-item list-group-item-action bg-light" v-bind:class="{ 'bg-dark': isRoute,  'text-white': isRoute }"><strong>Step 3:</strong> Select Route</li>
+				<li to="/claims/complaint" class="list-group-item list-group-item-action bg-light" v-bind:class="{ 'bg-dark': isComplaint,  'text-white': isComplaint }"><strong>Step 4:</strong> Finishing</li>
 			</div>
 		</div>
 
@@ -23,36 +23,27 @@
 
 		<!-- Page Content -->
         <div id="page-content-wrapper">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-				<i class="fas fa-share-square text-primary d-md-none" id="menu-toggle" style="font-size:20px;"></i>
-				<div class="sidebar-heading">
-					<a href="https://africlaim.com"><img :src="'/img/africlaim_logo.png'" alt=""></a>
-				</div>
+			
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+			<!--top navigation-->
+			<topNav></topNav>
 
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-						<li class="nav-item">
-							<a class="nav-link" href="#">FAQ</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Info
-							</a>
-							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Contact Us</a>
-								<a class="dropdown-item" href="#">About Us</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</nav>
+
+
 			<div class="container-fluid">
 				<form class="form-wrapper">
-						<router-view></router-view>
+
+
+
+
+					<transition name="slide-fade">
+						<keep-alive>
+							<router-view></router-view>
+						</keep-alive>
+					</transition>
+
+
+
 				</form>
 			</div>
 		</div>
@@ -63,10 +54,44 @@
 
     </div>
 </template>
-    <script>
+<script>
+import topNav from './top_nav.vue';
 export default {
+	components: {
+		topNav,
+	},
+	data() {
+		return {
+			isStart: false,
+			isDate: false,
+			isRoute: false,
+			isComplaint: false,
+		}
+	},
+	created() {
+		this.$router.push({ name: 'start' })
+		this.isStart = true;
+	},
+	watch:{
+		$route (to, from){
+			//reset everything to false
+			this.isStart = this.isDate = this.isRoute = this.isFinish = false;
+			// Set for 'to' page
+			if (to.name == 'start'){
+				this.isStart = true;
+			} else if (to.name == 'flight_date') {
+				this.isDate = true;
+			} else if (to.name == 'route') {
+				this.isRoute = true;
+			} else if (to.name == 'complaint') {
+				this.isComplaint = true;
+			} else {
+				this.isStart = true;
+			}
+		}
+	}, 
 	updated() {
 		document.body.scrollTop = document.body.scrollHeight;
-	}
+	},
 }
     </script>

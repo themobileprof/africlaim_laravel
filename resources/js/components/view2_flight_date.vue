@@ -1,5 +1,4 @@
 <template>
-<transition name="slide-fade">
 <div class='col-md-12 form-style'>
 	<div class="row claims-desc">
 		What date was your flight?
@@ -25,7 +24,6 @@
 		</div>
 	</div>
 </div>
-</transition>
 </template>
 
 <script>
@@ -40,21 +38,6 @@
 			page: this.$route.name,
 			testing: ''
 		  }
-		},
-		beforeRouteEnter(to, from, next) {
-		  next(vm => {
-		  })
-			// Redirect to first page if user is not coming from the correct previous page
-			if (from.path !== '/claims/start') {
-				next('/claims/start');
-			}
-
-			// Work in progress
-			// Redirect to first page if user is not coming from the correct previous page and has not previously visited here // challenges with Vuex
-		//	if (from.path !== '/claims/start' && this.$store.getters.isVisited(this.page === false)) {
-		//		next('/claims/start');
-		//	}
-
 		},
         mounted() {
 

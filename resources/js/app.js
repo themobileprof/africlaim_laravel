@@ -64,6 +64,12 @@ const router = new VueRouter({
             component: NotFound
         },
         {
+            path: "/claims/",
+            redirect: {
+                name: "start"
+            }
+        },
+        {
             path: "/claims/*",
             redirect: {
                 name: "start"

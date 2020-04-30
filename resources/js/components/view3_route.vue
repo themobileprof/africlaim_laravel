@@ -1,5 +1,4 @@
 <template>
-<transition name="slide-fade">
 <div class='col-md-12 form-style'>
 	<div class="row claims-desc">
 		Select your flight below
@@ -51,7 +50,6 @@
 		</div>
 	</div>
 </div>
-</transition>
 </template>
 
 <script>
@@ -62,21 +60,6 @@
 			route: null,
 			testing: '',
 		  }
-		},
-		beforeRouteEnter(to, from, next) {
-		  next(vm => {
-		  })
-			// Redirect to first page if user is not coming from the correct previous page
-			if (from.path !== '/claims/flight_date') {
-				next('/claims/start');
-			}
-
-			// Work in progress
-			// Redirect to first page if user is not coming from the correct previous page and has not previously visited here // challenges with Vuex
-		//	if (from.path !== '/claims/flight_date' && this.$store.getters.isVisited(this.page === false)) {
-		//		next('/claims/start');
-		//	}
-
 		},
         mounted() {
 
