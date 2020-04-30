@@ -1,5 +1,5 @@
 <template>
-<transition name="slide">
+<transition name="slide-fade">
 
 <div class='col-md-12 form-style'>
 	<div class="row claims-desc">
@@ -37,7 +37,7 @@
 	</div>
 	<div class="row p-4 mt-4">
 		<div class="col-7 col-md-4">
-			<div class="h3 control-label text-md-right">
+			<div class="control-label text-md-right" style="font-size: 16px;">
 				Were there any connecting flights?
 			</div>
 		</div>
@@ -56,7 +56,7 @@
 	<connecting v-if="connectingFlight == 'Yes'"></connecting>
 
 	<div class="row mt-4 py-4" style="padding-left: 15px;">
-		<router-link class="btn btn-primary btn-lg mr-2" to="/claims/flight_date" role="button" style="width: 200px;" v-if="showNext">Next <i class="fas fa-angle-double-right"></i></router-link>
+		<router-link class="btn btn-primary btn-lg mr-2" v-bind:class="{ disable: !showNext }" to="/claims/flight_date" role="button" style="width: 200px;">Next <i class="fas fa-angle-double-right"></i></router-link>
 	</div>
 </div>
 </transition>

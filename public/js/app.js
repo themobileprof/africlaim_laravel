@@ -2468,6 +2468,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FlightDate",
@@ -2525,6 +2527,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2640,6 +2644,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _subcomponents_view4_advanceNotify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./subcomponents/view4/advanceNotify */ "./resources/js/components/subcomponents/view4/advanceNotify.vue");
 /* harmony import */ var _subcomponents_view4_bumped__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subcomponents/view4/bumped */ "./resources/js/components/subcomponents/view4/bumped.vue");
 /* harmony import */ var _subcomponents_view4_reason__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./subcomponents/view4/reason */ "./resources/js/components/subcomponents/view4/reason.vue");
+//
+//
 //
 //
 //
@@ -11584,7 +11590,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fine-select {\n    padding: 10px;\n    background-color: #2176bd;\n    color: #ffffff;\n    border: none;\n    border-radius: 5px;\n}\n.select-css {\n    display: block;\n    font-size: 16px;\n    font-family: sans-serif;\n    font-weight: 700;\n    color: #ffffff;\n    line-height: 1.3;\n    padding: 0.6em 1.4em 0.5em 0.8em;\n    width: 100%;\n    max-width: 100%;\n    box-sizing: border-box;\n    margin: 0;\n    border: 1px solid #aaa;\n    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);\n    border-radius: 0.5em;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    appearance: none;\n    background-color: #2176bd;\n    background-image: url(\"data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E\"),\n        linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);\n    background-repeat: no-repeat, repeat;\n    background-position: right 0.7em top 50%, 0 0;\n    background-size: 0.65em auto, 100%;\n}\n.select-css::-ms-expand {\n    display: none;\n}\n.select-css:hover {\n    border-color: #888;\n}\n.select-css:focus {\n    border-color: #aaa;\n    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);\n    box-shadow: 0 0 0 3px -moz-mac-focusring;\n    color: #222;\n    outline: none;\n}\n.select-css option {\n    font-weight: normal;\n}\n.claims-desc {\n    font-size: 16px;\n    margin-top: 50px;\n    margin-bottom: 25px;\n    margin-left: 5px;\n    margin-right: 20px;\n    text-align: justify;\n}\ninput {\n    text-rendering: auto;\n    letter-spacing: normal;\n    word-spacing: normal;\n    text-transform: none;\n    text-indent: 0px;\n    text-shadow: none;\n    display: inline-block;\n    text-align: start;\n    background-color: -internal-light-dark-color(white, black);\n}\n.control-label {\n    padding-right: 16px;\n    height: 26px;\n    width: 100%;\n    font-size: 13px;\n    font-weight: bold;\n    line-height: 1.53;\n    color: #536273;\n    outline: none;\n    clear: both;\n}\n\n/* Destination */\n.autocomplete-input {\n    padding-right: 16px;\n    border: 1px solid #c6d5e6;\n    height: 46px;\n    width: 100%;\n    padding-left: 26px;\n    font-size: 13px;\n    font-weight: 400;\n    line-height: 1.53;\n    border-radius: 3px;\n    color: #536273;\n    outline: none;\n}\n.autocomplete-results-panel {\n    position: relative;\n}\n.autocomplete-results {\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 10;\n    font-size: 13px;\n}\n.autocomplete-result {\n    cursor: pointer;\n}\n.autocomplete-result.is-active,\n.autocomplete-result:hover {\n    background-color: #181c49;\n    color: white;\n}\n\n/* Button */\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    max-width: 360px;\n    float: none;\n}\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    margin-bottom: 32px;\n}\n.col-xs-12 {\n    width: 100%;\n}\n.ah-btn-large {\n    height: 72px;\n    font-size: 19px;\n}\n.ah-btn--positive {\n    box-shadow: 0 8px 16px 0 rgba(83, 99, 115, 0.32);\n    transition: box-shadow 0.2s ease-in-out;\n    color: #fff;\n    background-color: #1b8eff;\n    font-weight: 600;\n}\n.ah-btn,\n.ah-btn-large,\n.ah-btn-small {\n    white-space: normal;\n    word-wrap: break-word;\n    display: inline-flex;\n    text-align: center;\n    justify-content: center;\n    align-items: center;\n    border-radius: 3px;\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all 0.3s ease;\n}\n.slide-fade-leave-active {\n    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.disable {\n    pointer-events: none;\n    opacity: 0.6;\n}\n.fine-select {\n    padding: 10px;\n    background-color: #2176bd;\n    color: #ffffff;\n    border: none;\n    border-radius: 5px;\n}\n.select-css {\n    display: block;\n    font-size: 16px;\n    font-family: sans-serif;\n    font-weight: 700;\n    color: #ffffff;\n    line-height: 1.3;\n    padding: 0.6em 1.4em 0.5em 0.8em;\n    width: 100%;\n    max-width: 100%;\n    box-sizing: border-box;\n    margin: 0;\n    border: 1px solid #aaa;\n    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);\n    border-radius: 0.5em;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    appearance: none;\n    background-color: #2176bd;\n    background-image: url(\"data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E\"),\n        linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);\n    background-repeat: no-repeat, repeat;\n    background-position: right 0.7em top 50%, 0 0;\n    background-size: 0.65em auto, 100%;\n}\n.select-css::-ms-expand {\n    display: none;\n}\n.select-css:hover {\n    border-color: #888;\n}\n.select-css:focus {\n    border-color: #aaa;\n    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);\n    box-shadow: 0 0 0 3px -moz-mac-focusring;\n    color: #222;\n    outline: none;\n}\n.select-css option {\n    font-weight: normal;\n}\n.claims-desc {\n    font-size: 16px;\n    margin-top: 50px;\n    margin-bottom: 25px;\n    margin-left: 5px;\n    margin-right: 20px;\n    text-align: justify;\n}\ninput {\n    text-rendering: auto;\n    letter-spacing: normal;\n    word-spacing: normal;\n    text-transform: none;\n    text-indent: 0px;\n    text-shadow: none;\n    display: inline-block;\n    text-align: start;\n    background-color: -internal-light-dark-color(white, black);\n}\n.control-label {\n    padding-right: 16px;\n    height: 26px;\n    width: 100%;\n    font-size: 13px;\n    font-weight: bold;\n    line-height: 1.53;\n    color: #536273;\n    outline: none;\n    clear: both;\n}\n\n/* Destination */\n.autocomplete-input {\n    padding-right: 16px;\n    border: 1px solid #c6d5e6;\n    height: 46px;\n    width: 100%;\n    padding-left: 26px;\n    font-size: 13px;\n    font-weight: 400;\n    line-height: 1.53;\n    border-radius: 3px;\n    color: #536273;\n    outline: none;\n}\n.autocomplete-results-panel {\n    position: relative;\n}\n.autocomplete-results {\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 10;\n    font-size: 13px;\n}\n.autocomplete-result {\n    cursor: pointer;\n}\n.autocomplete-result.is-active,\n.autocomplete-result:hover {\n    background-color: #181c49;\n    color: white;\n}\n\n/* Button */\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    max-width: 360px;\n    float: none;\n}\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    margin-bottom: 32px;\n}\n.col-xs-12 {\n    width: 100%;\n}\n.ah-btn-large {\n    height: 72px;\n    font-size: 19px;\n}\n.ah-btn--positive {\n    box-shadow: 0 8px 16px 0 rgba(83, 99, 115, 0.32);\n    transition: box-shadow 0.2s ease-in-out;\n    color: #fff;\n    background-color: #1b8eff;\n    font-weight: 600;\n}\n.ah-btn,\n.ah-btn-large,\n.ah-btn-small {\n    white-space: normal;\n    word-wrap: break-word;\n    display: inline-flex;\n    text-align: center;\n    justify-content: center;\n    align-items: center;\n    border-radius: 3px;\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -44097,7 +44103,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("transition", { attrs: { name: "slide" } }, [
+  return _c("transition", { attrs: { name: "slide-fade" } }, [
     _c(
       "div",
       { staticClass: "col-md-12 form-style" },
@@ -44172,9 +44178,14 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "row p-4 mt-4" }, [
           _c("div", { staticClass: "col-7 col-md-4" }, [
-            _c("div", { staticClass: "h3 control-label text-md-right" }, [
-              _vm._v("\n\t\t\t\tWere there any connecting flights?\n\t\t\t")
-            ])
+            _c(
+              "div",
+              {
+                staticClass: "control-label text-md-right",
+                staticStyle: { "font-size": "16px" }
+              },
+              [_vm._v("\n\t\t\t\tWere there any connecting flights?\n\t\t\t")]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-5 col-md-4" }, [
@@ -44256,20 +44267,19 @@ var render = function() {
             staticStyle: { "padding-left": "15px" }
           },
           [
-            _vm.showNext
-              ? _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-primary btn-lg mr-2",
-                    staticStyle: { width: "200px" },
-                    attrs: { to: "/claims/flight_date", role: "button" }
-                  },
-                  [
-                    _vm._v("Next "),
-                    _c("i", { staticClass: "fas fa-angle-double-right" })
-                  ]
-                )
-              : _vm._e()
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary btn-lg mr-2",
+                class: { disable: !_vm.showNext },
+                staticStyle: { width: "200px" },
+                attrs: { to: "/claims/flight_date", role: "button" }
+              },
+              [
+                _vm._v("Next "),
+                _c("i", { staticClass: "fas fa-angle-double-right" })
+              ]
+            )
           ],
           1
         )
@@ -44300,83 +44310,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-12 form-style" }, [
-    _c("div", { staticClass: "row claims-desc" }, [
-      _vm._v("\n\t\tWhat date was your flight?\n\t")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-8 my-4" },
-        [
-          _c("vc-date-picker", {
-            attrs: {
-              mode: _vm.mode,
-              "input-props": {
-                class:
-                  "w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 hover:border-blue-5",
-                placeholder: "Please enter Flight date",
-                readonly: true
-              }
-            },
-            model: {
-              value: _vm.flightDate,
-              callback: function($$v) {
-                _vm.flightDate = $$v
+  return _c("transition", { attrs: { name: "slide-fade" } }, [
+    _c("div", { staticClass: "col-md-12 form-style" }, [
+      _c("div", { staticClass: "row claims-desc" }, [
+        _vm._v("\n\t\tWhat date was your flight?\n\t")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-8 my-4" },
+          [
+            _c("vc-date-picker", {
+              attrs: {
+                mode: _vm.mode,
+                "input-props": {
+                  class:
+                    "w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 hover:border-blue-5",
+                  placeholder: "Please enter Flight date",
+                  readonly: true
+                }
               },
-              expression: "flightDate"
-            }
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "fas fa-calendar-alt",
-            staticStyle: {
-              position: "relative",
-              "margin-left": "-30px",
-              "z-index": "100"
-            }
-          })
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-8 py-4" },
-        [
-          _vm.showNext
-            ? _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-primary btn-lg",
-                  staticStyle: { width: "200px" },
-                  attrs: { to: "/claims/route", role: "button" }
+              model: {
+                value: _vm.flightDate,
+                callback: function($$v) {
+                  _vm.flightDate = $$v
                 },
-                [
-                  _vm._v("Next "),
-                  _c("i", { staticClass: " \tfas fa-angle-double-right" })
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-white btn-lg text-secondary ml-2",
-              staticStyle: { width: "200px" },
-              attrs: { to: "/claims/start", role: "button" }
-            },
-            [
-              _c("i", { staticClass: "fas fa-angle-double-left" }),
-              _vm._v(" Back")
-            ]
-          )
-        ],
-        1
-      )
+                expression: "flightDate"
+              }
+            }),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "fas fa-calendar-alt",
+              staticStyle: {
+                position: "relative",
+                "margin-left": "-30px",
+                "z-index": "100"
+              }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-8 py-4" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary btn-lg",
+                class: { disable: !_vm.showNext },
+                staticStyle: { width: "200px" },
+                attrs: { to: "/claims/route", role: "button" }
+              },
+              [
+                _vm._v("Next "),
+                _c("i", { staticClass: " \tfas fa-angle-double-right" })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-white btn-lg text-secondary ml-2",
+                staticStyle: { width: "200px" },
+                attrs: { to: "/claims/start", role: "button" }
+              },
+              [
+                _c("i", { staticClass: "fas fa-angle-double-left" }),
+                _vm._v(" Back")
+              ]
+            )
+          ],
+          1
+        )
+      ])
     ])
   ])
 }
@@ -44402,260 +44413,251 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-12 form-style" }, [
-    _c("div", { staticClass: "row claims-desc" }, [
-      _vm._v("\n\t\tSelect your flight below\n\t")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-8 my-4" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("ul", { staticClass: "list-group" }, [
-          _c(
-            "li",
-            {
-              staticClass:
-                "list-group-item list-group-item-action list-group-item-success"
-            },
-            [
-              _c(
-                "label",
-                { staticClass: "flight_label row", attrs: { for: "flight1" } },
-                [
-                  _c("div", { staticClass: "flight_input col-1" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.route,
-                          expression: "route"
-                        }
-                      ],
-                      attrs: {
-                        type: "radio",
-                        name: "route",
-                        id: "flight1",
-                        value: "flight1"
-                      },
-                      domProps: { checked: _vm._q(_vm.route, "flight1") },
-                      on: {
-                        change: function($event) {
-                          _vm.route = "flight1"
-                        }
-                      }
-                    }),
-                    _c("span", { staticClass: "checkmark" })
+  return _c("transition", { attrs: { name: "slide-fade" } }, [
+    _c("div", { staticClass: "col-md-12 form-style" }, [
+      _c("div", { staticClass: "row claims-desc" }, [
+        _vm._v("\n\t\tSelect your flight below\n\t")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-8 my-4" }, [
+          _c("div", { staticClass: "list-group list-group-flush" }, [
+            _c(
+              "div",
+              { staticClass: "list-group-item list-group-item-light" },
+              [
+                _c("label", { staticClass: "top_label row" }, [
+                  _c("div", { staticClass: "col-1" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-4" }, [
+                    _vm._v("Scheduled Time")
                   ]),
                   _vm._v(" "),
-                  _vm._m(1),
+                  _c("div", { staticClass: "col-4" }, [_vm._v("Airline")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "airline col-4" }, [
-                    _vm._v("British Airways")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flight_number col-3" }, [
-                    _vm._v("BA 178")
-                  ])
-                ]
-              )
-            ]
-          ),
+                  _c("div", { staticClass: "col-3" }, [_vm._v("Flight Number")])
+                ])
+              ]
+            )
+          ]),
           _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass:
-                "list-group-item  list-group-item-action list-group-item-success"
-            },
-            [
-              _c(
-                "label",
-                { staticClass: "flight_label row", attrs: { for: "flight2" } },
-                [
-                  _c("div", { staticClass: "flight_input col-1" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.route,
-                          expression: "route"
+          _c("ul", { staticClass: "list-group" }, [
+            _c(
+              "li",
+              {
+                staticClass:
+                  "list-group-item list-group-item-action list-group-item-success"
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "flight_label row",
+                    attrs: { for: "flight1" }
+                  },
+                  [
+                    _c("div", { staticClass: "flight_input col-1" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.route,
+                            expression: "route"
+                          }
+                        ],
+                        attrs: {
+                          type: "radio",
+                          name: "route",
+                          id: "flight1",
+                          value: "flight1"
+                        },
+                        domProps: { checked: _vm._q(_vm.route, "flight1") },
+                        on: {
+                          change: function($event) {
+                            _vm.route = "flight1"
+                          }
                         }
-                      ],
-                      attrs: {
-                        type: "radio",
-                        name: "route",
-                        id: "flight2",
-                        value: "flight2"
-                      },
-                      domProps: { checked: _vm._q(_vm.route, "flight2") },
-                      on: {
-                        change: function($event) {
-                          _vm.route = "flight2"
+                      }),
+                      _c("span", { staticClass: "checkmark" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flight_time col-4" }, [
+                      _vm._v("7:55am "),
+                      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
+                      _vm._v(" 6:30pm")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "airline col-4" }, [
+                      _vm._v("British Airways")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flight_number col-3" }, [
+                      _vm._v("BA 178")
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass:
+                  "list-group-item  list-group-item-action list-group-item-success"
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "flight_label row",
+                    attrs: { for: "flight2" }
+                  },
+                  [
+                    _c("div", { staticClass: "flight_input col-1" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.route,
+                            expression: "route"
+                          }
+                        ],
+                        attrs: {
+                          type: "radio",
+                          name: "route",
+                          id: "flight2",
+                          value: "flight2"
+                        },
+                        domProps: { checked: _vm._q(_vm.route, "flight2") },
+                        on: {
+                          change: function($event) {
+                            _vm.route = "flight2"
+                          }
                         }
-                      }
-                    }),
-                    _c("span", { staticClass: "checkmark" })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "airline col-4" }, [
-                    _vm._v("British Airways")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flight_number col-3" }, [
-                    _vm._v("BA 178")
-                  ])
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass:
-                "list-group-item  list-group-item-action list-group-item-success"
-            },
-            [
-              _c(
-                "label",
-                { staticClass: "flight_label row", attrs: { for: "flight3" } },
-                [
-                  _c("div", { staticClass: "flight_input col-1" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.route,
-                          expression: "route"
+                      }),
+                      _c("span", { staticClass: "checkmark" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flight_time col-4" }, [
+                      _vm._v("7:55am "),
+                      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
+                      _vm._v(" 6:30pm")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "airline col-4" }, [
+                      _vm._v("British Airways")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flight_number col-3" }, [
+                      _vm._v("BA 178")
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass:
+                  "list-group-item  list-group-item-action list-group-item-success"
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "flight_label row",
+                    attrs: { for: "flight3" }
+                  },
+                  [
+                    _c("div", { staticClass: "flight_input col-1" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.route,
+                            expression: "route"
+                          }
+                        ],
+                        attrs: {
+                          type: "radio",
+                          name: "route",
+                          id: "flight3",
+                          value: "flight3"
+                        },
+                        domProps: { checked: _vm._q(_vm.route, "flight3") },
+                        on: {
+                          change: function($event) {
+                            _vm.route = "flight3"
+                          }
                         }
-                      ],
-                      attrs: {
-                        type: "radio",
-                        name: "route",
-                        id: "flight3",
-                        value: "flight3"
-                      },
-                      domProps: { checked: _vm._q(_vm.route, "flight3") },
-                      on: {
-                        change: function($event) {
-                          _vm.route = "flight3"
-                        }
-                      }
-                    }),
-                    _c("span", { staticClass: "checkmark" })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "airline col-4" }, [
-                    _vm._v("British Airways")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flight_number col-3" }, [
-                    _vm._v("BA 178")
-                  ])
-                ]
-              )
-            ]
-          )
+                      }),
+                      _c("span", { staticClass: "checkmark" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flight_time col-4" }, [
+                      _vm._v("7:55am "),
+                      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
+                      _vm._v(" 6:30pm")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "airline col-4" }, [
+                      _vm._v("British Airways")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flight_number col-3" }, [
+                      _vm._v("BA 178")
+                    ])
+                  ]
+                )
+              ]
+            )
+          ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-8 py-4" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary btn-lg",
+                class: { disable: !_vm.showNext },
+                staticStyle: { width: "200px" },
+                attrs: { to: "/claims/complaint", role: "button" }
+              },
+              [
+                _vm._v("Next "),
+                _c("i", { staticClass: " \tfas fa-angle-double-right" })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-white btn-lg text-secondary ml-2",
+                staticStyle: { width: "200px" },
+                attrs: { to: "/claims/flight_date", role: "button" }
+              },
+              [
+                _c("i", { staticClass: "fas fa-angle-double-left" }),
+                _vm._v(" Back")
+              ]
+            )
+          ],
+          1
+        )
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-8 py-4" },
-        [
-          _vm.showNext
-            ? _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-primary btn-lg",
-                  staticStyle: { width: "200px" },
-                  attrs: { to: "/claims/complaint", role: "button" }
-                },
-                [
-                  _vm._v("Next "),
-                  _c("i", { staticClass: " \tfas fa-angle-double-right" })
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-white btn-lg text-secondary ml-2",
-              staticStyle: { width: "200px" },
-              attrs: { to: "/claims/flight_date", role: "button" }
-            },
-            [
-              _c("i", { staticClass: "fas fa-angle-double-left" }),
-              _vm._v(" Back")
-            ]
-          )
-        ],
-        1
-      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "list-group list-group-flush" }, [
-      _c("div", { staticClass: "list-group-item list-group-item-light" }, [
-        _c("label", { staticClass: "top_label row" }, [
-          _c("div", { staticClass: "col-1" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-4" }, [_vm._v("Scheduled Time")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-4" }, [_vm._v("Airline")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [_vm._v("Flight Number")])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flight_time col-4" }, [
-      _vm._v("7:55am "),
-      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-      _vm._v(" 6:30pm")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flight_time col-4" }, [
-      _vm._v("7:55am "),
-      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-      _vm._v(" 6:30pm")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flight_time col-4" }, [
-      _vm._v("7:55am "),
-      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-      _vm._v(" 6:30pm")
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44677,174 +44679,175 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-md-12 form-style" },
-    [
-      _c("div", { staticClass: "row claims-desc" }, [
-        _vm._v("\n\t\tWhat happened to the flight?\n\t")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 my-4" }, [
-          _c(
-            "div",
-            {
-              staticClass: "btn-group btn-group-toggle",
-              attrs: { "data-toggle": "buttons" }
-            },
-            [
-              _c("label", { staticClass: "btn btn-primary" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.claimType,
-                      expression: "claimType"
-                    }
-                  ],
-                  attrs: {
-                    type: "radio",
-                    name: "claimType",
-                    id: "delayClaim",
-                    value: "delayClaim",
-                    autocomplete: "off"
-                  },
-                  domProps: { checked: _vm._q(_vm.claimType, "delayClaim") },
-                  on: {
-                    click: _vm.showDelayTime,
-                    change: function($event) {
-                      _vm.claimType = "delayClaim"
-                    }
-                  }
-                }),
-                _vm._v(" Delayed Flight\n\t\t\t\t")
-              ]),
-              _vm._v(" "),
-              _c("label", { staticClass: "btn btn-primary" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.claimType,
-                      expression: "claimType"
-                    }
-                  ],
-                  attrs: {
-                    type: "radio",
-                    name: "claimType",
-                    id: "cancelClaim",
-                    value: "cancelClaim"
-                  },
-                  domProps: { checked: _vm._q(_vm.claimType, "cancelClaim") },
-                  on: {
-                    click: _vm.showDelayTime,
-                    change: function($event) {
-                      _vm.claimType = "cancelClaim"
-                    }
-                  }
-                }),
-                _vm._v(" Canceled Flight\n\t\t\t\t")
-              ]),
-              _vm._v(" "),
-              _c("label", { staticClass: "btn btn-primary" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.claimType,
-                      expression: "claimType"
-                    }
-                  ],
-                  attrs: {
-                    type: "radio",
-                    name: "claimType",
-                    id: "denyclaim",
-                    value: "denyClaim"
-                  },
-                  domProps: { checked: _vm._q(_vm.claimType, "denyClaim") },
-                  on: {
-                    click: _vm.showDelayTime,
-                    change: function($event) {
-                      _vm.claimType = "denyClaim"
-                    }
-                  }
-                }),
-                _vm._v(" Denied Boarding\n\t\t\t\t")
-              ])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _vm.delayedDiv
-        ? _c("delayedTime", {
-            key: _vm.delayKey,
-            on: { delayedHours: _vm.nextStep }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.notifyDiv
-        ? _c("advanceNotify", {
-            on: {
-              notified: function($event) {
-                _vm.reasonDiv = true
-              }
-            }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.bumpedDiv
-        ? _c("bumped", {
-            on: {
-              bumped: function($event) {
-                _vm.reasonDiv = true
-              }
-            }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.reasonDiv ? _c("reason") : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-8 py-4" },
-          [
-            _vm.reasonDiv
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success btn-lg",
-                    staticStyle: { width: "200px" },
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("Submit for Review ")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
+  return _c("transition", { attrs: { name: "slide-fade" } }, [
+    _c(
+      "div",
+      { staticClass: "col-md-12 form-style" },
+      [
+        _c("div", { staticClass: "row claims-desc" }, [
+          _vm._v("\n\t\tWhat happened to the flight?\n\t")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-8 my-4" }, [
             _c(
-              "router-link",
+              "div",
               {
-                staticClass: "btn btn-white btn-lg text-secondary ml-2",
-                staticStyle: { width: "200px" },
-                attrs: { to: "/claims/route", role: "button" }
+                staticClass: "btn-group btn-group-toggle",
+                attrs: { "data-toggle": "buttons" }
               },
               [
-                _c("i", { staticClass: "fas fa-angle-double-left" }),
-                _vm._v(" Back")
+                _c("label", { staticClass: "btn btn-primary" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.claimType,
+                        expression: "claimType"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: "claimType",
+                      id: "delayClaim",
+                      value: "delayClaim",
+                      autocomplete: "off"
+                    },
+                    domProps: { checked: _vm._q(_vm.claimType, "delayClaim") },
+                    on: {
+                      click: _vm.showDelayTime,
+                      change: function($event) {
+                        _vm.claimType = "delayClaim"
+                      }
+                    }
+                  }),
+                  _vm._v(" Delayed Flight\n\t\t\t\t")
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "btn btn-primary" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.claimType,
+                        expression: "claimType"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: "claimType",
+                      id: "cancelClaim",
+                      value: "cancelClaim"
+                    },
+                    domProps: { checked: _vm._q(_vm.claimType, "cancelClaim") },
+                    on: {
+                      click: _vm.showDelayTime,
+                      change: function($event) {
+                        _vm.claimType = "cancelClaim"
+                      }
+                    }
+                  }),
+                  _vm._v(" Canceled Flight\n\t\t\t\t")
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "btn btn-primary" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.claimType,
+                        expression: "claimType"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: "claimType",
+                      id: "denyclaim",
+                      value: "denyClaim"
+                    },
+                    domProps: { checked: _vm._q(_vm.claimType, "denyClaim") },
+                    on: {
+                      click: _vm.showDelayTime,
+                      change: function($event) {
+                        _vm.claimType = "denyClaim"
+                      }
+                    }
+                  }),
+                  _vm._v(" Denied Boarding\n\t\t\t\t")
+                ])
               ]
             )
-          ],
-          1
-        )
-      ])
-    ],
-    1
-  )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.delayedDiv
+          ? _c("delayedTime", {
+              key: _vm.delayKey,
+              on: { delayedHours: _vm.nextStep }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.notifyDiv
+          ? _c("advanceNotify", {
+              on: {
+                notified: function($event) {
+                  _vm.reasonDiv = true
+                }
+              }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.bumpedDiv
+          ? _c("bumped", {
+              on: {
+                bumped: function($event) {
+                  _vm.reasonDiv = true
+                }
+              }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.reasonDiv ? _c("reason") : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-8 py-4" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success btn-lg",
+                  class: { disable: !_vm.reasonDiv },
+                  staticStyle: { width: "200px" },
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Submit for Review ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-white btn-lg text-secondary ml-2",
+                  staticStyle: { width: "200px" },
+                  attrs: { to: "/claims/route", role: "button" }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-angle-double-left" }),
+                  _vm._v(" Back")
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,4 +1,5 @@
 <template>
+<transition name="slide-fade">
 <div class='col-md-12 form-style'>
 
 
@@ -43,11 +44,12 @@
 	
 	<div class="row">
 		<div class="col-md-8 py-4">
-			<button class="btn btn-success btn-lg" type="submit" style="width: 200px;" v-if="reasonDiv">Submit for Review </button>
+			<button class="btn btn-success btn-lg" type="submit" style="width: 200px;" v-bind:class="{ disable: !reasonDiv }">Submit for Review </button>
 			<router-link class="btn btn-white btn-lg text-secondary ml-2" to="/claims/route" role="button" style="width: 200px;"><i class="fas fa-angle-double-left"></i> Back</router-link>
 		</div>
 	</div>
 </div>
+</transition>
 </template>
 
 <script>
