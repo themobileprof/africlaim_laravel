@@ -1,7 +1,7 @@
 <template>
 <div class="col-md-12">
 	<div class="row">
-		<button type="button" class="btn bg-danger text-white btn-sm" v-on:click="addConnection"> <i class="fas fa-plus"></i> Add Connecting Flight</button>
+		<button type="button" class="btn bg-secondary text-white btn-sm" v-on:click="addConnection"> <i class="fas fa-plus"></i> Add Connecting Flight</button>
 	</div>
 	<div class="row py-2" v-if="connections.length" v-for="(connection, conn) in connections" v-bind:key="conn">
 		<div class="input-group col-md-8 col-11">

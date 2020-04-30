@@ -15,6 +15,7 @@
 				input_text='departure' 
 				placehold_text='Departed from' 
 				:airportParam="departureParam"
+				@selected="departureFilled = true"
 		    ></airport>
 	  </div>
   
@@ -26,6 +27,7 @@
 				input_text='destination' 
 				placehold_text='Arrived at'
 				:airportParam="destinationParam"
+				@selected="destinationFilled = true"
 			></airport>
 	  </div>
 		<div class="col-md-4">
@@ -35,17 +37,17 @@
 	</div>
 	<div class="row p-4 mt-4">
 		<div class="col-7 col-md-4">
-			<label class="h4 control-label text-md-right">
+			<div class="h3 control-label text-md-right">
 				Were there any connecting flights?
-			</label>
+			</div>
 		</div>
 		<div class="col-5 col-md-4">
 			<div class="btn-group btn-group-toggle" data-toggle="buttons">
 				<label class="btn btn-primary">
-					<input type="radio" name="connectingFlight" id="connectingYes" value="Yes" v-on:click="toggleConnecting" v-model="connectingFlight"> Yes
+					<input type="radio" name="connectingFlight" id="connectingYes" value="Yes" v-on:click="toggleConnecting('Yes')" v-model="connectingFlight"> Yes
 				</label>
 				<label class="btn btn-primary">
-					<input type="radio" name="connectingFlight" id="connectingNo" value="No" v-on:click="toggleConnecting" v-model="connectingFlight"> No
+					<input type="radio" name="connectingFlight" id="connectingNo" value="No" v-on:click="toggleConnecting('No')" v-model="connectingFlight"> No
 				</label>
 			</div>
 		</div>
@@ -54,7 +56,7 @@
 	<connecting v-if="connectingFlight == 'Yes'"></connecting>
 
 	<div class="row mt-4 py-4" style="padding-left: 15px;">
-		<router-link class="btn btn-primary btn-lg" to="/claims/flight_date" role="button" style="width: 200px;">Next <i class="fas fa-angle-double-right"></i></router-link>
+		<router-link class="btn btn-primary btn-lg mr-2" to="/claims/flight_date" role="button" style="width: 200px;" v-if="showNext">Next <i class="fas fa-angle-double-right"></i></router-link>
 	</div>
 </div>
 </transition>
@@ -75,6 +77,8 @@
 				connectingFlight: 'No',
 				departureId: this.departureParam,
 				destinationId: this.destinationParam,
+				destinationFilled: false,
+				departureFilled: false,
 			}
 		},
 		mounted(){
@@ -83,13 +87,20 @@
 			//	this.destinationId = this.$route.query.destId;
 			//}
 		},
+		computed: {
+			showNext : function() {
+				 if(this.destinationFilled && this.departureFilled && this.connectingFlight) {
+				   // perform some logic on preference
+				   // logic results true or false
+				   return true
+				 } else {
+					 return false
+				 }
+			}
+		},
 		methods: {
-			toggleConnecting(){
-				if (this.connectingFlight == 'No'){
-					this.connectingFlight = 'Yes'
-				} else {
-					this.connectingFlight = 'No'
-				}
+			toggleConnecting(bool){
+				this.connectingFlight = bool
 			}
 		}
 	}

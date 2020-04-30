@@ -19,23 +19,62 @@
 	</div>
 	<div class="row">
 		<div class="col-md-8 py-4">
-			<router-link class="btn btn-primary btn-lg" to="/claims/route" role="button" style="width: 200px;">Next <i class=" 	fas fa-angle-double-right"></i></router-link>
+			<router-link class="btn btn-primary btn-lg" to="/claims/route" role="button" style="width: 200px;" v-if="showNext">Next <i class=" 	fas fa-angle-double-right"></i></router-link>
+			<router-link class="btn btn-white btn-lg text-secondary ml-2" to="/claims/start" role="button" style="width: 200px;"><i class="fas fa-angle-double-left"></i> Back</router-link>
 		</div>
 	</div>
 </div>
 </template>
 
 <script>
+	import { mapActions } from 'vuex';
+
     export default {
+		name: "FlightDate",
 		data() {
 		  return {
 			mode: 'single',
 			flightDate: null,
+			page: this.$route.name,
+			testing: ''
 		  }
 		},
+		beforeRouteEnter(to, from, next) {
+		  next(vm => {
+		  })
+			// Redirect to first page if user is not coming from the correct previous page
+			if (from.path !== '/claims/start') {
+				next('/claims/start');
+			}
+
+			// Work in progress
+			// Redirect to first page if user is not coming from the correct previous page and has not previously visited here // challenges with Vuex
+		//	if (from.path !== '/claims/start' && this.$store.getters.isVisited(this.page === false)) {
+		//		next('/claims/start');
+		//	}
+
+		},
         mounted() {
+
+			this.$store.dispatch("addHistory", this.page) // Set Vuex page
             console.log('Flight date component mounted.')
-        }
+        },
+		methods: {
+			changetest(val){
+				this.testing = val; // Random var for testing Vuex getter value
+			}
+		},
+		computed: {
+			showNext : function() {
+				 if(this.flightDate) {
+				   // perform some logic on preference
+				   // logic results true or false
+				   return true
+				 } else {
+					 return false
+				 }
+			}
+		},
     }
 </script>
 

@@ -29,7 +29,7 @@ class AirportController extends Controller
 			//$airport_search = Airport::where('name', 'like', '%' . $search . '%')->paginate(25);
 			//return AirportResource::collection($airport_search);
 		} else {
-			return response()->json(Airport::get());
+			return response()->json(Airport::get(), 200);
 		}
 	}
 
@@ -44,6 +44,6 @@ class AirportController extends Controller
 	{
 		//return new AirportResource($airport);
 
-		return response()->json(Airport::find($airport)->first());
+		return response()->json(Airport::find($airport)->first(), 200);
 	}
 }

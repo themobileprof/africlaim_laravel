@@ -3,9 +3,17 @@ require("bootstrap4-toggle/js/bootstrap4-toggle.min");
 require("bootstrap-select/js/bootstrap-select");
 import Vue from "vue";
 import VueRouter from "vue-router";
+//import Vuex from "vuex";
 import VCalendar from "v-calendar";
 
 Vue.use(VueRouter);
+//Vue.use(Vuex);
+
+//import storeData from "./store/index";
+
+//const store = new Vuex.Store(storeData);
+
+import store from "./store/index";
 
 // Use v-calendar & v-date-picker components
 Vue.use(VCalendar, {
@@ -66,5 +74,7 @@ const router = new VueRouter({
 const app = new Vue({
     el: "#app",
     components: { App },
-    router
+    router,
+    store
 });
+export default app;

@@ -44,6 +44,7 @@
 	<div class="row">
 		<div class="col-md-8 py-4">
 			<button class="btn btn-success btn-lg" type="submit" style="width: 200px;" v-if="reasonDiv">Submit for Review </button>
+			<router-link class="btn btn-white btn-lg text-secondary ml-2" to="/claims/route" role="button" style="width: 200px;"><i class="fas fa-angle-double-left"></i> Back</router-link>
 		</div>
 	</div>
 </div>
@@ -70,6 +71,7 @@ export default {
 			  reasonDiv: false,
 			  claimType: '',
 			  delayKey: 0,
+			  testing: '',
 		  }
 		},
 	methods: {
@@ -92,11 +94,31 @@ export default {
 			} else {
 				this.reasonDiv = true;
 			}
-		}    
+		},    
+		changetest(val){
+			this.testing = val; // Random var for testing Vuex getter value
+		}
+	},
+	beforeRouteEnter(to, from, next) {
+	  next(vm => {
+	  })
+		// Redirect to first page if user is not coming from the correct previous page
+		if (from.path !== '/claims/route') {
+			next('/claims/start');
+		}
+
+		// Work in progress
+		// Redirect to first page if user is not coming from the correct previous page and has not previously visited here // challenges with Vuex
+	//	if (from.path !== '/claims/route' && this.$store.getters.isVisited(this.page === false)) {
+	//		next('/claims/start');
+	//	}
+
 	},
 	mounted() {
-		console.log('Flight date component mounted.')
-	}
+
+		this.$store.dispatch("addHistory", this.page) // Set Vuex page
+		console.log('Complaint component mounted.')
+	},
 }
 </script>
 

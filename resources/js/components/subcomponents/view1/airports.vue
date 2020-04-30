@@ -42,6 +42,7 @@
 					this.airportId = airportId;	
 				  this.airports = []; // reset dropdown
 					
+				  this.$emit('selected', airportId)
 			  },
 
 			  onArrowDown() {
@@ -55,9 +56,9 @@
 				}
 			  },
 			  onEnter() {
-				this.query = this.airports[this.arrowCounter].name;
+				this.setResult(this.airports[this.arrowCounter].name, this.airports[this.arrowCounter].id)
+
 				this.arrowCounter = -1;
-				this.airports = []; // reset dropdown
 			  },
 
 			  handleClickOutside(evt) {
@@ -74,8 +75,12 @@
 				 var thisAirportId = this.airportId;
 				 axios.get('/api/airport/' + thisAirportId.substr(0, 6)).then(response => {
 					this.query = response.data.name;
-				 },
-				 error => { console.log("Invalid " + this.input_text) });
+				 })
+				 .catch(()=>{
+                  
+                  console.log("Invalid Airport Id");
+                  
+               });
 			 }
 		  },
 		  destroyed() {

@@ -18,7 +18,7 @@
 			 <ul class="list-group">
 			  <li class="list-group-item list-group-item-action list-group-item-success">
 				  <label class="flight_label row" for="flight1">
-					  <div class="flight_input col-1"><input type="radio" name="route" id="flight1"><span class="checkmark"></span></div>
+					  <div class="flight_input col-1"><input type="radio" name="route" id="flight1" v-model="route" value="flight1"><span class="checkmark"></span></div>
 					  <div class="flight_time col-4">7:55am <i class="fas fa-plane-departure fa-xs"></i> 6:30pm</div>
 					  <div class="airline col-4">British Airways</div>
 					  <div class="flight_number col-3">BA 178</div>
@@ -26,7 +26,7 @@
 			  </li>
 			  <li class="list-group-item  list-group-item-action list-group-item-success">
 				  <label class="flight_label row" for="flight2">
-					  <div class="flight_input col-1"><input type="radio" name="route" id="flight2"><span class="checkmark"></span></div>
+					  <div class="flight_input col-1"><input type="radio" name="route" id="flight2" v-model="route" value="flight2"><span class="checkmark"></span></div>
 					  <div class="flight_time col-4">7:55am <i class="fas fa-plane-departure fa-xs"></i> 6:30pm</div>
 					  <div class="airline col-4">British Airways</div>
 					  <div class="flight_number col-3">BA 178</div>
@@ -34,7 +34,7 @@
 			  </li>
 			  <li class="list-group-item  list-group-item-action list-group-item-success">
 				  <label class="flight_label row" for="flight3">
-					  <div class="flight_input col-1"><input type="radio" name="route" id="flight3"><span class="checkmark"></span></div>
+					  <div class="flight_input col-1"><input type="radio" name="route" id="flight3" v-model="route" value="flight3"><span class="checkmark"></span></div>
 					  <div class="flight_time col-4">7:55am <i class="fas fa-plane-departure fa-xs"></i> 6:30pm</div>
 					  <div class="airline col-4">British Airways</div>
 					  <div class="flight_number col-3">BA 178</div>
@@ -45,7 +45,8 @@
 	</div>
 	<div class="row">
 		<div class="col-md-8 py-4">
-			<router-link class="btn btn-primary btn-lg" to="/claims/complaint" role="button" style="width: 200px;">Next <i class=" 	fas fa-angle-double-right"></i></router-link>
+			<router-link class="btn btn-primary btn-lg" to="/claims/complaint" role="button" style="width: 200px;" v-if="showNext">Next <i class=" 	fas fa-angle-double-right"></i></router-link>
+		<router-link class="btn btn-white btn-lg text-secondary ml-2" to="/claims/flight_date" role="button" style="width: 200px;"><i class="fas fa-angle-double-left"></i> Back</router-link>
 		</div>
 	</div>
 </div>
@@ -56,12 +57,49 @@
 		data() {
 		  return {
 			mode: 'single',
-			flightDate: null,
+			route: null,
+			testing: '',
 		  }
 		},
+		beforeRouteEnter(to, from, next) {
+		  next(vm => {
+		  })
+			// Redirect to first page if user is not coming from the correct previous page
+			if (from.path !== '/claims/flight_date') {
+				next('/claims/start');
+			}
+
+			// Work in progress
+			// Redirect to first page if user is not coming from the correct previous page and has not previously visited here // challenges with Vuex
+		//	if (from.path !== '/claims/flight_date' && this.$store.getters.isVisited(this.page === false)) {
+		//		next('/claims/start');
+		//	}
+
+		},
         mounted() {
-            console.log('Flight date component mounted.')
-        }
+
+			this.$store.dispatch("addHistory", this.page) // Set Vuex page
+            console.log('Route component mounted.')
+        },
+		methods: {
+			setRoute(Route){
+				this.route = Route
+			},
+			changetest(val){
+				this.testing = val; // Random var for testing Vuex getter value
+			}
+		},
+		computed: {
+			showNext : function() {
+				 if(this.route) {
+				   // perform some logic on preference
+				   // logic results true or false
+				   return true
+				 } else {
+					 return false
+				 }
+			}
+		},
     }
 </script>
 
