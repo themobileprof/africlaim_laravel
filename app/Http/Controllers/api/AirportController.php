@@ -9,37 +9,41 @@ use App\Airport;
 
 class AirportController extends Controller
 {
-    public function __construct()
-   {
-    $this->middleware('auth:api')->except(['index', 'show']);
-   }
+	public function __construct()
+	{
+		$this->middleware('auth:api')->except(['index', 'show']);
+	}
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($search = null)
-    {
-        //
-        if ($search){
-            return AirportResource::collection(Airport::where('name', 'like', '%' . $search . '%')->paginate(25));
-        } else {
-            return AirportResource::collection(Airport::paginate(25));
-        }
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index($search = null)
+	{
+		//
+		if ($search) {
+			$airport_search = Airport::where('name', 'like', '%' . $search . '%')->orWhere('city', 'like', '%' . $search . '%')->take(10)->get();
+			return response()->json($airport_search);
 
-    }
+			//$airport_search = Airport::where('name', 'like', '%' . $search . '%')->paginate(25);
+			//return AirportResource::collection($airport_search);
+		} else {
+			return response()->json(Airport::get(), 200);
+		}
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
 
-    public function show(airport $airport)
-    {
-        return new AirportResource($airport);
-    }
+	public function show(airport $airport)
+	{
+		//return new AirportResource($airport);
 
+		return response()->json(Airport::find($airport)->first(), 200);
+	}
 }

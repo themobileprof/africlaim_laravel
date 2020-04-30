@@ -1,32 +1,86 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+require("./bootstrap");
+require("bootstrap4-toggle/js/bootstrap4-toggle.min");
+require("bootstrap-select/js/bootstrap-select");
+import Vue from "vue";
+import VueRouter from "vue-router";
+//import Vuex from "vuex";
+import VCalendar from "v-calendar";
 
-require('./bootstrap');
+Vue.use(VueRouter);
+//Vue.use(Vuex);
 
-window.Vue = require('vue');
+//import storeData from "./store/index";
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+//const store = new Vuex.Store(storeData);
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import store from "./store/index";
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app',
+// Use v-calendar & v-date-picker components
+Vue.use(VCalendar, {
+    componentPrefix: "vc" // Use <vc-calendar /> instead of <v-calendar />
 });
+
+import App from "./components/App";
+import Start from "./components/view1_airports";
+import Flight_date from "./components/view2_flight_date";
+import Route from "./components/view3_route";
+import Complaint from "./components/view4_complaint";
+import NotFound from "./components/notFound";
+
+const router = new VueRouter({
+    mode: "history",
+    routes: [
+        {
+            path: "/claims/start",
+            name: "start",
+            component: Start,
+            //props: { title: "Where did you fly to?" }
+            props: route => ({
+                destinationParam: route.query.destination,
+                departureParam: route.query.departure
+            })
+            //props: true,
+        },
+        {
+            path: "/claims/flight_date",
+            name: "flight_date",
+            component: Flight_date
+            //props: { title: "What was your departure date?" }
+        },
+        {
+            path: "/claims/route",
+            name: "route",
+            component: Route
+            //props: { title: "Which flight did you take?" }
+        },
+        {
+            path: "/claims/complaint",
+            name: "complaint",
+            component: Complaint
+            //props: { title: "What is the nature of the complaint?" }
+        },
+        {
+            path: "/claims/404",
+            component: NotFound
+        },
+        {
+            path: "/claims/",
+            redirect: {
+                name: "start"
+            }
+        },
+        {
+            path: "/claims/*",
+            redirect: {
+                name: "start"
+            }
+        }
+    ]
+});
+const app = new Vue({
+    el: "#app",
+    components: { App },
+    router,
+    store
+});
+export default app;
