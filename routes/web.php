@@ -29,7 +29,7 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 //Route::get('db/seeder', 'SeedingController@index')->name('db.seeder');
 
 
-Route::get('/claims/', 'HomeController@index')->name('home');
+Route::post('/claims', 'ClaimController@store')->name('process');
 
 Route::get('/claims/{any}', function () {
 	return view('claims');
