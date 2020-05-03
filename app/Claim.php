@@ -13,6 +13,7 @@ class Claim extends Model
 		'airline_id',
 		'departure_id',
 		'arrival_id',
+        'connecting',
 		'dof',
 		'tof',
 		'complaint',
