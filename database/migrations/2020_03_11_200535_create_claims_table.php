@@ -15,10 +15,10 @@ class CreateClaimsTable extends Migration
     {
         Schema::create('claims', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('airline_id')->unsigned();
-            $table->bigInteger('departure_id')->unsigned();
-            $table->bigInteger('arrival_id')->unsigned();
+            $table->foreignId('user_id');
+            $table->foreignId('airline_id');
+            $table->foreignId('departure_id');
+           $table->foreignId('arrival_id');
             $table->date('dof');
             $table->time('tof');
             $table->enum('complaint', ['delayed',  'denied', 'cancelled']);
