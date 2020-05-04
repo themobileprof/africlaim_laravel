@@ -2538,6 +2538,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FlightDate",
@@ -2686,6 +2687,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _subcomponents_view4_advanceNotify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./subcomponents/view4/advanceNotify */ "./resources/js/components/subcomponents/view4/advanceNotify.vue");
 /* harmony import */ var _subcomponents_view4_bumped__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subcomponents/view4/bumped */ "./resources/js/components/subcomponents/view4/bumped.vue");
 /* harmony import */ var _subcomponents_view4_reason__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./subcomponents/view4/reason */ "./resources/js/components/subcomponents/view4/reason.vue");
+//
 //
 //
 //
@@ -44413,7 +44415,8 @@ var render = function() {
                 class:
                   "w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 hover:border-blue-5",
                 placeholder: "Please enter Flight date",
-                readonly: true
+                readonly: true,
+                name: "flightDate"
               }
             },
             model: {
