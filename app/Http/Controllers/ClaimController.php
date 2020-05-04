@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Claim;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClaimController extends Controller
 {
@@ -45,25 +46,43 @@ class ClaimController extends Controller
 		$claim->departure_id = $request->departureId;
 		$claim->arrival_id = $request->destinationId;
 
-		// Add new fields
-		// $claim->connecting = $request->connectingFlight;
-		// $claim->connections = $request->connections; // Create this in Vue
+		// Process Connecting Flight
+		for ($i = 10; $i < 10; $i++) {
+			$conn_contain = '$request.conn' . $i;
 
-		$claim->dof = $request->description;
-		$claim->tof = "None";
+			if (!empty($$conn_contain)) {
+				$connectingString .= ", " . $$conn_contain;
+			} else {
+				break;
+			}
+		}
+		$claim->connections = $connectingString;
+		// $claim->connecting = $request->connectingFlight;
+
+		$claim->dof = $request->flightDate;
+		$claim->tof = time();
 		$claim->complaint = $request->name;
 		$claim->complaint_duration = $request->description;
 		$claim->complaint_option = "None";
 
 		$claim->save();
 
+
 		//$claim = Claim::create($request->all());
 
 		// Process Form logic, call class
-		$process_claim = \App\Claims\ProcessClaim::process($claim->id);
-
-		// Redirect to user registration form
-		return redirect()->route('/claims/processed', ['claims_id' => $claim->id]);
+		if (\App\Claims\ProcessClaim::process($claim->id)) {
+			//if user already logged in, redirect to dashboard
+			if (Auth::check()) {
+				return redirect()->route('/home', ['claim' => $claim->id]);
+			} else {
+				// Display registration form
+				return redirect()->route('register', ['claim' => $claim->id]);
+			}
+		} else {
+			//If the form does not pass processing
+			return redirect()->route('/claims/processed', ['claim' => $claim->id]);
+		}
 	}
 
 	/**

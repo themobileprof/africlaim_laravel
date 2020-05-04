@@ -16,16 +16,16 @@ use App\Airport;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	return $request->user();
 });
 
 // ROUTE FOR AIRLINES API
 Route::get('/airlines/{search?}', 'api\AirlineController@index');
-//Route::get('/airlines/{search?}', 'api\AirlineController@index');
 Route::get('/airline/{airline}', 'api\AirlineController@show');
 
 
-Route::get('/search', 'api\AirlineController@search');
+//Route::get('/search', 'api\AirlineController@search');
+
 
 
 // ROUTE FOR AIRPORT API

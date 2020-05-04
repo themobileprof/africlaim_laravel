@@ -11,7 +11,8 @@
 					  :input-props='{
 					  class: "w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 hover:border-blue-5",
 					  placeholder: "Please enter Flight date",
-					  readonly: true
+					  readonly: true,
+					  name: "flightDate"
 					  }'
 				  />
 				  <i class="fas fa-calendar-alt" style="position:relative; margin-left: -30px; z-index: 100;"></i>
