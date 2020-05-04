@@ -51,19 +51,26 @@ class ClaimController extends Controller
 			$conn_contain = '$request.conn' . $i;
 
 			if (!empty($$conn_contain)) {
-				$connectingString .= ", " . $$conn_contain;
+				$connectionsString .= ", " . $$conn_contain;
 			} else {
 				break;
 			}
 		}
-		$claim->connections = $connectingString;
+		$claim->connections = $connectionsString;
 		// $claim->connecting = $request->connectingFlight;
 
 		$claim->dof = $request->flightDate;
 		$claim->tof = time();
-		$claim->complaint = $request->name;
-		$claim->complaint_duration = $request->description;
-		$claim->complaint_option = "None";
+		$claim->complaint = $request->claimType;
+		$claim->complaint_duration = $request->delayedHours;
+
+		if ($request->claimType == "cancelClaim") {
+			$claim->complaint_option = $request->advanceCancel;
+		} elseif ($request->claimType == "denyClaim") {
+			$claim->complaint_option = $request->bumped;
+		}
+
+		$claim->airline_reason = $request->airlineReason;
 
 		$claim->save();
 
