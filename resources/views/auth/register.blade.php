@@ -10,7 +10,12 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
+                        @isset(claim)
+                            <div class="form-group row">
+                                We have gotten your claim details. Kindly register or login to your account to view details of your Claim submission. Thank you for trusting Africlaim with your Claims processing.
+                                    <input id="claim" type="hidden" class="form-control" name="claim" value="{{ claim') }}" required autocomplete="claim">
+                            </div>
+                        @endisset
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 

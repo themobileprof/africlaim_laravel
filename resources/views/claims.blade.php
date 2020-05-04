@@ -26,6 +26,7 @@
 
 
 		<form action="/claim/process">
+            @csrf
 			<div id="app">
 				<app></app>
 			</div>
