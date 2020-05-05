@@ -2748,6 +2748,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
+=======
+//
+//
+>>>>>>> master
 
 
 
@@ -2770,6 +2775,11 @@ __webpack_require__.r(__webpack_exports__);
       testing: ''
     };
   },
+  updated: function updated() {
+    $("html, body").animate({
+      scrollTop: $(document).height()
+    }, 1000);
+  },
   methods: {
     showDelayTime: function showDelayTime(event) {
       this.delayKey += 1;
@@ -2791,6 +2801,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     changetest: function changetest(val) {
       this.testing = val; // Random var for testing Vuex getter value
+    },
+    scrollToEnd: function scrollToEnd() {
+      var container = vm.$refs.next;
+      container.scrollTop = container.scrollHeight; // var elem = this.$el
+      // elem.scrollTop = elem.clientHeight;
     }
   },
   mounted: function mounted() {
@@ -44774,199 +44789,203 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-md-12 form-style" },
-    [
-      _c("div", { staticClass: "row claims-desc" }, [
-        _vm._v("\n\t\tWhat happened to the flight?\n\t")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 my-4" }, [
-          _c(
-            "div",
-            {
-              staticClass: "btn-group btn-group-toggle",
-              attrs: { "data-toggle": "buttons" }
-            },
-            [
-              _c("label", { staticClass: "btn btn-primary" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.claimType,
-                      expression: "claimType"
-                    }
-                  ],
-                  attrs: {
-                    type: "radio",
-                    name: "claimType",
-                    id: "delayClaim",
-                    value: "delayClaim",
-                    autocomplete: "off"
-                  },
-                  domProps: { checked: _vm._q(_vm.claimType, "delayClaim") },
-                  on: {
-                    click: _vm.showDelayTime,
-                    change: function($event) {
-                      _vm.claimType = "delayClaim"
-                    }
-                  }
-                }),
-                _vm._v(" Delayed Flight\n\t\t\t\t")
-              ]),
-              _vm._v(" "),
-              _c("label", { staticClass: "btn btn-primary" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.claimType,
-                      expression: "claimType"
-                    }
-                  ],
-                  attrs: {
-                    type: "radio",
-                    name: "claimType",
-                    id: "cancelClaim",
-                    value: "cancelClaim"
-                  },
-                  domProps: { checked: _vm._q(_vm.claimType, "cancelClaim") },
-                  on: {
-                    click: _vm.showDelayTime,
-                    change: function($event) {
-                      _vm.claimType = "cancelClaim"
-                    }
-                  }
-                }),
-                _vm._v(" Canceled Flight\n\t\t\t\t")
-              ]),
-              _vm._v(" "),
-              _c("label", { staticClass: "btn btn-primary" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.claimType,
-                      expression: "claimType"
-                    }
-                  ],
-                  attrs: {
-                    type: "radio",
-                    name: "claimType",
-                    id: "denyclaim",
-                    value: "denyClaim"
-                  },
-                  domProps: { checked: _vm._q(_vm.claimType, "denyClaim") },
-                  on: {
-                    click: _vm.showDelayTime,
-                    change: function($event) {
-                      _vm.claimType = "denyClaim"
-                    }
-                  }
-                }),
-                _vm._v(" Denied Boarding\n\t\t\t\t")
-              ])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "transition",
-        { attrs: { name: "fade" } },
-        [
-          _vm.delayedDiv
-            ? _c("delayedTime", {
-                key: _vm.delayKey,
-                on: { delayedHours: _vm.nextStep }
-              })
-            : _vm._e()
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "transition",
-        { attrs: { name: "fade" } },
-        [
-          _vm.notifyDiv
-            ? _c("advanceNotify", {
-                on: {
-                  notified: function($event) {
-                    _vm.reasonDiv = true
-                  }
-                }
-              })
-            : _vm._e()
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "transition",
-        { attrs: { name: "fade" } },
-        [
-          _vm.bumpedDiv
-            ? _c("bumped", {
-                on: {
-                  bumped: function($event) {
-                    _vm.reasonDiv = true
-                  }
-                }
-              })
-            : _vm._e()
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "transition",
-        { attrs: { name: "fade" } },
-        [_vm.reasonDiv ? _c("reason") : _vm._e()],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-8 py-4" },
-          [
+  return _c("div", { staticClass: "col-md-12 form-style" }, [
+    _c(
+      "div",
+      { attrs: { id: "finalize" } },
+      [
+        _c("div", { staticClass: "row claims-desc" }, [
+          _vm._v("\n\t\t\tWhat happened to the flight?\n\t\t")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-8 my-4" }, [
             _c(
-              "button",
+              "div",
               {
-                staticClass: "btn btn-success btn-lg",
-                class: { disable: !_vm.reasonDiv },
-                staticStyle: { width: "200px" },
-                attrs: { type: "submit" }
-              },
-              [_vm._v("Submit for Review ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "btn btn-white btn-lg text-secondary ml-2",
-                staticStyle: { width: "200px" },
-                attrs: { to: "/claims/route", role: "button" }
+                staticClass: "btn-group btn-group-toggle",
+                attrs: { "data-toggle": "buttons" }
               },
               [
-                _c("i", { staticClass: "fas fa-angle-double-left" }),
-                _vm._v(" Back")
+                _c("label", { staticClass: "btn btn-primary" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.claimType,
+                        expression: "claimType"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: "claimType",
+                      id: "delayClaim",
+                      value: "delayClaim",
+                      autocomplete: "off"
+                    },
+                    domProps: { checked: _vm._q(_vm.claimType, "delayClaim") },
+                    on: {
+                      click: _vm.showDelayTime,
+                      change: function($event) {
+                        _vm.claimType = "delayClaim"
+                      }
+                    }
+                  }),
+                  _vm._v(" Delayed Flight\n\t\t\t\t\t")
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "btn btn-primary" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.claimType,
+                        expression: "claimType"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: "claimType",
+                      id: "cancelClaim",
+                      value: "cancelClaim"
+                    },
+                    domProps: { checked: _vm._q(_vm.claimType, "cancelClaim") },
+                    on: {
+                      click: _vm.showDelayTime,
+                      change: function($event) {
+                        _vm.claimType = "cancelClaim"
+                      }
+                    }
+                  }),
+                  _vm._v(" Canceled Flight\n\t\t\t\t\t")
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "btn btn-primary" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.claimType,
+                        expression: "claimType"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: "claimType",
+                      id: "denyclaim",
+                      value: "denyClaim"
+                    },
+                    domProps: { checked: _vm._q(_vm.claimType, "denyClaim") },
+                    on: {
+                      click: _vm.showDelayTime,
+                      change: function($event) {
+                        _vm.claimType = "denyClaim"
+                      }
+                    }
+                  }),
+                  _vm._v(" Denied Boarding\n\t\t\t\t\t")
+                ])
               ]
             )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "transition",
+          { attrs: { name: "fade" } },
+          [
+            _vm.delayedDiv
+              ? _c("delayedTime", {
+                  key: _vm.delayKey,
+                  on: { delayedHours: _vm.nextStep }
+                })
+              : _vm._e()
           ],
           1
-        )
-      ])
-    ],
-    1
-  )
+        ),
+        _vm._v(" "),
+        _c(
+          "transition",
+          { attrs: { name: "fade" } },
+          [
+            _vm.notifyDiv
+              ? _c("advanceNotify", {
+                  on: {
+                    notified: function($event) {
+                      _vm.reasonDiv = true
+                    }
+                  }
+                })
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "transition",
+          { attrs: { name: "fade" } },
+          [
+            _vm.bumpedDiv
+              ? _c("bumped", {
+                  on: {
+                    bumped: function($event) {
+                      _vm.reasonDiv = true
+                    }
+                  }
+                })
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "transition",
+          { attrs: { name: "fade" } },
+          [_vm.reasonDiv ? _c("reason") : _vm._e()],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { ref: "send" }, [
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "col-md-8 py-4" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-lg",
+                    class: { disable: !_vm.reasonDiv },
+                    staticStyle: { width: "200px" },
+                    attrs: { type: "submit" }
+                  },
+                  [_vm._v("Submit for Review ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-white btn-lg text-secondary ml-2",
+                    staticStyle: { width: "200px" },
+                    attrs: { to: "/claims/route", role: "button" }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-angle-double-left" }),
+                    _vm._v(" Back")
+                  ]
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

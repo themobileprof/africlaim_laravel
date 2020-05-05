@@ -26,6 +26,7 @@
 
 
 		<form action="{{ url('/claims/process') }}" method="post">
+			@csrf
 			<div id="app">
 				<app></app>
 			</div>

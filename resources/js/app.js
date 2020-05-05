@@ -26,6 +26,7 @@ import Flight_date from "./components/view2_flight_date";
 import Route from "./components/view3_route";
 import Complaint from "./components/view4_complaint";
 import NotFound from "./components/notFound";
+import Processed from "./components/view5_processed";
 
 const router = new VueRouter({
     mode: "history",
@@ -64,9 +65,9 @@ const router = new VueRouter({
             component: NotFound
         },
         {
-            path: "/claims/",
+            path: "/claims/processed",
             redirect: {
-                name: "start"
+                name: "processed"
             }
         },
         {
