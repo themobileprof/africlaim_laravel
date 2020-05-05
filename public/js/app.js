@@ -2748,11 +2748,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-=======
 //
 //
->>>>>>> master
+//
+//
 
 
 
@@ -44841,7 +44840,7 @@ var render = function() {
       { attrs: { id: "finalize" } },
       [
         _c("div", { staticClass: "row claims-desc" }, [
-          _vm._v("\n\t\t\tWhat happened to the flight?\n\t\t")
+          _vm._v("\n\t\tWhat happened to the flight?\n\t")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
@@ -44878,7 +44877,7 @@ var render = function() {
                       }
                     }
                   }),
-                  _vm._v(" Delayed Flight\n\t\t\t\t\t")
+                  _vm._v(" Delayed Flight\n\t\t\t\t")
                 ]),
                 _vm._v(" "),
                 _c("label", { staticClass: "btn btn-primary" }, [
@@ -44905,7 +44904,7 @@ var render = function() {
                       }
                     }
                   }),
-                  _vm._v(" Canceled Flight\n\t\t\t\t\t")
+                  _vm._v(" Canceled Flight\n\t\t\t\t")
                 ]),
                 _vm._v(" "),
                 _c("label", { staticClass: "btn btn-primary" }, [
@@ -44932,7 +44931,7 @@ var render = function() {
                       }
                     }
                   }),
-                  _vm._v(" Denied Boarding\n\t\t\t\t\t")
+                  _vm._v(" Denied Boarding\n\t\t\t\t")
                 ])
               ]
             )
