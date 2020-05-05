@@ -25,7 +25,7 @@
 	<div>
 
 
-		<form action="/claim/process">
+		<form action="{{ url('/claims/process') }}" method="post">
 			<div id="app">
 				<app></app>
 			</div>
