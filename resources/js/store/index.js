@@ -3,12 +3,14 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-import history from "./history";
+import form from "./form";
+//import history from "./history";
 
 const store = new Vuex.Store({
     strict: true,
     modules: {
-        history
+        form
+        //history
     }
 });
 export default store;

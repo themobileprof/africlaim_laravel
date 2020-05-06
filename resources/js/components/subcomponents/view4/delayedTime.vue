@@ -5,7 +5,7 @@
 				What was the total delay once you arrived at the Destination airport?
 			</div>
 			<div class="row p-4">
-				<select id="delayedHours" name="delayedHours" class="selectpicker show-tick" title="Total Delay"  v-model="delayedHours" v-on:change="$emit('delayedHours')" data-style="btn-primary">
+				<select id="delayedHours" name="delayedHours" class="selectpicker show-tick" title="Total Delay"  v-model="delayedHours" v-on:change="storeField" data-style="btn-primary">
 
 				  <option disabled value=""> Total Delay</option>
 				  <option value="1"> 0 - 1 hour</option>
@@ -28,7 +28,13 @@
 		},
 		mounted() {
 			$('select').selectpicker();
-		}
+		},
+		methods: {
+			storeField: function () {
+				this.$store.commit('ADD_FIELD', { 'delayedHours': this.delayedHours })
+				this.$emit('delayedHours')
+			},
+		},
 	}
 </script>
 <style scoped> 

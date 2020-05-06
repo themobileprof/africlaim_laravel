@@ -66,13 +66,16 @@ export default {
 			isDate: false,
 			isRoute: false,
 			isComplaint: false,
+			formFields: {},
 		}
 	},
 	created() {
+		// Redirect to Start page on first load
 		this.$router.push({ name: 'start' })
 		this.isStart = true;
 	},
 	watch:{
+		// manage navigation css
 		$route (to, from){
 			//reset everything to false
 			this.isStart = this.isDate = this.isRoute = this.isFinish = false;
@@ -85,13 +88,18 @@ export default {
 				this.isRoute = true;
 			} else if (to.name == 'complaint') {
 				this.isComplaint = true;
-			} else {
-				this.isStart = true;
 			}
 		}
 	}, 
+	methods: {
+		submitClaim: function(){
+			// get Form details
+			this.formFields = this.$store.getters.state.fields
+		}
+	},
 	updated() {
 		document.body.scrollTop = document.body.scrollHeight;
 	},
 }
     </script>
+

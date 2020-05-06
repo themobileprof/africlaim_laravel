@@ -90,6 +90,9 @@
 				 if(this.destinationFilled && this.departureFilled && this.connectingFlight) {
 				   // perform some logic on preference
 				   // logic results true or false
+
+					 this.$store.commit('ADD_FIELD', { 'connectingFlight': this.connectingFlight })
+
 				   return true
 				 } else {
 					 return false

@@ -52,7 +52,7 @@
 		<div ref="send">
 			<div class="row">
 				<div class="col-md-8 py-4">
-					<button class="btn btn-success btn-lg" type="submit" style="width: 200px;" v-bind:class="{ disable: !reasonDiv }">Submit for Review </button>
+					<router-link class="btn btn-success btn-lg text-white" to="/claims/processing" role="button" style="width: 200px;" v-bind:class="{ disable: !showFinish }">Submit for Review </router-link>
 					<router-link class="btn btn-white btn-lg text-secondary ml-2" to="/claims/route" role="button" style="width: 200px;"><i class="fas fa-angle-double-left"></i> Back</router-link>
 				</div>
 			</div>
@@ -90,9 +90,12 @@ export default {
 	},
 	methods: {
 		showDelayTime(event) {
-			this.delayKey += 1; 
 			
 			this.claimType = event.target.value;
+			this.$store.commit('ADD_FIELD', { 'claimType': this.claimType })
+
+
+			this.delayKey += 1; 
 			this.delayedDiv = true;
 
 			// reset others
@@ -111,8 +114,9 @@ export default {
 			}
 
 		},    
-		changetest(val){
-			this.testing = val; // Random var for testing Vuex getter value
+		submitClaim(){
+
+			this.$emit("submit")
 		},
 
 		scrollToEnd: function() {    	
@@ -122,6 +126,15 @@ export default {
 			// var elem = this.$el
 			// elem.scrollTop = elem.clientHeight;
 		},
+	},
+	computed: {
+		showFinish: function() {
+			if (this.reasonDiv == true){
+				return true
+			} else {
+				return false
+			}
+		}
 	},
 	mounted() {
 

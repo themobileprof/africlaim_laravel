@@ -26,7 +26,8 @@ import Flight_date from "./components/view2_flight_date";
 import Route from "./components/view3_route";
 import Complaint from "./components/view4_complaint";
 import NotFound from "./components/notFound";
-import Processed from "./components/view5_processed";
+import Processing from "./components/view5_processing";
+import failed from "./components/failed";
 
 const router = new VueRouter({
     mode: "history",
@@ -46,29 +47,30 @@ const router = new VueRouter({
             path: "/claims/flight_date",
             name: "flight_date",
             component: Flight_date
-            //props: { title: "What was your departure date?" }
         },
         {
             path: "/claims/route",
             name: "route",
             component: Route
-            //props: { title: "Which flight did you take?" }
         },
         {
             path: "/claims/complaint",
             name: "complaint",
             component: Complaint
-            //props: { title: "What is the nature of the complaint?" }
+        },
+        {
+            path: "/claims/processing",
+            name: "processing",
+            component: Processing
+        },
+        {
+            path: "/claims/failed",
+            name: "failed",
+            component: failed
         },
         {
             path: "/claims/404",
             component: NotFound
-        },
-        {
-            path: "/claims/processed",
-            redirect: {
-                name: "processed"
-            }
         },
         {
             path: "/claims/*",

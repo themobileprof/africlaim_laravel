@@ -42,10 +42,20 @@
 			  setResult(airport, airportId) {
 					this.query = airport;
 					this.airportId = airportId;	
-				  this.airports = []; // reset dropdown
-					
-				  this.$emit('selected', airportId)
+				    this.airports = []; // reset dropdown
+
+					this.storeField();
 			  },
+			
+				storeField: function () {
+				  let payload = {}
+				  payload[this.input_name] = this.airportId;
+
+					this.$store.commit('ADD_FIELD', payload)
+					
+				  this.$emit('selected', this.airportId)
+				},
+			
 
 			  onArrowDown() {
 				if (this.arrowCounter < this.airports.length) {
