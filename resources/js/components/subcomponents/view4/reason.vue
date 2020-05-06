@@ -5,7 +5,7 @@
 			What did the airline say was the reason?
 			</div>
 			<div class="row p-4">
-				<select id="airlineReason" name="airlineReason" v-model="airlineReason" class="selectpicker show-tick" title="Reason for delay" data-style="btn-primary">
+				<select id="airlineReason" name="airlineReason" v-model="airlineReason" v-on:change="storeField" class="selectpicker show-tick" title="Reason for delay" data-style="btn-primary">
 				  <option value="technical">Technical problem</option>
 				  <option value="bad_weather">Bad weather conditions</option>
 				  <option value="other_flights">Influence by other flights</option>
@@ -28,6 +28,12 @@ export default {
 	},
 	mounted() {
 		$('select').selectpicker();
-	}
+	},
+	methods: {
+		storeField: function () {
+			this.$store.commit('ADD_FIELD', { 'airlineReason': this.airlineReason })
+			this.$emit('airlineReason')
+		},
+	},
 }
 </script>

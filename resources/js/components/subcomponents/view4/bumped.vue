@@ -5,7 +5,7 @@
 				Did you volunteer to get bumped?
 			</div>
 			<div class="row p-4">
-				<select id="bumped" name="bumped" v-model="bumped" v-on:change="$emit('bumped')" class="selectpicker show-tick" title="Were you bumped?" data-style="btn-primary">
+				<select id="bumped" name="bumped" v-model="bumped" v-on:change="storeField" class="selectpicker show-tick" title="Were you bumped?" data-style="btn-primary">
 				  <option value="yes">Yes</option>
 				  <option value="no">No</option>
 				</select>
@@ -22,7 +22,13 @@ export default {
 	},
 	mounted() {
 		$('select').selectpicker();
-	}
+	},
+	methods: {
+		storeField: function () {
+			this.$store.commit('ADD_FIELD', { 'bumped': this.bumped })
+			this.$emit('bumped')
+		},
+	},
 
 }
 </script>

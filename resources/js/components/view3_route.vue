@@ -79,6 +79,7 @@
 				 if(this.route) {
 				   // perform some logic on preference
 				   // logic results true or false
+					 this.$store.commit('ADD_FIELD', { 'route': this.route })
 				   return true
 				 } else {
 					 return false

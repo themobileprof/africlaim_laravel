@@ -55,6 +55,10 @@
 				 if(this.flightDate) {
 				   // perform some logic on preference
 				   // logic results true or false
+					
+					 this.$store.commit('ADD_FIELD', { 'flightdate': this.flightDate })
+
+
 				   return true
 				 } else {
 					 return false
