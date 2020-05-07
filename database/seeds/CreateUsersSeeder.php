@@ -5,47 +5,68 @@ use App\User;
 
 class CreateUsersSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $user = [
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		$user = [
 
-            [
+			[
 
-               'name'=>'Admin',
+				'firstname' => 'Admin',
 
-               'email'=>'admin@itsolutionstuff.com',
+				'lastname' => 'Admin',
 
-                'is_admin'=>'1',
+				'email' => 'admin@africlaim.com',
 
-               'password'=> bcrypt('123456'),
+				'phone' => '08012345678',
 
-            ],
+				'is_admin' => '1',
 
-            [
+				'password' => bcrypt('9876543210'),
 
-               'name'=>'User',
+			],
 
-               'email'=>'user@itsolutionstuff.com',
+			[
 
-                'is_admin'=>'0',
+				'firstname' => 'Guest',
 
-               'password'=> bcrypt('123456'),
+				'lastname' => 'Guest',
 
-            ],
+				'email' => 'guest@localhost',
 
-        ];
+				'is_admin' => '0',
 
-  
+				'password' => 'guest',
 
-        foreach ($user as $value) {
+			],
 
-            User::create($value);
+			[
 
-        }
-    }
+				'firstname' => 'Samuel',
+
+				'lastname' => 'Anyaele',
+
+				'email' => 'user@africlaim.com',
+
+				'phone' => '08098765432',
+
+				'is_admin' => '0',
+
+				'password' => bcrypt('0123456789'),
+
+			],
+
+		];
+
+
+
+		foreach ($user as $value) {
+
+			User::create($value);
+		}
+	}
 }
