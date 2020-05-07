@@ -43,3 +43,4 @@ Route::get('/claims/{any}', function () {
 Route::get('/test', function () {
 	return view('formtest');
 });
+

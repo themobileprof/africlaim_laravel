@@ -8,7 +8,6 @@
 				  <vc-date-picker 
 					  :mode='mode' 
 					  v-model="flightDate"
-					  :masks="{ input: ['DD/MM/YY'] }"
 					  :input-props='{
 					  class: "w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 hover:border-blue-5",
 					  placeholder: "Please enter Flight date",

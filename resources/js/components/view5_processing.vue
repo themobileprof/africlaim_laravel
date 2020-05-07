@@ -25,7 +25,7 @@
 		},
 		mounted() {
 			this.formFields = this.$store.getters.getFields
-			this.processForm()
+			setTimeout(() => this.processForm(), 500);
 
 		},
 		methods: {
@@ -35,8 +35,8 @@
 				axios.post('/claim/processor', this.formFields)
 
 				.then(function (response) {
-					
-					window.location.replace("/register?claim=" + response.data);
+					var claim = response.data
+					window.location.replace("/register/" + claim)
 					//dbody.output = response.data;
 				})
 

@@ -62,8 +62,6 @@
 		  }
 		},
         mounted() {
-
-			this.$store.dispatch("addHistory", this.page) // Set Vuex page
             console.log('Route component mounted.')
         },
 		methods: {

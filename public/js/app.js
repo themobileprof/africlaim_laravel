@@ -2613,7 +2613,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FlightDate",
   data: function data() {
@@ -2722,8 +2721,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.$store.dispatch("addHistory", this.page); // Set Vuex page
-
     console.log('Route component mounted.');
   },
   methods: {
@@ -2930,7 +2927,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2939,15 +2935,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.formFields = this.$store.getters.getFields;
-    this.processForm();
+    setTimeout(function () {
+      return _this.processForm();
+    }, 500);
   },
   methods: {
     processForm: function processForm() {
       var dbody = this;
       axios.post('/claim/processor', this.formFields).then(function (response) {
-        window.location.replace("/register");
-        dbody.output = response.data;
+        var claim = response.data;
+        window.location.replace("/register/" + claim); //dbody.output = response.data;
       })["catch"](function (error) {
         dbody.output = error;
       });
@@ -44655,7 +44655,6 @@ var render = function() {
           _c("vc-date-picker", {
             attrs: {
               mode: _vm.mode,
-              masks: { input: ["DD/MM/YY"] },
               "input-props": {
                 class:
                   "w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 hover:border-blue-5",
@@ -45246,12 +45245,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", [
-      _c("div", { on: { click: _vm.processForm } }, [_vm._v("Click ")]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v("\n\t\tOutput: " + _vm._s(_vm.output) + "\n\t")
-    ])
+    _c("div")
   ])
 }
 var staticRenderFns = []
