@@ -139,8 +139,6 @@ export default {
 		}
 	},
 	mounted() {
-
-		this.$store.dispatch("addHistory", this.page) // Set Vuex page
 		console.log('Complaint component mounted.')
 	},
 }

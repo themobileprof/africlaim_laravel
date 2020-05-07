@@ -16,7 +16,7 @@ class UpdateClaims extends Migration
 		Schema::table('claims', function (Blueprint $table) {
 			//
 			$table->string('connecting')->after('arrival_id')->nullable();
-			$table->string('airline_reason')->after('complaint_option ')->nullable();
+			$table->string('airline_reason')->after('complaint_option')->nullable();
 		});
 	}
 

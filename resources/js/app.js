@@ -17,7 +17,14 @@ import store from "./store/index";
 
 // Use v-calendar & v-date-picker components
 Vue.use(VCalendar, {
-    componentPrefix: "vc" // Use <vc-calendar /> instead of <v-calendar />
+    componentPrefix: "vc", // Use <vc-calendar /> instead of <v-calendar />
+    locales: {
+        cust: {
+            masks: {
+                L: "YYYY-MM-DD"
+            }
+        }
+    }
 });
 
 import App from "./components/App";

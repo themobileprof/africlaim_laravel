@@ -5,55 +5,68 @@ use App\User;
 
 class CreateUsersSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $user = [
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		$user = [
 
-            [
+			[
 
-                'firstname'=>'Admin',
+				'firstname' => 'Admin',
 
-                'lastname' => 'Admin',
+				'lastname' => 'Admin',
 
-               'email'=>'admin@africlaim.com',
+				'email' => 'admin@africlaim.com',
 
-               'phone'=>'08012345678',
+				'phone' => '08012345678',
 
-                'is_admin'=>'1',
+				'is_admin' => '1',
 
-               'password'=> bcrypt('9876543210'),
+				'password' => bcrypt('9876543210'),
 
-            ],
+			],
 
-            [
+			[
 
-                'firstname'=>'Samuel',
+				'firstname' => 'Guest',
 
-                'lastname'=>'Anyaele',
+				'lastname' => 'Guest',
 
-               'email'=>'user@africlaim.com',
+				'email' => 'guest@localhost',
 
-               'phone'=>'08098765432',
+				'is_admin' => '0',
 
-                'is_admin'=>'0',
+				'password' => 'guest',
 
-               'password'=> bcrypt('0123456789'),
+			],
 
-            ],
+			[
 
-        ];
+				'firstname' => 'Samuel',
 
-  
+				'lastname' => 'Anyaele',
 
-        foreach ($user as $value) {
+				'email' => 'user@africlaim.com',
 
-            User::create($value);
+				'phone' => '08098765432',
 
-        }
-    }
+				'is_admin' => '0',
+
+				'password' => bcrypt('0123456789'),
+
+			],
+
+		];
+
+
+
+		foreach ($user as $value) {
+
+			User::create($value);
+		}
+	}
 }

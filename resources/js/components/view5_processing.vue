@@ -1,12 +1,15 @@
 <template>
-<div class='col-md-12 form-style'>
+<div class='col-md-12'>
 	
-	<div class="row" style="margin-top:100px;">
-		<div class="col-md-4"></div>
-		<div class="col-md-4 my-4">
-			  <img :src="'/img/moving.gif'" alt="Processing">
+	<div class="row">
+		<div>
+			  <img :src="'/img/going.gif'" alt="Processing">
 		</div>
-		<div class="col-md-4"></div>
+		
+	</div>
+	<div>
+		<!--<span v-on:click="processForm">Click </span>-->
+		<!--Output: {{ output }}-->
 	</div>
 	
 </div>
@@ -16,27 +19,41 @@
     export default {
 		data() {
 			return {
-				formFields: {}
+				formFields: {},
+				output: ''
 			}
 		},
 		mounted() {
 			this.formFields = this.$store.getters.getFields
+			this.processForm()
 
-			currentObj = this;
+		},
+		methods: {
+			processForm: function(){
 
-			axios.post('/claims/processor', this.formFields)
+				let dbody = this;
+				axios.post('/claim/processor', this.formFields)
 
-			.then(function (response) {
-				currentObj.output = response.data;
-			})
+				.then(function (response) {
+					
+					window.location.replace("/register?claim=" + response.data);
+					//dbody.output = response.data;
+				})
 
-			.catch(function (error) {
-				currentObj.output = error;
-			});
+				.catch(function (error) {
+					dbody.output = error;
+				});
+
+			}
 		}
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style src="../css/claims.css">
+</style>
+<style scoped>
+.allwhite {
+	background-color: #FFF;
+}
 </style>
