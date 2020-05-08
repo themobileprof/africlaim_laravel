@@ -97,51 +97,18 @@
 						<!-- Card Body -->
 						<div class="card-body" style="font-size: 11px;">
 							<ul class="list-group list-group-flush">
+
+								@foreach ($claims as $claim)
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-sm-5">
-											<a href="#">Lagos, NG <i class="fas fa-plane-departure fa-xs"></i> London, UK</a>
+											<a href="#">{{ $claim->departure->city }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claim->arrival->city }}</a>
 										</div>
-										<div class="col-sm-3">British Airways</div>
-										<div class="col-sm-4">20/05/2018</div>
+										<div class="col-sm-3">{{ $claim->complaint }}</div>
+										<div class="col-sm-4">{{ $claim->dof }}</div>
 									</div>
 								</li>
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-sm-5">
-											<a href="#">Lagos, NG <i class="fas fa-plane-departure fa-xs"></i> London, UK</a>
-										</div>
-										<div class="col-sm-3">British Airways</div>
-										<div class="col-sm-4">20/05/2018</div>
-									</div>
-								</li>
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-sm-5">
-											<a href="#">Lagos, NG <i class="fas fa-plane-departure fa-xs"></i> London, UK</a>
-										</div>
-										<div class="col-sm-3">British Airways</div>
-										<div class="col-sm-4">20/05/2018</div>
-									</div>
-								</li>
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-sm-5">
-											<a href="#">Lagos, NG <i class="fas fa-plane-departure fa-xs"></i> London, UK</a>
-										</div>
-										<div class="col-sm-3">British Airways</div>
-										<div class="col-sm-4">20/05/2018</div>
-									</div>
-								</li>
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-sm-5">
-											<a href="#">Lagos, NG <i class="fas fa-plane-departure fa-xs"></i> London, UK</a>
-										</div>
-										<div class="col-sm-3">British Airways</div>
-										<div class="col-sm-4">20/05/2018</div>
-									</div>
-								</li>
+								@endforeach
 							</ul>
 						</div>
 					</div>
@@ -152,9 +119,11 @@
 
 					<!-- Illustrations -->
 					<div class="card shadow mb-4">
-
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">{{ $claims[0]->departure->name }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claims[0]->arrival->name }} ({{ $claims[0]->dof }})</h6>
+						</div>
 						<div class="card-body">
-							<h4 class="small font-weight-bold">Claims Processing - British Airways (20 May, 2018) <span class="float-right">20%</span></h4>
+							<h4 class="small font-weight-bold">Claims Processing <span class="float-right">20%</span></h4>
 							<div class="progress mb-4">
 								<div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>

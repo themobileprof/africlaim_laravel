@@ -13,13 +13,18 @@ class Claim extends Model
 		'airline_id',
 		'departure_id',
 		'arrival_id',
-        'connecting',
+		'connecting',
 		'dof',
 		'tof',
 		'complaint',
 		'complaint_duration',
 		'complaint_option'
 	];
+
+	public function getDofAttribute($value)
+	{
+		return date("D. j M, Y", strtotime($value));
+	}
 
 	public function user()
 	{

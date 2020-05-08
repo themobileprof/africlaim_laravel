@@ -140,6 +140,15 @@
 	<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 	<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+
+	<script>
+		$(".showdetails").click(function() {
+			$([document.documentElement, document.body]).animate({
+				scrollTop: $("#details").offset().top
+			}, 2000);
+		});
+	</script>
+
 	<!-- Core plugin JavaScript-->
 	<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 

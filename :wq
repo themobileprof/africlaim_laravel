@@ -131,11 +131,10 @@ class ClaimController extends Controller
 	 * @param  \App\Claim  $claim
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($claim)
+	public function show(Claim $claim)
 	{
 		//
-		$claimOne = Claim::findOrFail($claim);
-		return view('claim', ['claim' => $claimOne]);
+		return view('claim', ['claim' => Claim::with(['user', 'arrival', 'departure'])->findOrFail($claim)]);
 	}
 
 	/**
@@ -144,7 +143,7 @@ class ClaimController extends Controller
 	 * @param  \App\Claim  $claim
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($claim)
+	public function edit(Claim $claim)
 	{
 		//
 	}
@@ -167,7 +166,7 @@ class ClaimController extends Controller
 	 * @param  \App\Claim  $claim
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($claim)
+	public function destroy(Claim $claim)
 	{
 		//
 	}
