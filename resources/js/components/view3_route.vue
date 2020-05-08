@@ -157,4 +157,3 @@
 	background: white;
 }
 </style>
-</style>

@@ -20,6 +20,8 @@
 
 	<!-- Custom styles for this template-->
 	<link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+	<!-- Custom styles for this page -->
+	<link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -41,7 +43,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active">
-				<a class="nav-link" href="{{ url('/') }}">
+				<a class="nav-link" href="{{ url('/home') }}">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span></a>
 			</li>
@@ -55,16 +57,14 @@
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
 					<i class="fas fa-fw fa-folder"></i>
-					<span>Status</span>
+					<span>Menu</span>
 				</a>
 				<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Auto-Processed:</h6>
-						<a class="collapse-item" href="utilities-color.html">Approved</a>
-						<a class="collapse-item" href="utilities-border.html">Rejected</a>
+						<a class="collapse-item" href="{{ url('/claims/start') }}">Claims Form</a>
+						<a class="collapse-item" href="#">FAQs</a>
 
-						<h6 class="collapse-header">Processing:</h6>
-						<a class="collapse-item" href="utilities-color.html">Get Status</a>
+						<a class="collapse-item" href="#">Contact Us</a>
 					</div>
 				</div>
 			</li>
@@ -153,6 +153,12 @@
 	<script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
 	<script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
 
+	<!-- Page level plugins -->
+	<script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 </body>
 
 </html>
