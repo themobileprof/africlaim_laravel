@@ -117,8 +117,9 @@
 
 				<div class="col-xl-8 col-lg-7">
 
-					<!-- Illustrations -->
+					<!-- Claim Details -->
 					<div class="card shadow mb-4">
+						@isset($claims[0])
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">{{ $claims[0]->departure->name }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claims[0]->arrival->name }} ({{ $claims[0]->dof }})</h6>
 						</div>
@@ -131,8 +132,9 @@
 								<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/world.png" alt="">
 							</div>
 							<p></p>
-							<a target="_blank" rel="nofollow" href="https://undraw.co/">Details &rarr;</a>
+							<a target="_blank" rel="nofollow" href="#">Details &rarr;</a>
 						</div>
+						@endisset
 					</div>
 
 				</div>
