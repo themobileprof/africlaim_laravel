@@ -27,10 +27,6 @@ class CreateClaimsTable extends Migration
 			$table->timestamps();
 
 
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('airline_id')->references('id')->on('airlines');
-			$table->foreign('departure_id')->references('id')->on('airports');
-			$table->foreign('arrival_id')->references('id')->on('airports');
 		});
 	}
 
