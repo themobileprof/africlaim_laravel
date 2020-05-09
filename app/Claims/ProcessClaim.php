@@ -4,19 +4,19 @@ namespace App\Claims;
 
 class ProcessClaim
 {
-	private function process($claimId)
+	public function process($claimId)
 	{
 		// get request entries
 
 	}
 
-	private function process_location()
+	public function process_location()
 	{
 		// Get airline continent and Country -- // Only Europe and Nigeria
 		//
 	}
 
-	private function processDuration()
+	public function processDuration()
 	{
 		// Process Flight Duration -- // Rule 6 years
 	}

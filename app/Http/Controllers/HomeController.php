@@ -42,6 +42,8 @@ class HomeController extends Controller
 			->orderBy('created_at', 'desc')
 			->take(100)
 			->get();
+
+
 		return view('adminHome', ['claims' => $claims]);
 	}
 }

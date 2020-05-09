@@ -217,7 +217,7 @@
 					</div>
 					<div class="card-body">
 						<div class="text-center">
-							<iframe name="showclaim" id="showclaim" style="width:100%; height:300px; overflow:none;" scrolling="no" frameborder="0"></iframe>
+							<iframe name="showclaim" id="showclaim" src="{{ asset('img/screens.png') }}" style="width:100%; height:300px; overflow:none;" scrolling="no" frameborder="0"></iframe>
 						</div>
 					</div>
 				</div>

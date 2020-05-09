@@ -135,6 +135,17 @@ class ClaimController extends Controller
 	{
 		//
 		$claimOne = Claim::findOrFail($claim);
+		$conns = explode(",", $claimOne->connecting);
+
+		$conn_det = "";
+		$conn_det .= (\App\Claims\GetConnections::GetConnections($conns));
+
+		//foreach ($conns as $conn) {
+
+		//}
+
+		$claimOne->connections = $conn_det;
+
 		return view('claim', ['claim' => $claimOne]);
 	}
 

@@ -37,7 +37,7 @@
 				.then(function (response) {
 					var claim = response.data
 					window.location.replace("/register/" + claim)
-					//dbody.output = response.data;
+					dbody.output = "<a href='/register/".claim."' target='_top'> Click to Continue </a>";
 				})
 
 				.catch(function (error) {
