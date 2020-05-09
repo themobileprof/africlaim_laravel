@@ -16,11 +16,10 @@ class CreateAirlinesTable extends Migration
         Schema::create('airlines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('alias');
             $table->string('IATA');
             $table->string('ICAO');
             $table->string('callsign');
-            $table->string('country_id', 3)->references('id')->on('users');
+            $table->string('country');
             $table->string('active');
             //$table->timestamps();
         });

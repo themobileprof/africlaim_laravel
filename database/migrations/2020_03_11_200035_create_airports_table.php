@@ -17,17 +17,12 @@ class CreateAirportsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('city');
-            $table->string('country_id', 3)->references('id')->on('users');
+            $table->string('country');
             $table->string('IATA');
             $table->string('ICAO');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('altitude');
             $table->string('timezone');
-            $table->string('DST');
-            $table->string('db_timezone');
-            $table->string('type');
-            $table->string('source');
             //$table->timestamps();
         });
     }
