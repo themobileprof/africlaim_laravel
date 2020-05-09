@@ -17,7 +17,6 @@
 	<style>
 		body {
 			background-color: #FFF;
-			font-size: 12px;
 		}
 	</style>
 </head>
@@ -39,7 +38,9 @@
 				<ul class="list-group">
 					<li class="list-group-item"><strong>Airline:</strong> {{ $claim->airline->name }}</li>
 					<li class="list-group-item"><strong>Connecting Flights:</strong>
-						{{ $claim->connections }}
+						@foreach ($claim[]->connections as $connection)
+						{{ $connection->name }} ($connection->city) <br>
+						@endforeach
 					</li>
 					<li class="list-group-item"><strong>Complaint:</strong> {{ $claim->complaint }}</li>
 					<li class="list-group-item"><strong>Delay Duration::</strong> {{ $claim->complaint_duration }}</li>
