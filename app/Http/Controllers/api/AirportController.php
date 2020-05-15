@@ -23,7 +23,7 @@ class AirportController extends Controller
 	{
 		//
 		if ($search) {
-			$airport_search = Airport::where('name', 'like', '%' . $search . '%')->orWhere('city', 'like', '%' . $search . '%')->take(10)->get();
+			$airport_search = Airport::where('name', 'like', '%' . $search . '%')->orWhere('city', 'like', '%' . $search . '%')->get();
 			return response()->json($airport_search);
 
 			//$airport_search = Airport::where('name', 'like', '%' . $search . '%')->paginate(25);

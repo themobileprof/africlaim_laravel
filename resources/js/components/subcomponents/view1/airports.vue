@@ -1,6 +1,6 @@
 <template>
 	<div class="col-12" style="padding-left: 0px; padding-right: 0px;">		
-		<input :id="input_name" :name="input_name" v-model="query" v-on:keyup="autoComplete" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.tab="onEnter" maxlength="25">
+		<input :id="input_name" :name="input_name" v-model="query" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.tab="onEnter" maxlength="25">
 		<transition name="fade">
 			<div class="panel-footer autocomplete-results-panel" v-if="airports.length">
 				<ul class="list-group autocomplete-results">
@@ -10,13 +10,19 @@
 					</li>
 				</ul>
 			</div>
+
+			<div class="panel-footer autocomplete-results-panel" v-else-if="loader">
+			  <img :src="'/img/turning.gif'" style="height:30px; padding-left:10px;" alt="loading...">
+			</div>
 		</transition>
 		<input :id="input_name + 'Id'" :name="input_name + 'Id'" type="hidden" v-model="airportId">
 	</div>
 </template>
 
 <script>
-    export default {
+	import { mapState } from 'vuex'
+    
+	export default {
 		props: ['input_text','placehold_text','airportParam'],
 
         data(){
@@ -28,18 +34,24 @@
 				airports: [],
 				arrowCounter: -1,
 			    airportId: this.airportParam,
+			   filteredData: [],
+			   loader: false,
            }
           },
           methods: {
 			   autoComplete(){
-				if(this.query.length > 2){
-					axios.get('/api/airports/' + this.query).then(response => {
-					this.airports = response.data;
-				 });
+				if(this.query.length > 3){
+					// axios.get('/api/airports/' + this.query).then(response => {
+					// this.airports = response.data;
+				 //});
+					var dbody = this;
+					dbody.airports = this.$store.getters.get_airports[dbody.query];
+
 				}
 			   },
 			  
 			  setResult(airport, airportId) {
+				  this.loader = false;
 					this.query = airport;
 					this.airportId = airportId;	
 				    this.airports = []; // reset dropdown
@@ -95,6 +107,53 @@
                });
 			 }
 		  },
+		watch: {
+			query: function (){
+				let b = this;
+				if (this.query.length < 1){
+
+					// hide loader
+					this.loader = false;
+				} else if (this.query.length < 3){
+					// Show loader
+					this.loader = true;
+				} else if (this.query.length == 3){
+					// this.loader = false;
+
+					// Search from Server
+					this.$store.dispatch('load_airports', this.query)
+
+					// this.$store.commit('SET_QUERY', {'query':this.query})
+
+					if (this.filteredAirports){
+						this.airports = this.filteredAirports;
+					}
+				} else if (this.query.length > 3){
+					//this.loader = false;
+
+					// this.$store.commit('SET_QUERY', {'query':this.query})
+
+					// Search from Client
+					let new_airports = this.filteredAirports;
+					this.airports = new_airports.filter(
+						new_airports =>
+							new_airports.name.toLowerCase().includes(this.query.toLowerCase()) ||
+							new_airports.city.toLowerCase().includes(this.query.toLowerCase())
+					);
+
+				}
+			}
+		},
+		computed: {
+			filteredAirports() {
+				 let airports = this.$store.getters.get_airports;
+				if (airports){
+					return airports;
+				} else {
+					return false;
+				}
+			}
+		},
 		  destroyed() {
 			document.removeEventListener('click', this.handleClickOutside);
 		  }

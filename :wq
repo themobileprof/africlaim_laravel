@@ -1,0 +1,54 @@
+" Press ? for help
+
+.. (up a dir)
+</samuel/sites/africlaim.com/
+▸ app/
+▸ bootstrap/
+▸ config/
+▸ database/
+▸ node_modules/
+▸ public/
+▾ resources/
+  ▾ js/
+    ▾ components/
+      ▾ subcomponents/
+        ▾ view1/
+            airports.vue
+            connecting.vue
+        ▸ view4/
+        App.vue
+        failed.vue
+        notFound.vue
+        top_nav.vue
+        view1_airports.vue
+        view2_flight_date.vue
+        view3_route.vue
+        view4_complaint.vue
+        view5_processing.vue
+    ▸ css/
+    ▸ frontend/
+    ▾ store/
+        form.js
+        history.js
+        index.js
+        index.bak
+      app.js
+      bootstrap.js
+      app.bak
+  ▸ lang/
+  ▸ sass/
+  ▸ views/
+▸ routes/
+▸ storage/
+▸ tests/
+▸ vendor/
+  artisan*
+  composer.json
+  composer.lock
+  env.file
+  package-lock.json
+  package.json
+  phpunit.xml
+  README.md
+  server.php
+  webpack.mix.js

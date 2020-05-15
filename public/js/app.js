@@ -2076,6 +2076,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -2093,6 +2094,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['input_text', 'placehold_text', 'airportParam'],
   data: function data() {
@@ -2102,20 +2108,23 @@ __webpack_require__.r(__webpack_exports__);
       query: '',
       airports: [],
       arrowCounter: -1,
-      airportId: this.airportParam
+      airportId: this.airportParam,
+      filteredData: [],
+      loader: false
     };
   },
   methods: {
     autoComplete: function autoComplete() {
-      var _this = this;
-
-      if (this.query.length > 2) {
-        axios.get('/api/airports/' + this.query).then(function (response) {
-          _this.airports = response.data;
-        });
+      if (this.query.length > 3) {
+        // axios.get('/api/airports/' + this.query).then(response => {
+        // this.airports = response.data;
+        //});
+        var dbody = this;
+        dbody.airports = this.$store.getters.get_airports[dbody.query];
       }
     },
     setResult: function setResult(airport, airportId) {
+      this.loader = false;
       this.query = airport;
       this.airportId = airportId;
       this.airports = []; // reset dropdown
@@ -2151,17 +2160,59 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     document.addEventListener('click', this.handleClickOutside);
 
     if (this.airportId != undefined) {
       var thisAirportId = this.airportId;
       axios.get('/api/airport/' + thisAirportId.substr(0, 6)).then(function (response) {
-        _this2.query = response.data.name;
+        _this.query = response.data.name;
       })["catch"](function () {
         console.log("Invalid Airport Id");
       });
+    }
+  },
+  watch: {
+    query: function query() {
+      var _this2 = this;
+
+      var b = this;
+
+      if (this.query.length < 1) {
+        // hide loader
+        this.loader = false;
+      } else if (this.query.length < 3) {
+        // Show loader
+        this.loader = true;
+      } else if (this.query.length == 3) {
+        // this.loader = false;
+        // Search from Server
+        this.$store.dispatch('load_airports', this.query); // this.$store.commit('SET_QUERY', {'query':this.query})
+
+        if (this.filteredAirports) {
+          this.airports = this.filteredAirports;
+        }
+      } else if (this.query.length > 3) {
+        //this.loader = false;
+        // this.$store.commit('SET_QUERY', {'query':this.query})
+        // Search from Client
+        var new_airports = this.filteredAirports;
+        this.airports = new_airports.filter(function (new_airports) {
+          return new_airports.name.toLowerCase().includes(_this2.query.toLowerCase()) || new_airports.city.toLowerCase().includes(_this2.query.toLowerCase());
+        });
+      }
+    }
+  },
+  computed: {
+    filteredAirports: function filteredAirports() {
+      var airports = this.$store.getters.get_airports;
+
+      if (airports) {
+        return airports;
+      } else {
+        return false;
+      }
     }
   },
   destroyed: function destroyed() {
@@ -2697,27 +2748,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       mode: 'single',
       route: null,
-      testing: ''
+      testing: '',
+      flights: ''
     };
   },
   mounted: function mounted() {
@@ -2729,6 +2766,30 @@ __webpack_require__.r(__webpack_exports__);
     },
     changetest: function changetest(val) {
       this.testing = val; // Random var for testing Vuex getter value
+    },
+    getFlightInfo: function getFlightInfo() {
+      var _this = this;
+
+      var fdate = this.$store.getters.getFields.flightdate;
+      var params = {
+        access_key: '7c1b02ce0ae62383f31d37eda1e2fed2',
+        flight_date: fdate.substring(0, 10)
+      };
+      axios.get('https://api.aviationstack.com/v1/flights', {
+        params: params
+      }).then(function (response) {
+        _this.flights = response.data; // if (Array.isArray(this.flightInfo['results'])) {
+        //	this.flightInfo['results'].forEach(flight => {
+        //		if (!flight['live']['is_ground']) {
+        //			console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
+        //				`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
+        //				`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
+        //		}
+        //	});
+        //}
+      })["catch"](function () {
+        console.log("No Flight Info");
+      });
     }
   },
   computed: {
@@ -2947,7 +3008,8 @@ __webpack_require__.r(__webpack_exports__);
       var dbody = this;
       axios.post('/claim/processor', this.formFields).then(function (response) {
         var claim = response.data;
-        window.location.replace("/register/" + claim); //dbody.output = response.data;
+        window.location.replace("/register/" + claim);
+        dbody.output = "<a href='/register/" + claim + "' target='_top'> Click to Continue </a>";
       })["catch"](function (error) {
         dbody.output = error;
       });
@@ -11802,7 +11864,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all 0.5s ease;\n}\n.slide-fade-leave-active {\n    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n.disable {\n    pointer-events: none;\n    opacity: 0.6;\n}\n.fine-select {\n    padding: 10px;\n    background-color: #2176bd;\n    color: #ffffff;\n    border: none;\n    border-radius: 5px;\n}\n.select-css {\n    display: block;\n    font-size: 16px;\n    font-family: sans-serif;\n    font-weight: 700;\n    color: #ffffff;\n    line-height: 1.3;\n    padding: 0.6em 1.4em 0.5em 0.8em;\n    width: 100%;\n    max-width: 100%;\n    box-sizing: border-box;\n    margin: 0;\n    border: 1px solid #aaa;\n    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);\n    border-radius: 0.5em;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    appearance: none;\n    background-color: #2176bd;\n    background-image: url(\"data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E\"),\n        linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);\n    background-repeat: no-repeat, repeat;\n    background-position: right 0.7em top 50%, 0 0;\n    background-size: 0.65em auto, 100%;\n}\n.select-css::-ms-expand {\n    display: none;\n}\n.select-css:hover {\n    border-color: #888;\n}\n.select-css:focus {\n    border-color: #aaa;\n    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);\n    box-shadow: 0 0 0 3px -moz-mac-focusring;\n    color: #222;\n    outline: none;\n}\n.select-css option {\n    font-weight: normal;\n}\n.claims-desc {\n    font-size: 16px;\n    margin-top: 50px;\n    margin-bottom: 25px;\n    margin-left: 5px;\n    margin-right: 20px;\n    text-align: justify;\n}\ninput {\n    text-rendering: auto;\n    letter-spacing: normal;\n    word-spacing: normal;\n    text-transform: none;\n    text-indent: 0px;\n    text-shadow: none;\n    display: inline-block;\n    text-align: start;\n    background-color: -internal-light-dark-color(white, black);\n}\n.control-label {\n    padding-right: 16px;\n    height: 26px;\n    width: 100%;\n    font-size: 13px;\n    font-weight: bold;\n    line-height: 1.53;\n    color: #536273;\n    outline: none;\n    clear: both;\n}\n\n/* Destination */\n.autocomplete-input {\n    padding-right: 16px;\n    border: 1px solid #c6d5e6;\n    height: 46px;\n    width: 100%;\n    padding-left: 26px;\n    font-size: 13px;\n    font-weight: 400;\n    line-height: 1.53;\n    border-radius: 3px;\n    color: #536273;\n    outline: none;\n}\n.autocomplete-results-panel {\n    position: relative;\n}\n.autocomplete-results {\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 10;\n    font-size: 13px;\n    width: 100%;\n}\n.autocomplete-result {\n    cursor: pointer;\n}\n.autocomplete-result.is-active,\n.autocomplete-result:hover {\n    background-color: #3490dc;\n    color: white;\n}\n\n/* Button */\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    max-width: 360px;\n    float: none;\n}\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    margin-bottom: 32px;\n}\n.col-xs-12 {\n    width: 100%;\n}\n.ah-btn-large {\n    height: 72px;\n    font-size: 19px;\n}\n.ah-btn--positive {\n    box-shadow: 0 8px 16px 0 rgba(83, 99, 115, 0.32);\n    transition: box-shadow 0.2s ease-in-out;\n    color: #fff;\n    background-color: #1b8eff;\n    font-weight: 600;\n}\n.ah-btn,\n.ah-btn-large,\n.ah-btn-small {\n    white-space: normal;\n    word-wrap: break-word;\n    display: inline-flex;\n    text-align: center;\n    justify-content: center;\n    align-items: center;\n    border-radius: 3px;\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all 0.5s ease;\n}\n.slide-fade-leave-active {\n    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n.disable {\n    pointer-events: none;\n    opacity: 0.6;\n}\n.fine-select {\n    padding: 10px;\n    background-color: #2176bd;\n    color: #ffffff;\n    border: none;\n    border-radius: 5px;\n}\n.select-css {\n    display: block;\n    font-size: 16px;\n    font-family: sans-serif;\n    font-weight: 700;\n    color: #ffffff;\n    line-height: 1.3;\n    padding: 0.6em 1.4em 0.5em 0.8em;\n    width: 100%;\n    max-width: 100%;\n    box-sizing: border-box;\n    margin: 0;\n    border: 1px solid #aaa;\n    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);\n    border-radius: 0.5em;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    appearance: none;\n    background-color: #2176bd;\n    background-image: url(\"data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E\"),\n        linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);\n    background-repeat: no-repeat, repeat;\n    background-position: right 0.7em top 50%, 0 0;\n    background-size: 0.65em auto, 100%;\n}\n.select-css::-ms-expand {\n    display: none;\n}\n.select-css:hover {\n    border-color: #888;\n}\n.select-css:focus {\n    border-color: #aaa;\n    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);\n    box-shadow: 0 0 0 3px -moz-mac-focusring;\n    color: #222;\n    outline: none;\n}\n.select-css option {\n    font-weight: normal;\n}\n.claims-desc {\n    font-size: 16px;\n    margin-top: 50px;\n    margin-bottom: 25px;\n    margin-left: 5px;\n    margin-right: 20px;\n    text-align: justify;\n}\ninput {\n    text-rendering: auto;\n    letter-spacing: normal;\n    word-spacing: normal;\n    text-transform: none;\n    text-indent: 0px;\n    text-shadow: none;\n    display: inline-block;\n    text-align: start;\n    background-color: -internal-light-dark-color(white, black);\n}\n.control-label {\n    padding-right: 16px;\n    height: 26px;\n    width: 100%;\n    font-size: 13px;\n    font-weight: bold;\n    line-height: 1.53;\n    color: #536273;\n    outline: none;\n    clear: both;\n}\n\n/* Destination */\n.autocomplete-input {\n    padding-right: 16px;\n    border: 1px solid #c6d5e6;\n    height: 46px;\n    width: 100%;\n    padding-left: 26px;\n    font-size: 13px;\n    font-weight: 400;\n    line-height: 1.53;\n    border-radius: 3px;\n    color: #536273;\n    outline: none;\n}\n.autocomplete-results-panel {\n    position: relative;\n}\n.autocomplete-results {\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 10;\n    font-size: 13px;\n    width: 100%;\n    height: 300px;\n    overflow: auto;\n}\n.autocomplete-result {\n    cursor: pointer;\n}\n.autocomplete-result.is-active,\n.autocomplete-result:hover {\n    background-color: #3490dc;\n    color: white;\n}\n\n/* Button */\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    max-width: 360px;\n    float: none;\n}\n.fp-jumbotron-header .jumbotron-autocomplete__cta-btn {\n    margin-bottom: 32px;\n}\n.col-xs-12 {\n    width: 100%;\n}\n.ah-btn-large {\n    height: 72px;\n    font-size: 19px;\n}\n.ah-btn--positive {\n    box-shadow: 0 8px 16px 0 rgba(83, 99, 115, 0.32);\n    transition: box-shadow 0.2s ease-in-out;\n    color: #fff;\n    background-color: #1b8eff;\n    font-weight: 600;\n}\n.ah-btn,\n.ah-btn-large,\n.ah-btn-small {\n    white-space: normal;\n    word-wrap: break-word;\n    display: inline-flex;\n    text-align: center;\n    justify-content: center;\n    align-items: center;\n    border-radius: 3px;\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -43707,7 +43769,6 @@ var render = function() {
         },
         domProps: { value: _vm.query },
         on: {
-          keyup: _vm.autoComplete,
           keydown: [
             function($event) {
               if (
@@ -43797,6 +43858,17 @@ var render = function() {
                   }),
                   0
                 )
+              ]
+            )
+          : _vm.loader
+          ? _c(
+              "div",
+              { staticClass: "panel-footer autocomplete-results-panel" },
+              [
+                _c("img", {
+                  staticStyle: { height: "30px", "padding-left": "10px" },
+                  attrs: { src: "/img/turning.gif", alt: "loading..." }
+                })
               ]
             )
           : _vm._e()
@@ -44753,160 +44825,73 @@ var render = function() {
       _c("div", { staticClass: "col-md-8 my-4" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("ul", { staticClass: "list-group" }, [
-          _c(
-            "li",
-            {
-              staticClass:
-                "list-group-item list-group-item-action list-group-item-success"
-            },
-            [
-              _c(
-                "label",
-                { staticClass: "flight_label row", attrs: { for: "flight1" } },
-                [
-                  _c("div", { staticClass: "flight_input col-1" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.route,
-                          expression: "route"
+        _c(
+          "ul",
+          { staticClass: "list-group" },
+          _vm._l(_vm.flights, function(flight, i) {
+            return _c(
+              "li",
+              {
+                key: i,
+                staticClass:
+                  "list-group-item list-group-item-action list-group-item-success"
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "flight_label row",
+                    attrs: { for: flight.flight.iata }
+                  },
+                  [
+                    _c("div", { staticClass: "flight_input col-1" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.route,
+                            expression: "route"
+                          }
+                        ],
+                        attrs: {
+                          type: "radio",
+                          name: "route",
+                          id: flight.flight.iata
+                        },
+                        domProps: {
+                          value: flight.flight.iata,
+                          checked: _vm._q(_vm.route, flight.flight.iata)
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.route = flight.flight.iata
+                          }
                         }
-                      ],
-                      attrs: {
-                        type: "radio",
-                        name: "route",
-                        id: "flight1",
-                        value: "flight1"
-                      },
-                      domProps: { checked: _vm._q(_vm.route, "flight1") },
-                      on: {
-                        change: function($event) {
-                          _vm.route = "flight1"
-                        }
-                      }
-                    }),
-                    _c("span", { staticClass: "checkmark" })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "airline col-4" }, [
-                    _vm._v("British Airways")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flight_number col-3" }, [
-                    _vm._v("BA 178")
-                  ])
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass:
-                "list-group-item  list-group-item-action list-group-item-success"
-            },
-            [
-              _c(
-                "label",
-                { staticClass: "flight_label row", attrs: { for: "flight2" } },
-                [
-                  _c("div", { staticClass: "flight_input col-1" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.route,
-                          expression: "route"
-                        }
-                      ],
-                      attrs: {
-                        type: "radio",
-                        name: "route",
-                        id: "flight2",
-                        value: "flight2"
-                      },
-                      domProps: { checked: _vm._q(_vm.route, "flight2") },
-                      on: {
-                        change: function($event) {
-                          _vm.route = "flight2"
-                        }
-                      }
-                    }),
-                    _c("span", { staticClass: "checkmark" })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "airline col-4" }, [
-                    _vm._v("British Airways")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flight_number col-3" }, [
-                    _vm._v("BA 178")
-                  ])
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass:
-                "list-group-item  list-group-item-action list-group-item-success"
-            },
-            [
-              _c(
-                "label",
-                { staticClass: "flight_label row", attrs: { for: "flight3" } },
-                [
-                  _c("div", { staticClass: "flight_input col-1" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.route,
-                          expression: "route"
-                        }
-                      ],
-                      attrs: {
-                        type: "radio",
-                        name: "route",
-                        id: "flight3",
-                        value: "flight3"
-                      },
-                      domProps: { checked: _vm._q(_vm.route, "flight3") },
-                      on: {
-                        change: function($event) {
-                          _vm.route = "flight3"
-                        }
-                      }
-                    }),
-                    _c("span", { staticClass: "checkmark" })
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "airline col-4" }, [
-                    _vm._v("British Airways")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flight_number col-3" }, [
-                    _vm._v("BA 178")
-                  ])
-                ]
-              )
-            ]
-          )
-        ])
+                      }),
+                      _c("span", { staticClass: "checkmark" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flight_time col-4" }, [
+                      _vm._v(_vm._s(flight.departure.scheduled) + " "),
+                      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
+                      _vm._v(" " + _vm._s(flight.arrival.scheduled))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "airline col-4" }, [
+                      _vm._v(_vm._s(flight.airline.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flight_number col-3" }, [
+                      _vm._v(_vm._s(flight.flight.iata))
+                    ])
+                  ]
+                )
+              ]
+            )
+          }),
+          0
+        )
       ])
     ]),
     _vm._v(" "),
@@ -44964,36 +44949,6 @@ var staticRenderFns = [
           _c("div", { staticClass: "col-3" }, [_vm._v("Flight Number")])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flight_time col-4" }, [
-      _vm._v("7:55am "),
-      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-      _vm._v(" 6:30pm")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flight_time col-4" }, [
-      _vm._v("7:55am "),
-      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-      _vm._v(" 6:30pm")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flight_time col-4" }, [
-      _vm._v("7:55am "),
-      _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-      _vm._v(" 6:30pm")
     ])
   }
 ]
@@ -62772,6 +62727,67 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/store/airports.js":
+/*!****************************************!*\
+  !*** ./resources/js/store/airports.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: {
+    airports: {},
+    query: ""
+  },
+  getters: {
+    get_airports: function get_airports(state) {
+      return state.airports;
+    },
+    filter_airports: function filter_airports(state) {
+      return true; // Has Error
+      //trial1: Shortened
+      //let newAirports = state.airports;
+      //console.log(newAirports);
+      //debugger;
+      //return newAirports.filter(val =>
+      //Object.keys(val).some(key =>
+      //val[key]
+      //.toString()
+      //.toLowerCase.includes(state.query.toLowerCase())
+      //)
+      //);
+      //Trial2: Mine
+      //let new_airports = state.airports;
+      //return new_airports.filter(
+      //new_airports =>
+      //new_airports.name.toLowerCase().includes(state.query) ||
+      //new_airports.city.toLowerCase().includes(state.query)
+      //);
+    }
+  },
+  actions: {
+    load_airports: function load_airports(_ref, query) {
+      var commit = _ref.commit;
+      axios.get("/api/airports/" + query).then(function (response) {
+        commit("LOAD_AIRPORTS", response.data);
+      });
+    }
+  },
+  mutations: {
+    LOAD_AIRPORTS: function LOAD_AIRPORTS(state, airportData) {
+      //Object.assign(state.airports, airportData);
+      state.airports = airportData;
+    },
+    SET_QUERY: function SET_QUERY(state, query) {
+      state.query = query.query;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/form.js":
 /*!************************************!*\
   !*** ./resources/js/store/form.js ***!
@@ -62818,15 +62834,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./form */ "./resources/js/store/form.js");
+/* harmony import */ var _airports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./airports */ "./resources/js/store/airports.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
  //import history from "./history";
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   strict: true,
   modules: {
-    form: _form__WEBPACK_IMPORTED_MODULE_2__["default"] //history
+    form: _form__WEBPACK_IMPORTED_MODULE_2__["default"],
+    airports: _airports__WEBPACK_IMPORTED_MODULE_3__["default"] //history
 
   }
 });
