@@ -44,11 +44,36 @@
 			mode: 'single',
 			route: null,
 			testing: '',
-			flights: '',
+			flights: [],
 		  }
 		},
-        mounted() {
-            console.log('Route component mounted.')
+        created() {
+				const fdate = this.$store.getters.getFields.flightdate
+
+
+				const params = {
+					access_key: '7c1b02ce0ae62383f31d37eda1e2fed2',
+					flight_date: fdate.substring(0,10)				
+				}
+
+				axios.get('https://api.aviationstack.com/v1/flights', {params}).then(response => {
+					this.flights  = response.data;
+
+					// if (Array.isArray(this.flightInfo['results'])) {
+					//	this.flightInfo['results'].forEach(flight => {
+					//		if (!flight['live']['is_ground']) {
+					//			console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
+					//				`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
+					//				`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
+					//		}
+					//	});
+					//}
+				 })
+				 .catch(()=>{
+                  
+                  console.log("No Flight Info");
+                  
+               });
         },
 		methods: {
 			setRoute(Route){

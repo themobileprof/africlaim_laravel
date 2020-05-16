@@ -36,6 +36,7 @@
 			    airportId: this.airportParam,
 			   filteredData: [],
 			   loader: false,
+			   removedrop: false,
            }
           },
           methods: {
@@ -56,6 +57,10 @@
 					this.airportId = airportId;	
 				    this.airports = []; // reset dropdown
 
+				  // Search random string to reset Vuex>airports>airports
+					this.$store.dispatch('load_airports', "njuhjygtrhi")
+
+				  this.removedrop = true;
 					this.storeField();
 			  },
 			
@@ -134,12 +139,18 @@
 					// this.$store.commit('SET_QUERY', {'query':this.query})
 
 					// Search from Client
-					let new_airports = this.filteredAirports;
-					this.airports = new_airports.filter(
-						new_airports =>
-							new_airports.name.toLowerCase().includes(this.query.toLowerCase()) ||
-							new_airports.city.toLowerCase().includes(this.query.toLowerCase())
-					);
+
+					if (this.removedrop){
+						this.removedrop = false;
+					} else {
+
+						let new_airports = this.filteredAirports;
+						this.airports = new_airports.filter(
+							new_airports =>
+								new_airports.name.toLowerCase().includes(this.query.toLowerCase()) ||
+								new_airports.city.toLowerCase().includes(this.query.toLowerCase())
+						);
+					}
 
 				}
 			}

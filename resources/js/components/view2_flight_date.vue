@@ -45,6 +45,17 @@
 		methods: {
 			changetest(val){
 				this.testing = val; // Random var for testing Vuex getter value
+			},
+			formatDate(date) {
+				var d = new Date(date),
+					month = '' + (d.getMonth() + 1),
+					day = '' + d.getDate(),
+					year = d.getFullYear();
+
+				if (month.length < 2) month = '0' + month;
+				if (day.length < 2) day = '0' + day;
+
+				return [year, month, day].join('-');
 			}
 		},
 		computed: {
@@ -52,8 +63,8 @@
 				 if(this.flightDate) {
 				   // perform some logic on preference
 				   // logic results true or false
-					
-					 this.$store.commit('ADD_FIELD', { 'flightdate': this.flightDate })
+					const flight_date = this.formatDate(this.flightDate);
+					 this.$store.commit('ADD_FIELD', { 'flightdate': flight_date })
 
 
 				   return true

@@ -2110,7 +2110,8 @@ __webpack_require__.r(__webpack_exports__);
       arrowCounter: -1,
       airportId: this.airportParam,
       filteredData: [],
-      loader: false
+      loader: false,
+      removedrop: false
     };
   },
   methods: {
@@ -2128,7 +2129,10 @@ __webpack_require__.r(__webpack_exports__);
       this.query = airport;
       this.airportId = airportId;
       this.airports = []; // reset dropdown
+      // Search random string to reset Vuex>airports>airports
 
+      this.$store.dispatch('load_airports', "njuhjygtrhi");
+      this.removedrop = true;
       this.storeField();
     },
     storeField: function storeField() {
@@ -2197,10 +2201,14 @@ __webpack_require__.r(__webpack_exports__);
         //this.loader = false;
         // this.$store.commit('SET_QUERY', {'query':this.query})
         // Search from Client
-        var new_airports = this.filteredAirports;
-        this.airports = new_airports.filter(function (new_airports) {
-          return new_airports.name.toLowerCase().includes(_this2.query.toLowerCase()) || new_airports.city.toLowerCase().includes(_this2.query.toLowerCase());
-        });
+        if (this.removedrop) {
+          this.removedrop = false;
+        } else {
+          var new_airports = this.filteredAirports;
+          this.airports = new_airports.filter(function (new_airports) {
+            return new_airports.name.toLowerCase().includes(_this2.query.toLowerCase()) || new_airports.city.toLowerCase().includes(_this2.query.toLowerCase());
+          });
+        }
       }
     }
   },
@@ -2680,6 +2688,15 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     changetest: function changetest(val) {
       this.testing = val; // Random var for testing Vuex getter value
+    },
+    formatDate: function formatDate(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
     }
   },
   computed: {
@@ -2687,8 +2704,9 @@ __webpack_require__.r(__webpack_exports__);
       if (this.flightDate) {
         // perform some logic on preference
         // logic results true or false
+        var flight_date = this.formatDate(this.flightDate);
         this.$store.commit('ADD_FIELD', {
-          'flightdate': this.flightDate
+          'flightdate': flight_date
         });
         return true;
       } else {
@@ -2754,11 +2772,32 @@ __webpack_require__.r(__webpack_exports__);
       mode: 'single',
       route: null,
       testing: '',
-      flights: ''
+      flights: []
     };
   },
-  mounted: function mounted() {
-    console.log('Route component mounted.');
+  created: function created() {
+    var _this = this;
+
+    var fdate = this.$store.getters.getFields.flightdate;
+    var params = {
+      access_key: '7c1b02ce0ae62383f31d37eda1e2fed2',
+      flight_date: fdate.substring(0, 10)
+    };
+    axios.get('https://api.aviationstack.com/v1/flights', {
+      params: params
+    }).then(function (response) {
+      _this.flights = response.data; // if (Array.isArray(this.flightInfo['results'])) {
+      //	this.flightInfo['results'].forEach(flight => {
+      //		if (!flight['live']['is_ground']) {
+      //			console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
+      //				`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
+      //				`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
+      //		}
+      //	});
+      //}
+    })["catch"](function () {
+      console.log("No Flight Info");
+    });
   },
   methods: {
     setRoute: function setRoute(Route) {
@@ -2768,7 +2807,7 @@ __webpack_require__.r(__webpack_exports__);
       this.testing = val; // Random var for testing Vuex getter value
     },
     getFlightInfo: function getFlightInfo() {
-      var _this = this;
+      var _this2 = this;
 
       var fdate = this.$store.getters.getFields.flightdate;
       var params = {
@@ -2778,7 +2817,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('https://api.aviationstack.com/v1/flights', {
         params: params
       }).then(function (response) {
-        _this.flights = response.data; // if (Array.isArray(this.flightInfo['results'])) {
+        _this2.flights = response.data; // if (Array.isArray(this.flightInfo['results'])) {
         //	this.flightInfo['results'].forEach(flight => {
         //		if (!flight['live']['is_ground']) {
         //			console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
