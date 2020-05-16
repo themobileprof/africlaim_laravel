@@ -27,12 +27,6 @@ class CreateClaimsTable extends Migration
 			$table->string('complaint_option');
 			$table->string('airline_reason')->nullable();
 			$table->timestamps();
-
-
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('flight_id')->references('id')->on('flights');
-			$table->foreign('departure_id')->references('id')->on('airports');
-			$table->foreign('arrival_id')->references('id')->on('airports');
 		});
 	}
 

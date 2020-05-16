@@ -34,6 +34,7 @@ class User extends Authenticatable
 		return "{$this->first_name} {$this->last_name}";
 	}
 
+
 	public function setFirstNameAttribute($value)
 	{
 		$this->attributes['first_name'] = ucfirst($value);
@@ -60,4 +61,8 @@ class User extends Authenticatable
 	{
 		return $this->hasMany('App\Claim');
 	}
+
+
+
+	protected $appends = ['full_name'];
 }

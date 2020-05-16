@@ -131,9 +131,22 @@ class ClaimController extends Controller
 	 * @param  \App\Claim  $claim
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Claim $claim)
+	public function show($claim)
 	{
 		//
+		$claimOne = Claim::findOrFail($claim);
+		$conns = explode(",", $claimOne->connecting);
+
+		$conn_det = "";
+		$conn_det .= (\App\Claims\GetConnections::GetConnections($conns));
+
+		//foreach ($conns as $conn) {
+
+		//}
+
+		$claimOne->connections = $conn_det;
+
+		return view('claim', ['claim' => $claimOne]);
 	}
 
 	/**
@@ -142,7 +155,7 @@ class ClaimController extends Controller
 	 * @param  \App\Claim  $claim
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(Claim $claim)
+	public function edit($claim)
 	{
 		//
 	}
@@ -165,7 +178,7 @@ class ClaimController extends Controller
 	 * @param  \App\Claim  $claim
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Claim $claim)
+	public function destroy($claim)
 	{
 		//
 	}

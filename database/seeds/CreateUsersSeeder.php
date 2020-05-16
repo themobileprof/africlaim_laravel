@@ -38,9 +38,11 @@ class CreateUsersSeeder extends Seeder
 
 				'email' => 'guest@localhost',
 
+				'phone' => '08000000000',
+
 				'is_admin' => '0',
 
-				'password' => 'guest',
+				'password' => bcrypt('guest'),
 
 			],
 
