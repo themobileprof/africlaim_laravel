@@ -16,19 +16,21 @@ class CreateClaimsTable extends Migration
 		Schema::create('claims', function (Blueprint $table) {
 			$table->id();
 			$table->foreignId('user_id');
-			$table->foreignId('airline_id');
+			$table->foreignId('flight_id');
 			$table->foreignId('departure_id');
 			$table->foreignId('arrival_id');
+			$table->string('connecting')->nullable();
 			$table->date('dof');
 			$table->time('tof');
 			$table->string('complaint');
 			$table->string('complaint_duration');
 			$table->string('complaint_option');
+			$table->string('airline_reason')->nullable();
 			$table->timestamps();
 
 
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('airline_id')->references('id')->on('airlines');
+			$table->foreign('flight_id')->references('id')->on('flights');
 			$table->foreign('departure_id')->references('id')->on('airports');
 			$table->foreign('arrival_id')->references('id')->on('airports');
 		});
