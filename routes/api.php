@@ -31,3 +31,7 @@ Route::get('/airline/{airline}', 'api\AirlineController@show');
 // ROUTE FOR AIRPORT API
 Route::get('/airports/{search?}', 'api\AirportController@index');
 Route::get('/airport/{airport}', 'api\AirportController@show');
+
+
+// ROUTE FOR FLIGHT API
+Route::get('/flights/{flightDate}', 'api\FlightController@index');

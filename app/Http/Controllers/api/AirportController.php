@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AirportResource;
-use Illuminate\Http\Request;
+//use App\Http\Resources\AirportResource;
+//use Illuminate\Http\Request;
 use App\Airport;
 
 class AirportController extends Controller

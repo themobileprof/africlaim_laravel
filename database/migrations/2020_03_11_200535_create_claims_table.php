@@ -16,17 +16,17 @@ class CreateClaimsTable extends Migration
 		Schema::create('claims', function (Blueprint $table) {
 			$table->id();
 			$table->foreignId('user_id');
-			$table->foreignId('airline_id');
+			$table->foreignId('flight_id');
 			$table->foreignId('departure_id');
 			$table->foreignId('arrival_id');
+			$table->string('connecting')->nullable();
 			$table->date('dof');
 			$table->time('tof');
 			$table->string('complaint');
 			$table->string('complaint_duration');
 			$table->string('complaint_option');
+			$table->string('airline_reason')->nullable();
 			$table->timestamps();
-
-
 		});
 	}
 
