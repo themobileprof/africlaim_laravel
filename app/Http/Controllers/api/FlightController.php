@@ -20,16 +20,27 @@ class FlightController extends Controller
 			->orderBy('departure_scheduled', 'desc')
 			->get();
 
-		if ($flights) { // If there are records for the specified days
+		if (count($flights)) { // If there are records for the specified days
+			//return $flightDate;
 			return response()->json($flights);
 		} else { // If there are no records for this date, go get records with API, and store in tables
-			$apiFlights = new \App\Claims\FlightInfo($flightDate);
+			//return "No oh";
+			$apiFlights = new \App\Claims\FlightInfo();
+			$foutput = $apiFlights->info($flightDate);
 
-			if ($apiFlights) {
+			//echo "Here:";
+			//var_dump($foutput);
+			//exit();
+
+
+			if (count($foutput)) {
+				$flightList = [];
 				$i = 0;
-				foreach ($apiFlights as $flight) {
+				foreach ($foutput as $flight) {
 					$flightList[$i]['id'] = $this->store($flight);
 					$flightList[$i] = $flight;
+
+					$i++;
 				}
 			}
 
@@ -56,6 +67,9 @@ class FlightController extends Controller
 	public function store($flight)
 	{
 		//
+		//print_r($flight);
+		//exit();
+
 		$f = new Flight;
 
 		$f->flight_date = $flight['flight_date'];
@@ -63,7 +77,7 @@ class FlightController extends Controller
 		$f->flight_iata = $flight['flight_iata'];
 		$f->departure_airport = $flight['departure_airport'];
 		$f->departure_iata = $flight['departure_iata'];
-		$f->departure_schedule = $flight['departure_scheduled'];
+		$f->departure_scheduled = $flight['departure_scheduled'];
 		$f->departure_actual = $flight['departure_actual'];
 		$f->arrival_airport = $flight['arrival_airport'];
 		$f->arrival_iata = $flight['arrival_iata'];

@@ -4,8 +4,9 @@ namespace App\Claims;
 
 class FlightInfo
 {
+	public $flightArray;
 
-	public function __construct($flightDate)
+	public function info($flightDate)
 	{
 		// Get API data from aviationstack.com
 
@@ -22,8 +23,9 @@ class FlightInfo
 
 		$api_result = json_decode($json, true);
 
+
 		$i = 0;
-		foreach ($api_result['results'] as $flight) {
+		foreach ($api_result['data'] as $flight) {
 
 
 			$formattedOutput[$i]['flight_date'] = $flight['flight_date'];
@@ -39,7 +41,11 @@ class FlightInfo
 			$formattedOutput[$i]['arrival_actual'] = $flight['arrival']['actual'];
 			$formattedOutput[$i]['airline_name'] = $flight['airline']['name'];
 			$formattedOutput[$i]['airline_iata'] = $flight['arrival']['iata'];
+
+			$i++;
 		}
+		//print_r($formattedOutput);
+		//exit();
 
 		return $formattedOutput;
 	}

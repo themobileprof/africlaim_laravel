@@ -26,17 +26,17 @@ SET time_zone = "+00:00";
 -- Table structure for table `airlines`
 --
 
-DROP TABLE IF EXISTS `airlines`;
-CREATE TABLE `airlines` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `IATA` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ICAO` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `callsign` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country_id` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `active` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- DROP TABLE IF EXISTS `airlines`;
+-- CREATE TABLE `airlines` (
+  -- `id` bigint(20) UNSIGNED NOT NULL,
+  -- `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `alias` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `IATA` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `ICAO` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `callsign` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `country_id` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `active` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `airlines`
@@ -573,23 +573,23 @@ INSERT INTO `airlines` (`id`, `name`, `alias`, `IATA`, `ICAO`, `callsign`, `coun
 -- Table structure for table `airports`
 --
 
-DROP TABLE IF EXISTS `airports`;
-CREATE TABLE `airports` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country_id` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `IATA` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ICAO` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `latitude` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `longitude` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `altitude` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `timezone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `DST` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `db_timezone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `source` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- DROP TABLE IF EXISTS `airports`;
+-- CREATE TABLE `airports` (
+  -- `id` bigint(20) UNSIGNED NOT NULL,
+  -- `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `country_id` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `IATA` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `ICAO` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `latitude` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `longitude` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `altitude` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `timezone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `DST` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `db_timezone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `source` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `airports`
@@ -6344,12 +6344,12 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country_id`, `IATA`, `ICAO`, `lat
 -- Table structure for table `countries`
 --
 
-DROP TABLE IF EXISTS `countries`;
-CREATE TABLE `countries` (
-  `id` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `continent_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- DROP TABLE IF EXISTS `countries`;
+-- CREATE TABLE `countries` (
+  -- `id` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `country_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  -- `continent_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `countries`

@@ -6,32 +6,33 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAirlinesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('airlines', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('IATA');
-            $table->string('ICAO');
-            $table->string('callsign');
-            $table->string('country');
-            $table->string('active');
-            //$table->timestamps();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('airlines', function (Blueprint $table) {
+			$table->id();
+			$table->string('name');
+			$table->string('alias');
+			$table->string('IATA');
+			$table->string('ICAO');
+			$table->string('callsign');
+			$table->string('country_id', 3);
+			$table->string('active');
+			$table->timestamps();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('airlines');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('airlines');
+	}
 }

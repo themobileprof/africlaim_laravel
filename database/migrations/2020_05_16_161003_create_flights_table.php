@@ -20,13 +20,13 @@ class CreateFlightsTable extends Migration
 			$table->string('flight_iata');
 			$table->string('departure_airport');
 			$table->string('departure_iata');
-			$table->string('departure_scheduled');
-			$table->string('departure_actual');
+			$table->string('departure_scheduled')->nullable();
+			$table->string('departure_actual')->nullable();
 			$table->string('arrival_airport');
 			$table->string('arrival_iata');
-			$table->string('arrival_scheduled');
-			$table->string('arrival_actual');
-			$table->string('airline_name');
+			$table->string('arrival_scheduled')->nullable();
+			$table->string('arrival_actual')->nullable();
+			$table->string('airline_name')->nullable();
 			$table->string('airline_iata');
 			$table->timestamps();
 		});
