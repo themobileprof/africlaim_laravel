@@ -9,7 +9,7 @@
 	</div>
 	<div>
 		<!--<span v-on:click="processForm">Click </span>-->
-		<!--Output: {{ output }}-->
+		Output: {{ output }}
 	</div>
 	
 </div>

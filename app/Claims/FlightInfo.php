@@ -33,12 +33,12 @@ class FlightInfo
 			$formattedOutput[$i]['flight_iata'] = $flight['flight']['iata'];
 			$formattedOutput[$i]['departure_airport'] = $flight['departure']['airport'];
 			$formattedOutput[$i]['departure_iata'] = $flight['departure']['iata'];
-			$formattedOutput[$i]['departure_scheduled'] = $flight['departure']['scheduled'];
-			$formattedOutput[$i]['departure_actual'] = $flight['departure']['actual'];
+			$formattedOutput[$i]['departure_scheduled'] = $this->get_time($flight['departure']['scheduled']);
+			$formattedOutput[$i]['departure_actual'] = $this->get_time($flight['departure']['actual']);
 			$formattedOutput[$i]['arrival_airport'] = $flight['arrival']['airport'];
 			$formattedOutput[$i]['arrival_iata'] = $flight['arrival']['iata'];
-			$formattedOutput[$i]['arrival_scheduled'] = $flight['arrival']['scheduled'];
-			$formattedOutput[$i]['arrival_actual'] = $flight['arrival']['actual'];
+			$formattedOutput[$i]['arrival_scheduled'] = $this->get_time($flight['arrival']['scheduled']);
+			$formattedOutput[$i]['arrival_actual'] = $this->get_time($flight['arrival']['actual']);
 			$formattedOutput[$i]['airline_name'] = $flight['airline']['name'];
 			$formattedOutput[$i]['airline_iata'] = $flight['arrival']['iata'];
 
@@ -49,5 +49,17 @@ class FlightInfo
 
 		return $formattedOutput;
 	}
-}
 
+	public function get_time($t)
+	{
+		$tplode = explode("T", $t);
+		if (!empty($tplode[1])) {
+			$ttplode = explode("+", $tplode[1]);
+			return $ttplode[0];
+		} else {
+			return $tplode[0];
+		}
+		//print_r($ttplode);
+		//exit();
+	}
+}

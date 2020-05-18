@@ -44,6 +44,7 @@ class AirportController extends Controller
 	{
 		//return new AirportResource($airport);
 
-		return response()->json(Airport::find($airport)->first(), 200);
+		//return "Yes";
+		return response()->json(compact('airport'), 200);
 	}
 }

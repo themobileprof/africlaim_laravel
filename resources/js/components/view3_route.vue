@@ -17,11 +17,11 @@
 			 </div>
 			 <ul class="list-group">
 			  <li class="list-group-item list-group-item-action list-group-item-success" v-for="(flight, i) in flights" v-bind:key="i">
-				  <label class="flight_label row" :for="flight.flight.iata">
-					  <div class="flight_input col-1"><input type="radio" name="route" :id="flight.flight.iata" v-model="route" :value="flight.flight.iata"><span class="checkmark"></span></div>
-					  <div class="flight_time col-4">{{ flight.departure.scheduled }} <i class="fas fa-plane-departure fa-xs"></i> {{ flight.arrival.scheduled }}</div>
-					  <div class="airline col-4">{{ flight.airline.name }}</div>
-					  <div class="flight_number col-3">{{ flight.flight.iata }}</div>
+				  <label class="flight_label row" :for="flight.id">
+					  <div class="flight_input col-1"><input type="radio" name="route" :id="flight.id" v-model="route" :value="flight.id"><span class="checkmark"></span></div>
+					  <div class="flight_time col-4">{{ flight.departure_scheduled }} <i class="fas fa-plane-departure fa-xs"></i> {{ flight.arrival_scheduled }}</div>
+					  <div class="airline col-4">{{ flight.airline_name }}</div>
+					  <div class="flight_number col-3">{{ flight.flight_iata }}</div>
 				  </label>
 			  </li>
 			  
@@ -48,26 +48,15 @@
 		  }
 		},
         created() {
-				const fdate = this.$store.getters.getFields.flightdate
-
 
 				const params = {
-					access_key: '7c1b02ce0ae62383f31d37eda1e2fed2',
-					flight_date: fdate.substring(0,10)				
+					flight_date: this.$store.getters.getFields.flightdate,
+					departure: this.$store.getters.getFields.departure,
+					arrival: this.$store.getters.getFields.destination,
 				}
 
-				axios.get('https://api.aviationstack.com/v1/flights', {params}).then(response => {
+				axios.get('/api/flights', {params}).then(response => {
 					this.flights  = response.data;
-
-					// if (Array.isArray(this.flightInfo['results'])) {
-					//	this.flightInfo['results'].forEach(flight => {
-					//		if (!flight['live']['is_ground']) {
-					//			console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
-					//				`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
-					//				`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
-					//		}
-					//	});
-					//}
 				 })
 				 .catch(()=>{
                   
@@ -82,34 +71,6 @@
 			changetest(val){
 				this.testing = val; // Random var for testing Vuex getter value
 			},
-			getFlightInfo(){
-				const fdate = this.$store.getters.getFields.flightdate
-
-
-				const params = {
-					access_key: '7c1b02ce0ae62383f31d37eda1e2fed2',
-					flight_date: fdate.substring(0,10)				
-				}
-
-				axios.get('https://api.aviationstack.com/v1/flights', {params}).then(response => {
-					this.flights  = response.data;
-
-					// if (Array.isArray(this.flightInfo['results'])) {
-					//	this.flightInfo['results'].forEach(flight => {
-					//		if (!flight['live']['is_ground']) {
-					//			console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
-					//				`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
-					//				`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
-					//		}
-					//	});
-					//}
-				 })
-				 .catch(()=>{
-                  
-                  console.log("No Flight Info");
-                  
-               });
-			}
 		},
 		computed: {
 			showNext : function() {

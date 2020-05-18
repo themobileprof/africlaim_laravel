@@ -34,4 +34,4 @@ Route::get('/airport/{airport}', 'api\AirportController@show');
 
 
 // ROUTE FOR FLIGHT API
-Route::get('/flights/{flightDate}', 'api\FlightController@index');
+Route::get('/flights', 'api\FlightController@index');

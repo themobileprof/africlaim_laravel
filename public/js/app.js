@@ -1981,9 +1981,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     // Redirect to Start page on first load
-    this.$router.push({
-      name: 'start'
-    });
+    if (this.$router.currentRoute.name != 'start') {
+      this.$router.push({
+        name: 'start'
+      });
+    }
+
     this.isStart = true;
   },
   watch: {
@@ -2105,13 +2108,15 @@ __webpack_require__.r(__webpack_exports__);
     return {
       input_name: this.input_text,
       placehold: this.placehold_text,
+      airportId: this.airportParam,
       query: '',
       airports: [],
       arrowCounter: -1,
-      airportId: this.airportParam,
       filteredData: [],
       loader: false,
-      removedrop: false
+      // Loading Animator under input
+      removedrop: false,
+      test: ''
     };
   },
   methods: {
@@ -2171,7 +2176,7 @@ __webpack_require__.r(__webpack_exports__);
     if (this.airportId != undefined) {
       var thisAirportId = this.airportId;
       axios.get('/api/airport/' + thisAirportId.substr(0, 6)).then(function (response) {
-        _this.query = response.data.name;
+        _this.setResult(response.data.airport.name, response.data.airport.IATA);
       })["catch"](function () {
         console.log("Invalid Airport Id");
       });
@@ -2778,23 +2783,15 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var fdate = this.$store.getters.getFields.flightdate;
     var params = {
-      access_key: '7c1b02ce0ae62383f31d37eda1e2fed2',
-      flight_date: fdate.substring(0, 10)
+      flight_date: this.$store.getters.getFields.flightdate,
+      departure: this.$store.getters.getFields.departure,
+      arrival: this.$store.getters.getFields.destination
     };
-    axios.get('https://api.aviationstack.com/v1/flights', {
+    axios.get('/api/flights', {
       params: params
     }).then(function (response) {
-      _this.flights = response.data; // if (Array.isArray(this.flightInfo['results'])) {
-      //	this.flightInfo['results'].forEach(flight => {
-      //		if (!flight['live']['is_ground']) {
-      //			console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
-      //				`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
-      //				`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
-      //		}
-      //	});
-      //}
+      _this.flights = response.data;
     })["catch"](function () {
       console.log("No Flight Info");
     });
@@ -2805,30 +2802,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     changetest: function changetest(val) {
       this.testing = val; // Random var for testing Vuex getter value
-    },
-    getFlightInfo: function getFlightInfo() {
-      var _this2 = this;
-
-      var fdate = this.$store.getters.getFields.flightdate;
-      var params = {
-        access_key: '7c1b02ce0ae62383f31d37eda1e2fed2',
-        flight_date: fdate.substring(0, 10)
-      };
-      axios.get('https://api.aviationstack.com/v1/flights', {
-        params: params
-      }).then(function (response) {
-        _this2.flights = response.data; // if (Array.isArray(this.flightInfo['results'])) {
-        //	this.flightInfo['results'].forEach(flight => {
-        //		if (!flight['live']['is_ground']) {
-        //			console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
-        //				`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
-        //				`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
-        //		}
-        //	});
-        //}
-      })["catch"](function () {
-        console.log("No Flight Info");
-      });
     }
   },
   computed: {
@@ -43867,7 +43840,7 @@ var render = function() {
                         class: { "is-active": i === _vm.arrowCounter },
                         on: {
                           click: function($event) {
-                            return _vm.setResult(airport.name, airport.id)
+                            return _vm.setResult(airport.name, airport.IATA)
                           }
                         }
                       },
@@ -44880,7 +44853,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "flight_label row",
-                    attrs: { for: flight.flight.iata }
+                    attrs: { for: flight.id }
                   },
                   [
                     _c("div", { staticClass: "flight_input col-1" }, [
@@ -44893,18 +44866,14 @@ var render = function() {
                             expression: "route"
                           }
                         ],
-                        attrs: {
-                          type: "radio",
-                          name: "route",
-                          id: flight.flight.iata
-                        },
+                        attrs: { type: "radio", name: "route", id: flight.id },
                         domProps: {
-                          value: flight.flight.iata,
-                          checked: _vm._q(_vm.route, flight.flight.iata)
+                          value: flight.id,
+                          checked: _vm._q(_vm.route, flight.id)
                         },
                         on: {
                           change: function($event) {
-                            _vm.route = flight.flight.iata
+                            _vm.route = flight.id
                           }
                         }
                       }),
@@ -44912,17 +44881,17 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "flight_time col-4" }, [
-                      _vm._v(_vm._s(flight.departure.scheduled) + " "),
+                      _vm._v(_vm._s(flight.departure_scheduled) + " "),
                       _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-                      _vm._v(" " + _vm._s(flight.arrival.scheduled))
+                      _vm._v(" " + _vm._s(flight.arrival_scheduled))
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "airline col-4" }, [
-                      _vm._v(_vm._s(flight.airline.name))
+                      _vm._v(_vm._s(flight.airline_name))
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "flight_number col-3" }, [
-                      _vm._v(_vm._s(flight.flight.iata))
+                      _vm._v(_vm._s(flight.flight_iata))
                     ])
                   ]
                 )

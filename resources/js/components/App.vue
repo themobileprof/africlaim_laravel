@@ -71,7 +71,9 @@ export default {
 	},
 	created() {
 		// Redirect to Start page on first load
-		this.$router.push({ name: 'start' })
+		if (this.$router.currentRoute.name != 'start'){
+			this.$router.push({ name: 'start' })
+		}
 		this.isStart = true;
 	},
 	watch:{

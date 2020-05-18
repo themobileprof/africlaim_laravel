@@ -13,12 +13,26 @@ class FlightController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index($flightDate)
+	public function index(Request $request)
 	{
 		//
-		$flights = Flight::where('flight_date', $flightDate)
-			->orderBy('departure_scheduled', 'desc')
+		$flights = Flight::where('flight_date', $request->flight_date)
+			->where(function ($q) use ($request) {
+				$q->where('departure_iata', $request->departure)
+					->orWhere('arrival_iata', $request->arrival);
+			})
 			->get();
+
+
+
+
+
+		//$flights = $flights->where('departure_iata', $request->departure)
+		//->orWhere('arrival_iata', $request->arrival)
+		//->orderBy('departure_scheduled', 'desc')
+		//->get();
+
+		//return $flights;
 
 		if (count($flights)) { // If there are records for the specified days
 			//return $flightDate;
@@ -26,10 +40,10 @@ class FlightController extends Controller
 		} else { // If there are no records for this date, go get records with API, and store in tables
 			//return "No oh";
 			$apiFlights = new \App\Claims\FlightInfo();
-			$foutput = $apiFlights->info($flightDate);
+			$foutput = $apiFlights->info($request->flight_date);
 
 			//echo "Here:";
-			//var_dump($foutput);
+			//return $foutput;
 			//exit();
 
 
@@ -37,8 +51,14 @@ class FlightController extends Controller
 				$flightList = [];
 				$i = 0;
 				foreach ($foutput as $flight) {
-					$flightList[$i]['id'] = $this->store($flight);
-					$flightList[$i] = $flight;
+					// Store record in DB, and get flight Id
+					$flightId = $this->store($flight);
+
+					//Get recored with specific departure and arrival
+					if ($flight['departure_iata'] == $request->departure || $flight['arrival_iata'] == $request->arrival) {
+						$flightList[$i]['id'] = $flightId;
+						$flightList[$i] = $flight;
+					}
 
 					$i++;
 				}

@@ -4,7 +4,7 @@
 		<transition name="fade">
 			<div class="panel-footer autocomplete-results-panel" v-if="airports.length">
 				<ul class="list-group autocomplete-results">
-					<li class="list-group-item autocomplete-result" v-for="(airport, i) in airports" v-bind:key="i" v-on:click="setResult(airport.name, airport.id)" :class="{ 'is-active': i === arrowCounter }">
+					<li class="list-group-item autocomplete-result" v-for="(airport, i) in airports" v-bind:key="i" v-on:click="setResult(airport.name, airport.IATA)" :class="{ 'is-active': i === arrowCounter }">
 						{{ airport.name }} <br />
 						<small class="text-secondary" style="font-weight: bold;"><i class="fas fa-map-marker-alt"></i> {{ airport.city }}, {{ airport.country_id }} </small>
 					</li>
@@ -29,14 +29,15 @@
            return {
 				input_name: this.input_text,
 				placehold: this.placehold_text,
+			    airportId: this.airportParam,
 
 				query: '',
 				airports: [],
 				arrowCounter: -1,
-			    airportId: this.airportParam,
 			   filteredData: [],
-			   loader: false,
+			   loader: false, // Loading Animator under input
 			   removedrop: false,
+			   test: '',
            }
           },
           methods: {
@@ -100,10 +101,11 @@
 
 		 mounted() {
 			document.addEventListener('click', this.handleClickOutside);
+
 			 if (this.airportId != undefined){
 				 var thisAirportId = this.airportId;
 				 axios.get('/api/airport/' + thisAirportId.substr(0, 6)).then(response => {
-					this.query = response.data.name;
+					 this.setResult(response.data.airport.name, response.data.airport.IATA);
 				 })
 				 .catch(()=>{
                   
