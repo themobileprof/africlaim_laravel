@@ -2,30 +2,58 @@
 
 namespace App\Claims;
 
+//use App\Flight;
+use Illuminate\Support\Facades\DB;
+
 class FlightInfo
 {
-	public $flightArray;
+	protected $flightArray = [];
 
-	public function info($flightDate)
+
+	public function info($flightDate, $airport, $label = 'dep_iata')
 	{
 		// Get API data from aviationstack.com
+		$offset = 0;
 
-		$queryString = http_build_query([
-			'access_key' => '7c1b02ce0ae62383f31d37eda1e2fed2',
-			'flight_date' => $flightDate
-		]);
+		while ($offset <= 1000) {
 
-		$ch = curl_init(sprintf('%s?%s', 'https://api.aviationstack.com/v1/flights', $queryString));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$queryString = http_build_query([
+				'access_key' => '7c1b02ce0ae62383f31d37eda1e2fed2',
+				'flight_date' => $flightDate,
+				'offset' => $offset,
+				$label => $airport,
+			]);
 
-		$json = curl_exec($ch);
-		curl_close($ch);
+			$ch = curl_init(sprintf('%s?%s', 'https://api.aviationstack.com/v1/flights', $queryString));
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-		$api_result = json_decode($json, true);
+			$json = curl_exec($ch);
+			curl_close($ch);
 
+			$api_result = json_decode($json, true);
+
+
+			if ($api_result['pagination']['count'] > 0) {
+				$this->process($api_result['data']);
+			}
+
+			$offset += 100;
+
+			// Sleep for half a second
+			usleep(500000);
+		}
+
+
+
+
+		//return $formattedOutput;
+	}
+
+	protected function process($api_result)
+	{
 
 		$i = 0;
-		foreach ($api_result['data'] as $flight) {
+		foreach ($api_result as $flight) {
 
 
 			$formattedOutput[$i]['flight_date'] = $flight['flight_date'];
@@ -47,10 +75,10 @@ class FlightInfo
 		//print_r($formattedOutput);
 		//exit();
 
-		return $formattedOutput;
+		array_push($this->flightArray, $formattedOutput);
 	}
 
-	public function get_time($t)
+	protected function get_time($t)
 	{
 		$tplode = explode("T", $t);
 		if (!empty($tplode[1])) {
@@ -61,5 +89,74 @@ class FlightInfo
 		}
 		//print_r($ttplode);
 		//exit();
+	}
+
+	public function store()
+	{
+
+		//print_r($this->flightArray);
+		//exit();
+
+		if (count($this->flightArray)) {
+
+			foreach ($this->flightArray as $flights) {
+				foreach ($flights as $flight) {
+					//print_r($flight);
+					//exit();
+
+					// Store record in DB
+					DB::table('flights')->insertOrIgnore([
+
+						'flight_date' => $flight['flight_date'],
+						'flight_status' => $flight['flight_status'],
+						'flight_iata' => $flight['flight_iata'],
+						'departure_airport' => $flight['departure_airport'],
+						'departure_iata' => $flight['departure_iata'],
+						'departure_scheduled' => $flight['departure_scheduled'],
+						'departure_actual' => $flight['departure_actual'],
+						'arrival_airport' => $flight['arrival_airport'],
+						'arrival_iata' => $flight['arrival_iata'],
+						'arrival_scheduled' => $flight['arrival_scheduled'],
+						'arrival_actual' => $flight['arrival_actual'],
+						'airline_name' => $flight['airline_name'],
+						'airline_iata' => $flight['airline_iata'],
+
+					]);
+
+
+
+
+					//$f = new Flight;
+
+					//$f->flight_date = $flight['flight_date'];
+					//$f->flight_status = $flight['flight_status'];
+					//$f->flight_iata = $flight['flight_iata'];
+					//$f->departure_airport = $flight['departure_airport'];
+					//$f->departure_iata = $flight['departure_iata'];
+					//$f->departure_scheduled = $flight['departure_scheduled'];
+					//$f->departure_actual = $flight['departure_actual'];
+					//$f->arrival_airport = $flight['arrival_airport'];
+					//$f->arrival_iata = $flight['arrival_iata'];
+					//$f->arrival_scheduled = $flight['arrival_scheduled'];
+					//$f->arrival_actual = $flight['arrival_actual'];
+					//$f->airline_name = $flight['airline_name'];
+					//$f->airline_iata = $flight['airline_iata'];
+
+					//if ($f->save()) {
+					//return true;
+					//} else {
+					//return false;
+					//}
+
+					//echo $f->id;
+					//exit();
+				}
+			}
+
+
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

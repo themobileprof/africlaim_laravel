@@ -16,8 +16,8 @@ class CreateFlightsTable extends Migration
 		Schema::create('flights', function (Blueprint $table) {
 			$table->id();
 			$table->date('flight_date');
-			$table->string('flight_status');
-			$table->string('flight_iata');
+			$table->string('flight_status')->nullable();
+			$table->string('flight_iata')->nullable();
 			$table->string('departure_airport');
 			$table->string('departure_iata');
 			$table->string('departure_scheduled')->nullable();
@@ -27,8 +27,11 @@ class CreateFlightsTable extends Migration
 			$table->string('arrival_scheduled')->nullable();
 			$table->string('arrival_actual')->nullable();
 			$table->string('airline_name')->nullable();
-			$table->string('airline_iata');
+			$table->string('airline_iata')->nullable();
 			$table->timestamps();
+
+
+			$table->unique(['flight_date', 'flight_iata', 'departure_iata', 'departure_scheduled', 'arrival_iata'], 'date_flight_departure_time_arrival');
 		});
 	}
 

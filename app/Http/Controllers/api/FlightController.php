@@ -16,55 +16,53 @@ class FlightController extends Controller
 	public function index(Request $request)
 	{
 		//
-		$flights = Flight::where('flight_date', $request->flight_date)
-			->where(function ($q) use ($request) {
-				$q->where('departure_iata', $request->departure)
-					->orWhere('arrival_iata', $request->arrival);
-			})
-			->get();
+
+		$flights = new \App\Claims\GetFlights;
+
+		$params['flight_date'] = $request->flight_date;
+		$params['departure'] = $request->departure;
+		$params['arrival'] = $request->arrival;
 
 
 
+		$flights1a = $flights->get_flights($params);
+		//$flights1b = $flights->get_flights_others($params);
 
+		$flights1['main'] = $flights1a;
+		//$flights1['others'] = $flights1b;
 
-		//$flights = $flights->where('departure_iata', $request->departure)
-		//->orWhere('arrival_iata', $request->arrival)
-		//->orderBy('departure_scheduled', 'desc')
-		//->get();
+		//echo "Seen Me";
+		//print_r($flights1a);
+		//exit();
 
-		//return $flights;
-
-		if (count($flights)) { // If there are records for the specified days
+		if (count($flights1a)) { // If there are records for the specified days
 			//return $flightDate;
-			return response()->json($flights);
+			return response()->json($flights1);
 		} else { // If there are no records for this date, go get records with API, and store in tables
 			//return "No oh";
-			$apiFlights = new \App\Claims\FlightInfo();
-			$foutput = $apiFlights->info($request->flight_date);
+			$apiFlights = new \App\Claims\FlightInfo;
+			$apiFlights->info($request->flight_date, $request->departure, "dep_iata");
+			$apiFlights->info($request->flight_date, $request->arrival, "arr_iata");
 
-			//echo "Here:";
-			//return $foutput;
-			//exit();
+			if ($apiFlights->store()) {
+
+				$flights2a = $flights->get_flights($params);
+				$flights2b = $flights->get_flights_others($params);
+
+				$flights2['main'] = $flights2a;
+				$flights2['others'] = $flights2b;
 
 
-			if (count($foutput)) {
-				$flightList = [];
-				$i = 0;
-				foreach ($foutput as $flight) {
-					// Store record in DB, and get flight Id
-					$flightId = $this->store($flight);
+				//echo "Seen you";
+				//print_r($flights2a);
+				//exit();
 
-					//Get recored with specific departure and arrival
-					if ($flight['departure_iata'] == $request->departure || $flight['arrival_iata'] == $request->arrival) {
-						$flightList[$i]['id'] = $flightId;
-						$flightList[$i] = $flight;
-					}
-
-					$i++;
+				if (count($flights2a) || count($flights2b)) {
+					return response()->json($flights2);
+				} else {
+					return false;
 				}
 			}
-
-			return response()->json($flightList);
 		}
 	}
 

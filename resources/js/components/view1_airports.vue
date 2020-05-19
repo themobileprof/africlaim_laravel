@@ -20,7 +20,7 @@
   
 	  <div class="col-xs-12 col-md-4">
 			<label for="end-airport" class="control-label pt-2">
-				Final destination
+				Destination
 			</label>
 			<airport 
 				input_text='destination' 

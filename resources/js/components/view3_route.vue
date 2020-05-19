@@ -9,23 +9,23 @@
 			  <div class="list-group-item list-group-item-light">
 				  <label class="top_label row">
 					  <div class="col-1"></div>
-					  <div class="col-4">Scheduled Time</div>
-					  <div class="col-4">Airline</div>
-					  <div class="col-3">Flight Number</div>
+					  <div class="col-6">Scheduled Time</div>
+					  <div class="col-3">Airline</div>
+					  <div class="col-2">Flight Number</div>
 				  </label>
 			  </div>
 			 </div>
-			 <ul class="list-group">
-			  <li class="list-group-item list-group-item-action list-group-item-success" v-for="(flight, i) in flights" v-bind:key="i">
-				  <label class="flight_label row" :for="flight.id">
-					  <div class="flight_input col-1"><input type="radio" name="route" :id="flight.id" v-model="route" :value="flight.id"><span class="checkmark"></span></div>
-					  <div class="flight_time col-4">{{ flight.departure_scheduled }} <i class="fas fa-plane-departure fa-xs"></i> {{ flight.arrival_scheduled }}</div>
-					  <div class="airline col-4">{{ flight.airline_name }}</div>
-					  <div class="flight_number col-3">{{ flight.flight_iata }}</div>
-				  </label>
-			  </li>
-			  
-			</ul> 
+
+
+			 <flights 
+			 v-if="loaded"
+			:flightsData="flightsData"
+			 @route="setRoute"
+			 >
+			 </flights>
+			<div v-else>
+			  <img :src="'/img/turning.gif'" style="height:50px; padding-left:10px;" alt="loading...">
+			</div>
 		</div>
 	</div>
 	<div class="row">
@@ -38,16 +38,21 @@
 </template>
 
 <script>
+	import flights from './subcomponents/view3/flights'
     export default {
+		components: {
+			flights,
+		},
 		data() {
 		  return {
 			mode: 'single',
-			route: null,
 			testing: '',
-			flights: [],
+			flightsData: [],
+			loaded: false,
+			route: false,
 		  }
 		},
-        created() {
+        async mounted() {
 
 				const params = {
 					flight_date: this.$store.getters.getFields.flightdate,
@@ -55,29 +60,36 @@
 					arrival: this.$store.getters.getFields.destination,
 				}
 
-				axios.get('/api/flights', {params}).then(response => {
-					this.flights  = response.data;
-				 })
-				 .catch(()=>{
-                  
-                  console.log("No Flight Info");
-                  
-               });
+				// axios.get('/api/flights', {params}).then(response => {
+				//	this.flightsData  = response.data;
+				// })
+				// .catch(()=>{
+               //   
+               //   console.log("No Flight Info");
+               //   
+               //});
+				try {
+					let response = await axios.get('/api/flights', {params})
+					this.flightsData = response.data;
+					this.loaded = true;
+
+					if (this.flightsData.main.length == 0 && this.flightsData.others.length == 0){
+						// If Route is not found, Load next page
+						this.$router.push({name: 'complaint'})
+					}
+				  } catch(error) {
+					 // error
+					 console.log("No Flight Info");
+				  }
         },
 		methods: {
-			setRoute(Route){
-				this.route = Route
-			},
-			changetest(val){
-				this.testing = val; // Random var for testing Vuex getter value
+			setRoute(){
+				this.route = true
 			},
 		},
 		computed: {
 			showNext : function() {
 				 if(this.route) {
-				   // perform some logic on preference
-				   // logic results true or false
-					 this.$store.commit('ADD_FIELD', { 'route': this.route })
 				   return true
 				 } else {
 					 return false
@@ -93,67 +105,5 @@
 <style scoped>
 .top_label {
 	font-size: 11px;
-}
-
-
-/* The container */
-.flight_label {
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  margin-bottom: 0;
-  font-size: 12px;
-}
-
-/* Hide the browser's default radio button */
-.flight_label input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  background-color: #eee;
-  border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-.flight_label:hover input ~ .checkmark {
-  background-color: #FFFFFF;
-}
-
-/* When the radio button is checked, add a blue background */
-.flight_label input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.flight_label input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.flight_label .checkmark:after {
- 	top: 6px;
-	left: 6px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
 }
 </style>
