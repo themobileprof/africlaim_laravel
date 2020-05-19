@@ -15,7 +15,7 @@ class GetFlights
 		$flights  = Flight::where('flight_date', '=', $params['flight_date'])
 			->where('departure_iata', '=', $params['departure'])
 			->where('arrival_iata', '=', $params['arrival'])
-			->orderBy('departure_scheduled', 'desc')
+			->orderBy('departure_scheduled', 'asc')
 			->get();
 
 		//dd(\DB::getQueryLog());
@@ -36,7 +36,7 @@ class GetFlights
 				$q->where('departure_iata', $params['departure'])
 					->orWhere('arrival_iata', $params['arrival']);
 			})
-			->orderBy('departure_scheduled', 'desc')
+			->orderBy('departure_scheduled', 'asc')
 			->get();
 		//dd(\DB::getQueryLog());
 		//print_r($flights);
