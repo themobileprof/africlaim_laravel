@@ -13,7 +13,9 @@
 
 						@if ( request()->get('claim') )
 						<div class="form-group row px-4">
-							We have gotten your claim details. Kindly register or login to your account to view details of your Claim submission. Thank you for trusting Africlaim with your Claims processing.
+							We have gotten your claim details. Kindly register or
+							<a href="{{ route('login?claim='.request()->get('claim')) }}">Login</a>
+							to your account to view details of your Claim submission. Thank you for trusting Africlaim with your Claims processing.
 							<input id="claim" type="hidden" class="form-control" name="claim" value="{{ request()->get('claim') }}" required autocomplete="claim">
 						</div>
 						@endif

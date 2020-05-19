@@ -11,6 +11,10 @@
 					<form method="POST" action="{{ route('login') }}">
 						@csrf
 
+						@if ( request()->get('claim') )
+						<input id="claim" type="hidden" class="form-control" name="claim" value="{{ request()->get('claim') }}" required autocomplete="claim">
+						@endif
+
 						<div class="form-group row">
 							<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
