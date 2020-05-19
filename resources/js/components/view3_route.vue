@@ -73,7 +73,7 @@
 					this.flightsData = response.data;
 					this.loaded = true;
 
-					if (this.flightsData.main.length == 0 && this.flightsData.others.length == 0){
+					if (this.flightsData.length == 0 || this.flightsData == "" || this.flightsData == undefined || this.flightsData == null){
 						// If Route is not found, Load next page
 						this.$router.push({name: 'complaint'})
 					}

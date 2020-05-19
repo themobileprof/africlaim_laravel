@@ -32,16 +32,16 @@
 		route:"flight2"
 
 		<br>
-		<input id="advanceCancel" type="text" name="advanceCancel" value="more14"><br>
-		<input id="airlineReason" type="text" name="airlineReason" value="airport"><br>
-		<input id="claimType" type="text" name="claimType" value="cancelClaim"><br>
-		<input id="connectingFlight" type="text" name="connectingFlight" value="Yes"><br>
-		<input id="conn0" type="text" name="conn0" value="3282"><br>
-		<input id="delayedHours" type="text" name="delayedHours" value="4"><br>
-		<input id="departure" type="text" name="departure" value="273"><br>
-		<input id="destination" type="text" name="destination" value="174"><br>
-		<input id="flightdate" type="text" name="flightdate" value="Sun May 03 2020 00:00:00 GMT+0100 (West Africa Standard Time)"><br>
-		<input id="route" type="text" name="route" value="flight2"><br>
+		advanceCancel<input id="advanceCancel" type="text" name="advanceCancel" value="more14"><br>
+		AirlineReason<input id="airlineReason" type="text" name="airlineReason" value="forgot"><br>
+		claimType<input id="claimType" type="text" name="claimType" value="cancelClaim"><br>
+		connectingFlight<input id="connectingFlight" type="text" name="connectingFlight" value="Yes"><br>
+		conn0<input id="conn0" type="text" name="conn0" value="3282"><br>
+		delayedHours<input id="delayedHours" type="text" name="delayedHours" value="4"><br>
+		departure<input id="departure" type="text" name="departure" value="LOS"><br>
+		destination<input id="destination" type="text" name="destination" value="YXU"><br>
+		flightdate<input id="flightdate" type="text" name="flightdate" value="2015-02-10"><br>
+		route<input id="route" type="text" name="route" value="20"><br>
 
 
 		<button type="submit" value="Submit">Submit</button>

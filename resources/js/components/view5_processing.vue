@@ -7,9 +7,7 @@
 		</div>
 		
 	</div>
-	<div>
-		<!--<span v-on:click="processForm">Click </span>-->
-		Output: {{ output }}
+	<div v-html="output">
 	</div>
 	
 </div>
@@ -20,7 +18,7 @@
 		data() {
 			return {
 				formFields: {},
-				output: ''
+				output: null,
 			}
 		},
 		mounted() {

@@ -80,10 +80,17 @@ class ClaimController extends Controller
 
 
 
+		if ($request->route) {
+			$claim->flight_id = $request->route;
+		} else {
+			$claim->flight_id = 0;
+		}
 
-		$claim->airline_id = 1; //$request->route;
-		$claim->departure_id = $request->departure;
-		$claim->arrival_id = $request->destination;
+		$departure = DB::table('airports')->select('id')->where('IATA', '=', $request->departure)->first();
+		$claim->departure_id = $departure->id;
+
+		$arrival = DB::table('airports')->select('id')->where('IATA', '=', $request->destination)->first();
+		$claim->arrival_id = $arrival->id;
 
 		$dof = explode("00:00:00", $request->flightdate);
 		$claim->dof = date('Y-m-d', strtotime($dof[0]));
@@ -96,6 +103,8 @@ class ClaimController extends Controller
 			$claim->complaint_option = $request->advanceCancel;
 		} elseif ($request->claimType == "denyClaim") {
 			$claim->complaint_option = $request->bumped;
+		} else {
+			$claim->complaint_option = "Delayed";
 		}
 
 		$claim->airline_reason = $request->airlineReason;

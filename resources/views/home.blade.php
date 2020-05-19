@@ -29,7 +29,7 @@
 					<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fas fa-envelope fa-fw"></i>
 						<!-- Counter - Messages -->
-						<span class="badge badge-danger badge-counter">7</span>
+						<span class="badge badge-danger badge-counter">1</span>
 					</a>
 
 				</li>
@@ -124,13 +124,32 @@
 							<h6 class="m-0 font-weight-bold text-primary">{{ $claims[0]->departure->name }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claims[0]->arrival->name }} ({{ $claims[0]->dof }})</h6>
 						</div>
 						<div class="card-body">
+
+
+
+
+
+							@if($claims[0]->departure->country_id == 'NG' || $claims[0]->arrival->country_id == 'NG')
+							<h4 class="small font-weight-bold">Claims Processing <span class="float-right">100%</span></h4>
+							<div class="progress mb-4">
+								<div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+
+							<div class="text-center">
+
+								<a href="{{ asset('pdf/NigeriaClaims.pdf') }}">
+									<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{{ asset('img/download-pdf.png') }}" alt=""></a>
+							</div>
+							@else
 							<h4 class="small font-weight-bold">Claims Processing <span class="float-right">20%</span></h4>
 							<div class="progress mb-4">
 								<div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
+
 							<div class="text-center">
-								<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/world.png" alt="">
+								<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{{ asset('img/world.png') }}" alt="">
 							</div>
+							@endif
 							<p></p>
 							<a target="_blank" rel="nofollow" href="#">Details &rarr;</a>
 						</div>

@@ -16,7 +16,7 @@ class CreateClaimsTable extends Migration
 		Schema::create('claims', function (Blueprint $table) {
 			$table->id();
 			$table->foreignId('user_id');
-			$table->foreignId('flight_id');
+			$table->foreignId('flight_id')->nullable();
 			$table->foreignId('departure_id');
 			$table->foreignId('arrival_id');
 			$table->string('connecting')->nullable();

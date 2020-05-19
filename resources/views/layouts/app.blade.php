@@ -31,7 +31,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+		<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar" style="background-color: #E5F9FC;">
 
 			<!-- Sidebar - Brand -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
@@ -41,22 +41,27 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
+			@if (Auth::check())
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active">
-				<a class="nav-link" href="{{ url('/home') }}">
-					<i class="fas fa-fw fa-tachometer-alt"></i>
-					<span>Dashboard</span></a>
+				@if (auth()->user()->is_admin)
+				<a class="nav-link" href="{{ url('/admin/home') }}">
+					@else
+					<a class="nav-link" href="{{ url('/home') }}">
+						@endif
+						<i class="fas fa-fw fa-tachometer-alt"></i>
+						<span>Dashboard</span></a>
 			</li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
-
+			@endif
 
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-					<i class="fas fa-fw fa-folder"></i>
+					<i class="fas fa-fw fa-bars"></i>
 					<span>Menu</span>
 				</a>
 				<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -76,7 +81,7 @@
 
 			<!-- Sidebar Toggler (Sidebar) -->
 			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
+				<button class="rounded-circle border-0" id="sidebarToggle" style="background-color: #1d2a55;"></button>
 			</div>
 
 		</ul>

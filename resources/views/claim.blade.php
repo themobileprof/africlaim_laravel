@@ -37,7 +37,7 @@
 			</div>
 			<div class="col-sm-6">
 				<ul class="list-group">
-					<li class="list-group-item"><strong>Airline:</strong> {{ $claim->airline->name }}</li>
+					<li class="list-group-item"><strong>Airline:</strong> {{ $claim->flight->airline_name }}</li>
 					<li class="list-group-item"><strong>Connecting Flights:</strong>
 						{{ $claim->connections }}
 					</li>

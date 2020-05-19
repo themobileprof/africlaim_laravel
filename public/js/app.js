@@ -2959,7 +2959,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.flightsData = response.data;
               _this.loaded = true;
 
-              if (_this.flightsData.main.length == 0 && _this.flightsData.others.length == 0) {
+              if (_this.flightsData.length == 0 || _this.flightsData == "" || _this.flightsData == undefined || _this.flightsData == null) {
                 // If Route is not found, Load next page
                 _this.$router.push({
                   name: 'complaint'
@@ -3177,13 +3177,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       formFields: {},
-      output: ''
+      output: null
     };
   },
   mounted: function mounted() {
@@ -46339,7 +46337,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", [_vm._v("\n\t\tOutput: " + _vm._s(_vm.output) + "\n\t")])
+    _c("div", { domProps: { innerHTML: _vm._s(_vm.output) } })
   ])
 }
 var staticRenderFns = []

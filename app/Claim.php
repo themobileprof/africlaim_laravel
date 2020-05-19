@@ -10,7 +10,7 @@ class Claim extends Model
 
 	protected $fillable = [
 		'user_id',
-		'airline_id',
+		'flight_id',
 		'departure_id',
 		'arrival_id',
 		'connecting',
@@ -31,9 +31,9 @@ class Claim extends Model
 		return $this->belongsTo('App\User');
 	}
 
-	public function airline()
+	public function flight()
 	{
-		return $this->belongsTo('App\Airline');
+		return $this->belongsTo('App\Flight');
 	}
 
 	public function arrival()
