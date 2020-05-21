@@ -2,26 +2,27 @@
 
 namespace App\Claims;
 
-use App\Claim;
+//use App\Claim;
 use App\Airport;
 use Illuminate\Support\Facades\DB;
 
 class ProcessClaim
 {
-	public $eligible = false;
+	public $eligible;
+	public $claim;
 
-	public $airline_continent;
-	public $arrival_continent;
-	public $departure_continent;
-	public $connection_continents = [];
+	public $airline = [];
+	public $arrival = [];
+	public $departure = [];
+	public $connection_continents;
 
 	public function __construct($claim)
 	{
 		// get request continents
-		//$claim = Claim::find($claimId);
 		//print_r($claim);
 		//exit();
 
+		$this->claim = $claim;
 
 		$this->arrival_continent = $this->getAirportContinent($claim->arrival_id);
 		$this->departure_continent = $this->getAirportContinent($claim->departure_id);
@@ -30,7 +31,7 @@ class ProcessClaim
 		foreach ($conn as $connection) {
 			$connection = str_replace(' ', '', $connection);
 			if (!empty($connection)) {
-				$this->connection_continents[] = $this->getAirportContinent($connection);
+				$this->connection_continents = $this->getAirportContinent($connection) . ",";
 			}
 		}
 
@@ -47,7 +48,10 @@ class ProcessClaim
 		//$airport = $airport->toJson();
 		//print_r($airport);
 		//exit();
-		return $airport->country->continent_code;
+		$airportArray['country'] = $airport->country->id;
+		$airportArray['continent'] = $airport->country->continent_code;
+
+		return $airportArray;
 	}
 
 	public function getAirlineContinent($airline)
@@ -56,14 +60,49 @@ class ProcessClaim
 
 		$airline_continent = DB::table('countries')->select('continent_code')->where('id', '=', $airline_det->country_id)->first();
 
-		return $airline_continent;
+		$airlineArray['country'] = $airline_det->country_id;
+		$airlineArray['country'] = $airline_continent;
+
+		return $airlineArray;
 	}
 
 	public function process_location()
 	{
-		// Get airline continent and Country -- // Only Europe and Nigeria
-		$this->eligible = ($this->departure_continent == 'EU' && $this->arrival_continent == 'EU')	? true : false;
+		// Process airline Continent -- // Only Europe
+		if ($this->departure['continent'] == 'EU') { // Automatic eligibility
+			//$this->eligible = true;
+		} else {
+			if (strpos($this->connection_continents, 'EU')) {
+				//$this->eligible = true;
+			} else {
+				if ($this->airline['continent'] == 'EU' && $this->arrival['continent'] == 'EU') {
+					//$this->eligible = true;
+				} else {
+					$this->eligible = false;
+				}
+			}
+		}
+
+
+		// Process airline Countries - Nigeria
+		if (($this->departure['country'] == 'NG' || $this->arrival['country'] == 'NG') && $this->airline['continent'] != 'EU') {
+			if ($this->airline['country'] == 'NG' && ($this->departure['country'] != 'NG' || $this->arrival['country'] != 'NG')) {
+				$this->eligible = false;
+			} else if ($this->airline['country'] != 'NG' && $this->departure['country'] == 'NG' && $this->arrival['country'] == 'NG') {
+				$this->eligible = false;
+			}
+		}
+
+
+		// Process airline Countries - US
+		if ($this->departure['country'] == 'US' && $this->arrival['country'] == 'US') {
+			if ($this->claim->complaint == ('cancelClaim' || 'delayClaim')) {
+				$this->eligible = false;
+			}
+		}
 	}
+
+
 
 	public function processDuration()
 	{
