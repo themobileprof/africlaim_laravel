@@ -66,8 +66,9 @@ Route::get('/claims/{any}', function () {
 
 
 
-// Route for testing form submission
+// Route for testing
 Route::get('/test', function () {
 	return view('formtest');
 });
 
+Route::get('/test/{claim}', 'ClaimController@process');

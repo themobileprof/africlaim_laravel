@@ -120,17 +120,27 @@ class ClaimController extends Controller
 		//$claims = Claim::create($request->all());
 
 		// Process Form logic, call class
-		if (\App\Claims\ProcessClaim::process($claim->id)) {
-			//if user already logged in, redirect to dashboard
-			if (Auth::check()) {
-				return redirect()->route('/home', ['claim' => $claim->id]);
-			} else {
-				// Display registration form
-				return redirect()->route('register', ['claim' => $claim->id]);
-			}
-		} else {
-			//If the form does not pass processing
-			return response()->json(["message" => "Sorry, your flight is not eligible for Claims"]);
+		//if (new \App\Claims\ProcessClaim::process($claim->id)) {
+		////if user already logged in, redirect to dashboard
+		//} else {
+		////If the form does not pass processing
+		//return response()->json(["message" => "Sorry, your flight is not eligible for Claims"]);
+		//}
+	}
+
+	// Process Claim
+	public function process(claim $claim)
+	{
+		$claims = new \App\Claims\ProcessClaim($claim);
+
+
+		echo "\n Claim: " . $claim;
+		echo "\n Airline: " . $claims->airline_continent;
+		echo "\n Arrival: " . $claims->arrival_continent;
+		echo "\n Departure: " . $claims->departure_continent;
+
+		foreach ($claims->connection_continents as $conn) {
+			echo "\n Conne: " . $conn;
 		}
 	}
 

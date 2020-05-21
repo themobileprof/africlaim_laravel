@@ -33,7 +33,7 @@ class Claim extends Model
 
 	public function flight()
 	{
-		return $this->belongsTo('App\Flight');
+		return $this->belongsTo('App\Flight', 'flight_id');
 	}
 
 	public function arrival()
