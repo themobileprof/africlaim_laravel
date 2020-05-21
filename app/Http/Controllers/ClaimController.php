@@ -70,7 +70,7 @@ class ClaimController extends Controller
 			$conStr = "conn" . $i;
 
 			if (!empty($request->$conStr)) {
-				$connectionsString .= $request->$conStr . ", ";
+				$connectionsString .= $request->$conStr . ",";
 			} else {
 				break;
 			}

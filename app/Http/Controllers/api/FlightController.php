@@ -40,7 +40,7 @@ class FlightController extends Controller
 			return response()->json($flights1);
 		} else { // If there are no records for this date, go get records with API, and store in tables
 			//return "No oh";
-			$apiFlights = new \App\Claims\FlightInfo;
+			$apiFlights = new \App\Claims\putFlights;
 			$apiFlights->info($request->flight_date, $request->departure, "dep_iata");
 			$apiFlights->info($request->flight_date, $request->arrival, "arr_iata");
 

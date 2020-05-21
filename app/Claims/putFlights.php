@@ -5,7 +5,7 @@ namespace App\Claims;
 //use App\Flight;
 use Illuminate\Support\Facades\DB;
 
-class FlightInfo
+class putFlights
 {
 	protected $flightArray = [];
 
