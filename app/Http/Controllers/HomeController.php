@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Claim;
 
@@ -24,11 +25,30 @@ class HomeController extends Controller
 	 *
 	 * @return \Illuminate\Contracts\Support\Renderable
 	 */
-	public function index()
+	public function index(Request $request)
 	{
+		$claimActiveId = $request->claim_id;
 		$claims = Claim::where('user_id', Auth::id())->get();
 
-		return view('home', ['claims' => $claims]);
+		// Get Featured Details
+		foreach ($claims as $claim) {
+			if ($claim->id == $claimActiveId) {
+				$claimActive = $claim;
+				break;
+			} else {
+				$claimActive = $claim;
+			}
+		}
+
+		// Get eligibility
+		$eligible = DB::table('eligibilities')
+			->select('eligible')
+			->where('claim_id', '=', $claimActive->id)
+			->first();
+
+		$claimActive->push($eligible);
+
+		return view('home', ['claims' => $claims, 'claim_det' => $claimActive]);
 	}
 
 	/**

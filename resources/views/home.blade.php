@@ -98,11 +98,11 @@
 						<div class="card-body" style="font-size: 11px;">
 							<ul class="list-group list-group-flush">
 
-								@foreach ($claims as $claim)
+								@foreach ($claims as $num=>$claim)
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-sm-5">
-											<a href="#">{{ $claim->departure->city }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claim->arrival->city }}</a>
+											<a href="?claim_number={{ $num }}">{{ $claim->departure->city }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claim->arrival->city }}</a>
 										</div>
 										<div class="col-sm-3">{{ $claim->complaint }}</div>
 										<div class="col-sm-4">{{ $claim->dof }}</div>
@@ -119,9 +119,9 @@
 
 					<!-- Claim Details -->
 					<div class="card shadow mb-4">
-						@isset($claims[0])
+						@isset($claim_det)
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">{{ $claims[0]->departure->name }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claims[0]->arrival->name }} ({{ $claims[0]->dof }})</h6>
+							<h6 class="m-0 font-weight-bold text-primary">{{ $claim_det->departure->name }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claims_det->arrival->name }} ({{ $claim_det->dof }})</h6>
 						</div>
 						<div class="card-body">
 
@@ -129,7 +129,7 @@
 
 
 
-							@if($claims[0]->departure->country_id == 'NG' || $claims[0]->arrival->country_id == 'NG')
+							@if($claim_det->departure->country_id == 'NG' || $claim_det->arrival->country_id == 'NG')
 							<h4 class="small font-weight-bold">Claims Processing <span class="float-right">100%</span></h4>
 							<div class="progress mb-4">
 								<div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
@@ -141,11 +141,24 @@
 									<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{{ asset('img/download-pdf.png') }}" alt=""></a>
 							</div>
 							@else
-							<h4 class="small font-weight-bold">Claims Processing <span class="float-right">20%</span></h4>
+							<h4 class="small font-weight-bold">Claims Processing <span class="float-right">40%</span></h4>
 							<div class="progress mb-4">
-								<div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+								<div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
+							<div>
+								@if($claim_det->eligible == '1')
+								<div class="eligible">
+									<i class="fas fa-check fa-bg text-success"></i>
+									<strong>Your claim is Eligible for Processing</strong>. The next Step is Validation</strong>, we will keep you posted on the status of that. Check back soon.</div>
 
+								@else
+
+								<div class="not-eligible">
+									<li class="fas fa-times fa-bg text-danger"></i>This Claim cannot be Validated, it didn't pass Eligibility
+								</div>
+
+								@endif
+							</div>
 							<div class="text-center">
 								<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{{ asset('img/world.png') }}" alt="">
 							</div>
