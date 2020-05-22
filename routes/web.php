@@ -71,4 +71,4 @@ Route::get('/test', function () {
 	return view('formtest');
 });
 
-Route::get('/test/{claim}', 'ClaimController@process');
+Route::get('/test/{claim}', 'ClaimController@tester');

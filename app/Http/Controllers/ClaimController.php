@@ -110,6 +110,7 @@ class ClaimController extends Controller
 		$claim->airline_reason = $request->airlineReason;
 
 		if ($claim->save()) {
+			$this->process($claim);
 			return $claim->id;
 		} else {
 			return false;
@@ -117,31 +118,19 @@ class ClaimController extends Controller
 		//return "Of course " . $connectionsString . " this here.";
 
 
-		//$claims = Claim::create($request->all());
-
-		// Process Form logic, call class
-		//if (new \App\Claims\ProcessClaim::process($claim->id)) {
-		////if user already logged in, redirect to dashboard
-		//} else {
-		////If the form does not pass processing
-		//return response()->json(["message" => "Sorry, your flight is not eligible for Claims"]);
-		//}
 	}
 
+
 	// Process Claim
-	public function process(claim $claim)
+	public function process($claim)
 	{
 		$claims = new \App\Claims\ProcessClaim($claim);
 
+		// Process the claim
+		$claims->processLocation();
 
-		echo "\n Claim: " . $claim;
-		echo "\n Airline: " . $claims->airline_continent;
-		echo "\n Arrival: " . $claims->arrival_continent;
-		echo "\n Departure: " . $claims->departure_continent;
-
-		foreach ($claims->connection_continents as $conn) {
-			echo "\n Conne: " . $conn;
-		}
+		// Store the Processed data
+		print_r($claims->store());
 	}
 
 	/**
@@ -200,5 +189,26 @@ class ClaimController extends Controller
 	public function destroy($claim)
 	{
 		//
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// TEST method
+	public function tester(Claim $claim)
+	{
+		$this->process($claim);
 	}
 }

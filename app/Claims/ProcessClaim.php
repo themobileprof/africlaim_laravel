@@ -24,20 +24,22 @@ class ProcessClaim
 
 		$this->claim = $claim;
 
-		$this->arrival_continent = $this->getAirportContinent($claim->arrival_id);
-		$this->departure_continent = $this->getAirportContinent($claim->departure_id);
+		$this->arrival = $this->getAirportContinent($claim->arrival_id);
+		$this->departure = $this->getAirportContinent($claim->departure_id);
 
 		$conn = explode(",", $claim->connecting);
 		foreach ($conn as $connection) {
 			$connection = str_replace(' ', '', $connection);
 			if (!empty($connection)) {
-				$this->connection_continents = $this->getAirportContinent($connection) . ",";
+
+				$cc = $this->getAirportContinent($connection);
+				$this->connection_continents .= $cc['continent'] . ","; // Unly store continents
 			}
 		}
 
 		// Get Airline continent
 		if (!empty($claim->flight_id)) {
-			$this->airline_continent = $this->getAirlineContinent($claim->flight->airline_name);
+			$this->airline = $this->getAirlineContinent($claim->flight->airline_name);
 		}
 	}
 
@@ -58,17 +60,19 @@ class ProcessClaim
 	{
 		$airline_det = DB::table('airlines')->where("name", "LIKE", "%$airline%")->first();
 
+		//print_r($airline_det);
+		//exit();
 		$airline_continent = DB::table('countries')->select('continent_code')->where('id', '=', $airline_det->country_id)->first();
 
 		$airlineArray['country'] = $airline_det->country_id;
-		$airlineArray['country'] = $airline_continent;
+		$airlineArray['continent'] = $airline_continent;
 
 		return $airlineArray;
 	}
 
-	public function process_location()
+	public function processLocation()
 	{
-		// Process airline Continent -- // Only Europe
+		// Process flight Continent -- // Only Europe
 		if ($this->departure['continent'] == 'EU') { // Automatic eligibility
 			//$this->eligible = true;
 		} else {
@@ -84,7 +88,7 @@ class ProcessClaim
 		}
 
 
-		// Process airline Countries - Nigeria
+		// Process flight Countries - Nigeria
 		if (($this->departure['country'] == 'NG' || $this->arrival['country'] == 'NG') && $this->airline['continent'] != 'EU') {
 			if ($this->airline['country'] == 'NG' && ($this->departure['country'] != 'NG' || $this->arrival['country'] != 'NG')) {
 				$this->eligible = false;
@@ -100,6 +104,14 @@ class ProcessClaim
 				$this->eligible = false;
 			}
 		}
+	}
+
+	public function store()
+	{
+		$eligible = ($this->eligible) ? '1' : '0';
+		return DB::table('eligibilities')->insertGetId(
+			['claim_id' => $this->claim->id, 'eligible' => $eligible]
+		);
 	}
 
 
