@@ -35,8 +35,8 @@
 		<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar" style="background-color: #E5F9FC;">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
-				<img src="{{ asset('/img/africlaim_logo.png') }}" alt="">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center my-3" href="{{ url('/') }}">
+				<img class="img-fluid" src="{{ asset('/img/africlaim.png') }}" alt="">
 			</a>
 
 			<!-- Divider -->

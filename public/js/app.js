@@ -2203,19 +2203,16 @@ __webpack_require__.r(__webpack_exports__);
       if (this.query.length < 1) {
         // hide loader
         this.loader = false;
-      } else if (this.query.length < 2) {
-        // Show loader
-        this.loader = true;
       } else if (this.query.length == 2) {
-        // this.loader = false;
-        // Search from Server
+        // Show loader
+        this.loader = true; // Search from Server
+
         this.$store.dispatch('load_airports', this.query); // this.$store.commit('SET_QUERY', {'query':this.query})
 
         if (this.filteredAirports) {
           this.airports = this.filteredAirports;
         }
       } else if (this.query.length > 2) {
-        //this.loader = false;
         // this.$store.commit('SET_QUERY', {'query':this.query})
         // Search from Client
         if (this.removedrop) {
@@ -45093,7 +45090,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "time", value: "00:00:00" },
+                attrs: { type: "time", value: "00:00" },
                 domProps: { value: _vm.tof },
                 on: {
                   input: function($event) {

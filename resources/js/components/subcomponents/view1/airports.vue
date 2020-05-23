@@ -117,15 +117,15 @@
 		watch: {
 			query: function (){
 				let b = this;
+
+				
 				if (this.query.length < 1){
 
 					// hide loader
 					this.loader = false;
-				} else if (this.query.length < 2){
+				} else if (this.query.length == 2){
 					// Show loader
 					this.loader = true;
-				} else if (this.query.length == 2){
-					// this.loader = false;
 
 					// Search from Server
 					this.$store.dispatch('load_airports', this.query)
@@ -136,7 +136,6 @@
 						this.airports = this.filteredAirports;
 					}
 				} else if (this.query.length > 2){
-					//this.loader = false;
 
 					// this.$store.commit('SET_QUERY', {'query':this.query})
 
