@@ -15,8 +15,8 @@
 					  <div class="flight_number col-2">{{ flight.flight_iata }}</div>
 				  </label>
 			  </li>
-			<li v-if="flights.main"></li>
-			<li class="list-group-item list-group-item-action" v-else>What was your scheduled departure time? <input type="time" class="form-control" v-model="tof" value="00:00:00"> </li>			  
+			<li v-if="flights.main.length == 0" class="list-group-item">
+			What was your scheduled departure time? <input type="time" class="form-control" v-model="tof" value="00:00"> </li>			  
 			</ul>
 
 			<div class="claims-desc">Others:</div>

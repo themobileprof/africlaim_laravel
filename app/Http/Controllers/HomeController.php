@@ -41,17 +41,22 @@ class HomeController extends Controller
 		}
 
 		// Get eligibility
-		$eligible = DB::table('eligibilities')
-			->select('eligible')
-			->where('claim_id', '=', $claimActive->id)
-			->first();
-		//print_r($eligible);
-		if (isset($eligible->eligible)) {
+		if (!empty($claimActive->id)) {
+			$eligible = DB::table('eligibilities')
+				->select('eligible')
+				->where('claim_id', '=', $claimActive->id)
+				->first();
+			//print_r($eligible);
+			if (isset($eligible->eligible)) {
 
-			$claimActive->eligible = $eligible->eligible;
+				$claimActive->eligible = $eligible->eligible;
+			} else {
+
+				$claimActive->eligible = NULL;
+			}
 		} else {
-
-			$claimActive->eligible = NULL;
+			$claims = NULL;
+			$claimActive = NULL;
 		}
 
 		return view('home', ['claims' => $claims, 'claim_det' => $claimActive]);

@@ -2133,7 +2133,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     autoComplete: function autoComplete() {
-      if (this.query.length > 3) {
+      if (this.query.length > 2) {
         // axios.get('/api/airports/' + this.query).then(response => {
         // this.airports = response.data;
         //});
@@ -2203,10 +2203,10 @@ __webpack_require__.r(__webpack_exports__);
       if (this.query.length < 1) {
         // hide loader
         this.loader = false;
-      } else if (this.query.length < 3) {
+      } else if (this.query.length < 2) {
         // Show loader
         this.loader = true;
-      } else if (this.query.length == 3) {
+      } else if (this.query.length == 2) {
         // this.loader = false;
         // Search from Server
         this.$store.dispatch('load_airports', this.query); // this.$store.commit('SET_QUERY', {'query':this.query})
@@ -2214,7 +2214,7 @@ __webpack_require__.r(__webpack_exports__);
         if (this.filteredAirports) {
           this.airports = this.filteredAirports;
         }
-      } else if (this.query.length > 3) {
+      } else if (this.query.length > 2) {
         //this.loader = false;
         // this.$store.commit('SET_QUERY', {'query':this.query})
         // Search from Client
@@ -45080,36 +45080,32 @@ var render = function() {
           )
         }),
         _vm._v(" "),
-        _vm.flights.main
-          ? _c("li")
-          : _c(
-              "li",
-              { staticClass: "list-group-item list-group-item-action" },
-              [
-                _vm._v("What was your scheduled departure time? "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.tof,
-                      expression: "tof"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "time", value: "00:00:00" },
-                  domProps: { value: _vm.tof },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.tof = $event.target.value
-                    }
+        _vm.flights.main.length == 0
+          ? _c("li", { staticClass: "list-group-item" }, [
+              _vm._v("\n\t\t\tWhat was your scheduled departure time? "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tof,
+                    expression: "tof"
                   }
-                })
-              ]
-            )
+                ],
+                staticClass: "form-control",
+                attrs: { type: "time", value: "00:00:00" },
+                domProps: { value: _vm.tof },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.tof = $event.target.value
+                  }
+                }
+              })
+            ])
+          : _vm._e()
       ],
       2
     ),
@@ -45749,7 +45745,7 @@ var render = function() {
                 staticClass: "control-label pt-2",
                 attrs: { for: "start-airport" }
               },
-              [_vm._v("\n\t\t\t\tDeparture\n\t\t\t")]
+              [_vm._v("\n\t\t\t\tDeparture (Airport)\n\t\t\t")]
             ),
             _vm._v(" "),
             _c("airport", {
@@ -45778,7 +45774,7 @@ var render = function() {
                 staticClass: "control-label pt-2",
                 attrs: { for: "end-airport" }
               },
-              [_vm._v("\n\t\t\t\tDestination\n\t\t\t")]
+              [_vm._v("\n\t\t\t\tDestination (Airport)\n\t\t\t")]
             ),
             _vm._v(" "),
             _c("airport", {

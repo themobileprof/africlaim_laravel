@@ -42,7 +42,7 @@
           },
           methods: {
 			   autoComplete(){
-				if(this.query.length > 3){
+				if(this.query.length > 2){
 					// axios.get('/api/airports/' + this.query).then(response => {
 					// this.airports = response.data;
 				 //});
@@ -121,10 +121,10 @@
 
 					// hide loader
 					this.loader = false;
-				} else if (this.query.length < 3){
+				} else if (this.query.length < 2){
 					// Show loader
 					this.loader = true;
-				} else if (this.query.length == 3){
+				} else if (this.query.length == 2){
 					// this.loader = false;
 
 					// Search from Server
@@ -135,7 +135,7 @@
 					if (this.filteredAirports){
 						this.airports = this.filteredAirports;
 					}
-				} else if (this.query.length > 3){
+				} else if (this.query.length > 2){
 					//this.loader = false;
 
 					// this.$store.commit('SET_QUERY', {'query':this.query})

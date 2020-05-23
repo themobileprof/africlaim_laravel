@@ -8,7 +8,7 @@
 	
 		<div class="col-xs-12 col-md-4">
 			<label for="start-airport" class="control-label pt-2">
-				Departure
+				Departure (Airport)
 			</label>
 			<airport 
 				input_text='departure' 
@@ -20,7 +20,7 @@
   
 	  <div class="col-xs-12 col-md-4">
 			<label for="end-airport" class="control-label pt-2">
-				Destination
+				Destination (Airport)
 			</label>
 			<airport 
 				input_text='destination' 

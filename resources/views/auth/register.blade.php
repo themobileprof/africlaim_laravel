@@ -80,6 +80,7 @@
 
 							<div class="col-md-6">
 								<select name="residence" id="residence" class="form-control @error('residence') is-invalid @enderror">
+									<option value="">Where do you live?</option>
 									@foreach ($countries as $country)
 									<option value="{{ $country->country_name }}">{{ $country->country_name }}</option>
 									@endforeach

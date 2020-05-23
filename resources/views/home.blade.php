@@ -95,6 +95,7 @@
 							</div>
 						</div>
 						<!-- Card Body -->
+						@if ($claims)
 						<div class="card-body" style="font-size: 11px;">
 							<ul class="list-group list-group-flush">
 
@@ -111,6 +112,7 @@
 								@endforeach
 							</ul>
 						</div>
+						@endif
 					</div>
 				</div>
 
