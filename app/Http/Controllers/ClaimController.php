@@ -136,7 +136,7 @@ class ClaimController extends Controller
 		$claims->processLocation();
 
 		// Store the Processed data
-		print_r($claims->store());
+		$claims->store();
 	}
 
 	/**
