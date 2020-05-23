@@ -46,7 +46,13 @@ class HomeController extends Controller
 			->where('claim_id', '=', $claimActive->id)
 			->first();
 		//print_r($eligible);
-		$claimActive->eligible = $eligible->eligible;
+		if (isset($eligible->eligible)) {
+
+			$claimActive->eligible = $eligible->eligible;
+		} else {
+
+			$claimActive->eligible = NULL;
+		}
 
 		return view('home', ['claims' => $claims, 'claim_det' => $claimActive]);
 	}

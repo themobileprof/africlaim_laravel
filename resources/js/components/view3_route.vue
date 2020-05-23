@@ -21,6 +21,7 @@
 			 v-if="loaded"
 			:flightsData="flightsData"
 			 @route="setRoute"
+			 @tof="setRoute"
 			 >
 			 </flights>
 			<div v-else>
@@ -73,10 +74,10 @@
 					this.flightsData = response.data;
 					this.loaded = true;
 
-					if (this.flightsData.length == 0 || this.flightsData == "" || this.flightsData == undefined || this.flightsData == null){
-						// If Route is not found, Load next page
-						this.$router.push({name: 'complaint'})
-					}
+					//if (this.flightsData.length == 0 || this.flightsData == "" || this.flightsData == undefined || this.flightsData == null){
+					//	// If Route is not found, Load next page
+					//	this.$router.push({name: 'complaint'})
+					//}
 				  } catch(error) {
 					 // error
 					 console.log("No Flight Info");
