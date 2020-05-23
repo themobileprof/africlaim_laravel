@@ -19,7 +19,12 @@ Route::get('/', function () {
 });
 
 
+
 // Auth Routes
+Route::get('/login/{claim}', function ($claim) {
+	return redirect()->route('login', ['claim' => $claim]);
+});
+
 Route::get('/register/{claim}', function ($claim) {
 	return redirect()->route('register', ['claim' => $claim]);
 });
@@ -45,10 +50,15 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 
 
 
-
+// Claims Routes
 Route::post('/claim/processor', 'ClaimController@store')->name('process');
 
 Route::get('/claim/{Claim}', 'ClaimController@show')->name('show.claim');
+
+Route::get('/claim/delete/{Claim}', 'ClaimController@destroy')->name('delete.claim');
+
+Route::get('/eligibility/{Claim}', 'ClaimController@editEligibility')->name('eligibility')->middleware('is_admin');
+
 
 
 
@@ -65,10 +75,15 @@ Route::get('/claims/{any}', function () {
 
 
 
+// Get blank
+Route::get('/blank', function () {
+	return view('blank');
+});
+
 
 // Route for testing
 Route::get('/test', function () {
 	return view('formtest');
 });
 
-Route::get('/test/{claim}', 'ClaimController@tester');
+//Route::get('/test/{claim}', 'ClaimController@tester');

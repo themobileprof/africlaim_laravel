@@ -107,12 +107,29 @@
 
 			<!-- Auto Approved Claims by the Bots -->
 			<div class="col-xl-3 col-md-6 mb-4">
+				<div class="card border-left-success shadow h-100 py-2">
+					<div class="card-body">
+						<div class="row no-gutters align-items-center">
+							<div class="col mr-2">
+								<div class="text-xs font-weight-bold text-success text-uppercase mb-1">Auto Eligible Claims</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">{{ $auto }}</div>
+							</div>
+							<div class="col-auto">
+								<i class="fas fa-check-circle fa-2x text-success"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Claims Processed by Humans -->
+			<div class="col-xl-3 col-md-6 mb-4">
 				<div class="card border-left-primary shadow h-100 py-2">
 					<div class="card-body">
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
-								<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Auto Approved Claims (Monthly)</div>
-								<div class="h5 mb-0 font-weight-bold text-gray-800">9</div>
+								<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Manual Eligible Claims</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">{{ $manual }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-check fa-2x text-primary"></i>
@@ -128,8 +145,8 @@
 					<div class="card-body">
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
-								<div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Auto Rejected Claims (Monthly)</div>
-								<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+								<div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Not Eligible</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">{{ $not_eligible }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-times fa-2x text-danger"></i>
@@ -140,31 +157,15 @@
 			</div>
 
 
-			<!-- Processed Claims -->
-			<div class="col-xl-3 col-md-6 mb-4">
-				<div class="card border-left-success shadow h-100 py-2">
-					<div class="card-body">
-						<div class="row no-gutters align-items-center">
-							<div class="col mr-2">
-								<div class="text-xs font-weight-bold text-success text-uppercase mb-1">Processed Claims</div>
-								<div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
-							</div>
-							<div class="col-auto">
-								<i class="fas fa-check-circle fa-2x text-success"></i>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
-			<!-- Currently Processing -->
+			<!-- Not Processed Processing -->
 			<div class="col-xl-3 col-md-6 mb-4">
 				<div class="card border-left-warning shadow h-100 py-2">
 					<div class="card-body">
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
-								<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Currently Processing</div>
-								<div class="h5 mb-0 font-weight-bold text-gray-800">22</div>
+								<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">{{ $not_processed }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-spinner fa-pulse fa-2x text-warning"></i>
@@ -217,7 +218,7 @@
 					</div>
 					<div class="card-body">
 						<div class="text-center">
-							<iframe name="showclaim" id="showclaim" src="{{ asset('img/screens.png') }}" style="width:100%; height:300px; overflow:none;" scrolling="no" frameborder="0"></iframe>
+							<iframe name="showclaim" id="showclaim" src="{{ asset('img/screens.png') }}" style="width:100%; height:350px; overflow:none;" scrolling="no" frameborder="0"></iframe>
 						</div>
 					</div>
 				</div>
@@ -230,7 +231,7 @@
 
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 12px;">
 						<thead>
 							<tr>
 								<th>Name</th>
@@ -238,6 +239,7 @@
 								<th>Destination</th>
 								<th>Date of Flight</th>
 								<th>Complaint</th>
+								<th>Eligible</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -248,6 +250,7 @@
 								<th>Destination</th>
 								<th>Date of Flight</th>
 								<th>Complaint</th>
+								<th>Eligible</th>
 								<th></th>
 							</tr>
 						</tfoot>
@@ -260,6 +263,14 @@
 								<td>{{ $claim->dof }}</td>
 								<td>{{ $claim->complaint }}</td>
 								<td>
+									@if ($eligibility[$claim->id] == 'Eligible')
+									<strong class="text-success">{{ $eligibility[$claim->id] }}</strong>
+									@else
+									{{ $eligibility[$claim->id] }}
+
+									@endif
+								</td>
+								<td>
 									<a href="/claim/{{ $claim->id }}" target="showclaim"><i class="fas fa-play showdetails"></i></a>
 								</td>
 							</tr>
@@ -269,7 +280,6 @@
 				</div>
 			</div>
 		</div>
-
 
 	</div>
 	<!-- /.container-fluid -->

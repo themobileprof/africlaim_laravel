@@ -13,9 +13,7 @@
 
 						@if ( request()->get('claim') )
 						<div class="form-group row px-4">
-							We have gotten your claim details. Kindly register or
-							<a href="{{ route('login?claim='.request()->get('claim')) }}">Login</a>
-							to your account to view details of your Claim submission. Thank you for trusting Africlaim with your Claims processing.
+							We have gotten your claim details. Kindly register below or <a class="px-1" href="{{ url('/login/'.request()->get('claim')) }}"> Login </a> to your account to view details of your Claim submission. Thank you for trusting Africlaim with your Claims processing.
 							<input id="claim" type="hidden" class="form-control" name="claim" value="{{ request()->get('claim') }}" required autocomplete="claim">
 						</div>
 						@endif
@@ -69,6 +67,25 @@
 								<input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
 
 								@error('phone')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<label for="residence" class="col-md-4 col-form-label text-md-right"> Country of Residence</label>
+
+							<div class="col-md-6">
+								<select name="residence" id="residence" class="form-control @error('residence') is-invalid @enderror">
+									@foreach ($countries as $country)
+									<option value="{{ $country->country_name }}">{{ $country->country_name }}</option>
+									@endforeach
+								</select>
+
+								@error('residence')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>

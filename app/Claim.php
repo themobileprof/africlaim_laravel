@@ -3,10 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Claim extends Model
 {
 	//
+	use SoftDeletes;
+
+	protected $appends = ['eligibility'];
 
 	protected $fillable = [
 		'user_id',
@@ -45,6 +49,11 @@ class Claim extends Model
 	{
 		return $this->belongsTo('App\Airport', 'departure_id');
 	}
+
+	//public function eligibility()
+	//{
+	//return $this->hasOne('App\Eligibility');
+	//}
 
 	protected $table = 'claims';
 }

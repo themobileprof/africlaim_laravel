@@ -1,0 +1,9 @@
+.eligible {
+    color: #5cb85c;
+    font-size: 20px;
+}
+
+.not-eligible {
+    color: #ff0000;
+    font-size: 20px;
+}

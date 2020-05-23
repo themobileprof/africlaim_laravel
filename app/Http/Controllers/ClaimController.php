@@ -95,7 +95,11 @@ class ClaimController extends Controller
 		$dof = explode("00:00:00", $request->flightdate);
 		$claim->dof = date('Y-m-d', strtotime($dof[0]));
 
-		$claim->tof = date('H:m:s'); // Update this with time from form
+		if ($request->tof) {
+			$claim->tof = $request->tof; // Update this with time from form
+		} else {
+			$claim->tof = "00:00:00";
+		}
 		$claim->complaint = $request->claimType;
 		$claim->complaint_duration = $request->delayedHours;
 
@@ -110,7 +114,9 @@ class ClaimController extends Controller
 		$claim->airline_reason = $request->airlineReason;
 
 		if ($claim->save()) {
-			$this->process($claim);
+			if (!empty($request->route)) {
+				$this->process($claim);
+			}
 			return $claim->id;
 		} else {
 			return false;
@@ -143,6 +149,8 @@ class ClaimController extends Controller
 	{
 		//
 		$claimOne = Claim::findOrFail($claim);
+
+		// Process connecting flights
 		$conns = explode(",", $claimOne->connecting);
 
 		$conn_det = "";
@@ -153,6 +161,24 @@ class ClaimController extends Controller
 		//}
 
 		$claimOne->connections = $conn_det;
+
+
+		// Get eligibility
+		$eligible = DB::table('eligibilities')
+			->select('eligible')
+			->where('claim_id', '=', $claim)
+			->first();
+
+		if (!isset($eligible->eligible)) {
+			$claimOne->eligible = NULL;
+		} else {
+			if ($eligible->eligible) {
+				$claimOne->eligible = "Eligible";
+			} else {
+				$claimOne->eligible = "Not Eligible";
+			}
+		}
+
 
 		return view('claim', ['claim' => $claimOne]);
 	}
@@ -180,6 +206,23 @@ class ClaimController extends Controller
 		//
 	}
 
+	public function editEligibility(Request $request, $claim)
+	{
+		//print_r($claim->pluck('id'));
+		if ($request->eligible == 'yes') {
+			$eligible = '1';
+		} else {
+			$eligible = '0';
+		}
+
+		DB::table('eligibilities')->updateOrInsert(
+			['claim_id' => $claim],
+			['eligible' => $eligible, 'mode' => 'manual']
+		);
+
+		return redirect()->back();
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -189,6 +232,12 @@ class ClaimController extends Controller
 	public function destroy($claim)
 	{
 		//
+		$claimDet = Claim::find($claim);
+		$claimDet->delete();
+
+		echo "You have deleted this Claim";
+
+		return redirect('/blank');
 	}
 
 

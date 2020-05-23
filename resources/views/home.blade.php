@@ -98,11 +98,11 @@
 						<div class="card-body" style="font-size: 11px;">
 							<ul class="list-group list-group-flush">
 
-								@foreach ($claims as $num=>$claim)
+								@foreach ($claims as $claim)
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-sm-5">
-											<a href="?claim_number={{ $num }}">{{ $claim->departure->city }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claim->arrival->city }}</a>
+											<a href="?claim_id={{ $claim->id }}">{{ $claim->departure->city }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claim->arrival->city }}</a>
 										</div>
 										<div class="col-sm-3">{{ $claim->complaint }}</div>
 										<div class="col-sm-4">{{ $claim->dof }}</div>
@@ -121,7 +121,7 @@
 					<div class="card shadow mb-4">
 						@isset($claim_det)
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">{{ $claim_det->departure->name }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claims_det->arrival->name }} ({{ $claim_det->dof }})</h6>
+							<h6 class="m-0 font-weight-bold text-primary">{{ $claim_det->departure->name }} <i class="fas fa-plane-departure fa-xs"></i> {{ $claim_det->arrival->name }} ({{ $claim_det->dof }})</h6>
 						</div>
 						<div class="card-body">
 
@@ -146,15 +146,16 @@
 								<div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 							<div>
-								@if($claim_det->eligible == '1')
+								@if($claim_det->eligible)
 								<div class="eligible">
-									<i class="fas fa-check fa-bg text-success"></i>
+									<i class="fas fa-check fa-lg text-success"></i>
 									<strong>Your claim is Eligible for Processing</strong>. The next Step is Validation</strong>, we will keep you posted on the status of that. Check back soon.</div>
 
 								@else
 
 								<div class="not-eligible">
-									<li class="fas fa-times fa-bg text-danger"></i>This Claim cannot be Validated, it didn't pass Eligibility
+									<i class="fas fa-times fa-lg text-danger"></i>
+									Sorry, this Claim cannot be Validated, it didn't pass Eligibility
 								</div>
 
 								@endif
@@ -164,7 +165,8 @@
 							</div>
 							@endif
 							<p></p>
-							<a target="_blank" rel="nofollow" href="#">Details &rarr;</a>
+							<a href="{{ url('/claim/'.$claim_det->id) }}" target="showcontent">Details &rarr;</i></a>
+							<iframe name="showcontent" id="showcontent" src="" style="width:100%; height:300px; overflow:none;" scrolling="no" frameborder="0"></iframe>
 						</div>
 						@endisset
 					</div>

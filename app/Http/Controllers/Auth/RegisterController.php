@@ -72,6 +72,7 @@ class RegisterController extends Controller
 			'last_name' => $data['last_name'],
 			'email' => $data['email'],
 			'phone' => $data['phone'],
+			'residence' => $data['residence'],
 
 			'password' => Hash::make($data['password']),
 		]);
@@ -83,8 +84,10 @@ class RegisterController extends Controller
 		return $user;
 	}
 
-	//public function showRegistrationForm($claim = '')
-	//{
-	//return view('auth.register')->withData($claim);
-	//}
+	public function showRegistrationForm()
+	{
+		// Get countries
+		$countries = DB::table('countries')->select('country_name')->get();
+		return view('auth.register', compact('countries'));
+	}
 }

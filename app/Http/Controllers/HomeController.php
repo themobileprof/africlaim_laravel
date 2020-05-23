@@ -45,8 +45,8 @@ class HomeController extends Controller
 			->select('eligible')
 			->where('claim_id', '=', $claimActive->id)
 			->first();
-
-		$claimActive->push($eligible);
+		//print_r($eligible);
+		$claimActive->eligible = $eligible->eligible;
 
 		return view('home', ['claims' => $claims, 'claim_det' => $claimActive]);
 	}
@@ -64,6 +64,40 @@ class HomeController extends Controller
 			->get();
 
 
-		return view('adminHome', ['claims' => $claims]);
+		$auto_claims = 0;
+		$manual_claims = 0;
+		$not_eligible = 0;
+		$not_processed = 0;
+
+		foreach ($claims as $claim) {
+
+			$e = DB::table('eligibilities')
+				->where('claim_id', '=', $claim->id)
+				->first();
+
+			// Check for Eligibility
+			if (empty($e->eligible)) {
+				if (isset($e->eligible)) {
+					$not_eligible++;
+					$eligible[$claim->id] = "Not Eligible";
+				} else {
+					$not_processed++;
+					$eligible[$claim->id] = "Not Processed";
+				}
+			} else {
+				$eligible[$claim->id] = "Eligible";
+
+				if ($e->mode == "auto") {
+					$auto_claims++;
+				} else {
+					$manual_claims++;
+				}
+			}
+		}
+
+		// Get eligibility
+		// print_r($eligible);
+
+		return view('adminHome', ['claims' => $claims, 'eligibility' => $eligible, 'auto' => $auto_claims, 'manual' => $manual_claims, 'not_eligible' => $not_eligible, 'not_processed' => $not_processed]);
 	}
 }

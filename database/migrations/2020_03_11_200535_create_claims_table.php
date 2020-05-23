@@ -27,6 +27,7 @@ class CreateClaimsTable extends Migration
 			$table->string('complaint_option');
 			$table->string('airline_reason')->nullable();
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
