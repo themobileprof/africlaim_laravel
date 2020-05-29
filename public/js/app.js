@@ -2113,6 +2113,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['input_text', 'placehold_text', 'airportParam'],
@@ -2218,10 +2223,16 @@ __webpack_require__.r(__webpack_exports__);
         if (this.removedrop) {
           this.removedrop = false;
         } else {
-          var new_airports = this.filteredAirports;
-          this.airports = new_airports.filter(function (new_airports) {
-            return new_airports.name.toLowerCase().includes(_this2.query.toLowerCase()) || new_airports.city.toLowerCase().includes(_this2.query.toLowerCase());
-          });
+          if (this.filteredAirports.length > 0) {
+            var new_airports = this.filteredAirports;
+            this.airports = new_airports.filter(function (new_airports) {
+              return new_airports.name.toLowerCase().includes(_this2.query.toLowerCase()) || new_airports.city.toLowerCase().includes(_this2.query.toLowerCase());
+            });
+
+            if (this.airports.length > 0) {
+              this.loader = false;
+            }
+          }
         }
       }
     }
@@ -44791,67 +44802,61 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("transition", { attrs: { name: "fade" } }, [
-        _vm.airports.length
-          ? _c(
-              "div",
-              { staticClass: "panel-footer autocomplete-results-panel" },
-              [
-                _c(
-                  "ul",
-                  { staticClass: "list-group autocomplete-results" },
-                  _vm._l(_vm.airports, function(airport, i) {
-                    return _c(
-                      "li",
-                      {
-                        key: i,
-                        staticClass: "list-group-item autocomplete-result",
-                        class: { "is-active": i === _vm.arrowCounter },
-                        on: {
-                          click: function($event) {
-                            return _vm.setResult(airport.name, airport.IATA)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v("\n\t\t\t\t\t" + _vm._s(airport.name) + " "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c(
-                          "small",
-                          {
-                            staticClass: "text-secondary",
-                            staticStyle: { "font-weight": "bold" }
-                          },
-                          [
-                            _c("i", { staticClass: "fas fa-map-marker-alt" }),
-                            _vm._v(
-                              " " +
-                                _vm._s(airport.city) +
-                                ", " +
-                                _vm._s(airport.country_id) +
-                                " "
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                )
-              ]
-            )
-          : _vm.loader
-          ? _c(
-              "div",
-              { staticClass: "panel-footer autocomplete-results-panel" },
-              [
+        _c("div", { staticClass: "panel-footer autocomplete-results-panel" }, [
+          _vm.loader
+            ? _c("div", [
                 _c("img", {
                   staticStyle: { height: "30px", "padding-left": "10px" },
                   attrs: { src: "/img/turning.gif", alt: "loading..." }
                 })
-              ]
-            )
-          : _vm._e()
+              ])
+            : _c(
+                "ul",
+                { staticClass: "list-group autocomplete-results" },
+                _vm._l(_vm.airports, function(airport, i) {
+                  return _c(
+                    "li",
+                    {
+                      key: i,
+                      staticClass: "list-group-item autocomplete-result",
+                      class: { "is-active": i === _vm.arrowCounter },
+                      on: {
+                        click: function($event) {
+                          return _vm.setResult(airport.name, airport.IATA)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                         " +
+                          _vm._s(airport.name) +
+                          " "
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "small",
+                        {
+                          staticClass: "text-secondary",
+                          staticStyle: { "font-weight": "bold" }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-map-marker-alt" }),
+                          _vm._v(
+                            " " +
+                              _vm._s(airport.city) +
+                              ", " +
+                              _vm._s(airport.country_id) +
+                              " "
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+        ])
       ]),
       _vm._v(" "),
       _c("input", {

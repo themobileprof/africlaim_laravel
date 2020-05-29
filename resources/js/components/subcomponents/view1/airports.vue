@@ -2,18 +2,23 @@
 	<div class="col-12" style="padding-left: 0px; padding-right: 0px;">		
 		<input :id="input_name" :name="input_name" v-model="query" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.tab="onEnter" maxlength="25">
 		<transition name="fade">
-			<div class="panel-footer autocomplete-results-panel" v-if="airports.length">
-				<ul class="list-group autocomplete-results">
-					<li class="list-group-item autocomplete-result" v-for="(airport, i) in airports" v-bind:key="i" v-on:click="setResult(airport.name, airport.IATA)" :class="{ 'is-active': i === arrowCounter }">
-						{{ airport.name }} <br />
-						<small class="text-secondary" style="font-weight: bold;"><i class="fas fa-map-marker-alt"></i> {{ airport.city }}, {{ airport.country_id }} </small>
-					</li>
-				</ul>
-			</div>
 
-			<div class="panel-footer autocomplete-results-panel" v-else-if="loader">
-			  <img :src="'/img/turning.gif'" style="height:30px; padding-left:10px;" alt="loading...">
-			</div>
+
+			<div class="panel-footer autocomplete-results-panel">
+                 <div v-if="loader">
+                   <img :src="'/img/turning.gif'" style="height:30px; padding-left:10px;" alt="loading...">
+                 </div>
+                 <ul class="list-group autocomplete-results" v-else="airports.length">
+                     <li class="list-group-item autocomplete-result" v-for="(airport, i) in airports" v-bind:key="i" v-on:click="setResult(airport.name, airport.IATA)" :class="{ 'is-active': i === arrowCounter }">
+                         {{ airport.name }} <br />
+                         <small class="text-secondary" style="font-weight: bold;"><i class="fas fa-map-marker-alt"></i> {{ airport.city }}, {{ airport.country_id }} </small>
+                     </li>
+                 </ul>
+             </div>
+ 
+
+
+
 		</transition>
 		<input :id="input_name + 'Id'" :name="input_name + 'Id'" type="hidden" v-model="airportId">
 	</div>
@@ -145,12 +150,20 @@
 						this.removedrop = false;
 					} else {
 
-						let new_airports = this.filteredAirports;
-						this.airports = new_airports.filter(
-							new_airports =>
-								new_airports.name.toLowerCase().includes(this.query.toLowerCase()) ||
-								new_airports.city.toLowerCase().includes(this.query.toLowerCase())
-						);
+						if (this.filteredAirports.length > 0){
+
+							let new_airports = this.filteredAirports;
+							this.airports = new_airports.filter(
+								new_airports =>
+									new_airports.name.toLowerCase().includes(this.query.toLowerCase()) ||
+									new_airports.city.toLowerCase().includes(this.query.toLowerCase())
+							);
+
+							if (this.airports.length > 0){
+								this.loader = false;
+							}
+
+						}
 					}
 
 				}
