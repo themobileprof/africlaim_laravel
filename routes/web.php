@@ -61,6 +61,10 @@ Route::get('/eligibility/{Claim}', 'ClaimController@editEligibility')->name('eli
 
 
 
+// VERIFY CLAIM
+Route::get('/verify', 'VerificationController@index')->name('verify');
+
+
 
 
 
@@ -85,5 +89,8 @@ Route::get('/blank', function () {
 Route::get('/test', function () {
 	return view('formtest');
 });
+
+// Test Mail
+Route::get('send-mail', 'ClaimController@sendMail');
 
 //Route::get('/test/{claim}', 'ClaimController@tester');
