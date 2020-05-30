@@ -44810,12 +44810,25 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", { staticClass: "panel-footer autocomplete-results-panel" }, [
-        _c("div", [
-          _c("img", {
-            staticStyle: { height: "30px", "padding-left": "10px" },
-            attrs: { src: "/img/turning.gif", alt: "loading..." }
-          })
-        ]),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.loader,
+                expression: "loader"
+              }
+            ]
+          },
+          [
+            _c("img", {
+              staticStyle: { height: "30px", "padding-left": "10px" },
+              attrs: { src: "/img/turning.gif", alt: "loading..." }
+            })
+          ]
+        ),
         _vm._v(" "),
         _vm.airports.length
           ? _c(
