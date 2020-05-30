@@ -1,6 +1,6 @@
 <template>
 	<div class="col-12" style="padding-left: 0px; padding-right: 0px;">		
-		<input :id="input_name" :name="input_name" v-model="query" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.tab="onEnter" maxlength="25">
+		<input :id="input_name" :name="input_name" v-model="query" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.tab="onEnter">
 
 
 			<div class="panel-footer autocomplete-results-panel">
@@ -164,9 +164,9 @@
 								this.loader = false;
 							}
 
-						} else { // If two characters are typed or there is no content from the database, try getting content again
+						} else { // If there is no content from the database, try getting content again
 							this.loader = true;
-							if (this.query.length == 3){
+							if (this.query.length == 3 || this.query.length == 6){
 								this.$store.dispatch('load_airports', this.query)
 							}
 						}

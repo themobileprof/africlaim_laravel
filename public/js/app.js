@@ -2237,10 +2237,10 @@ __webpack_require__.r(__webpack_exports__);
               this.loader = false;
             }
           } else {
-            // If two characters are typed or there is no content from the database, try getting content again
+            // If there is no content from the database, try getting content again
             this.loader = true;
 
-            if (this.query.length == 3) {
+            if (this.query.length == 3 || this.query.length == 6) {
               this.$store.dispatch('load_airports', this.query);
             }
           }
@@ -44766,8 +44766,7 @@ var render = function() {
           id: _vm.input_name,
           name: _vm.input_name,
           type: "text",
-          placeholder: _vm.placehold,
-          maxlength: "25"
+          placeholder: _vm.placehold
         },
         domProps: { value: _vm.query },
         on: {
