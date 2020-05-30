@@ -4,7 +4,7 @@
 
 
 			<div class="panel-footer autocomplete-results-panel">
-                 <div>
+                 <div v-show="loader">
                    <img :src="'/img/turning.gif'" style="height:30px; padding-left:10px;" alt="loading...">
                  </div>
                  <ul class="list-group autocomplete-results" v-if="airports.length">
