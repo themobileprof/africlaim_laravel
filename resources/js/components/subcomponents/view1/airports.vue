@@ -1,7 +1,6 @@
 <template>
 	<div class="col-12" style="padding-left: 0px; padding-right: 0px;">		
 		<input :id="input_name" :name="input_name" v-model="query" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.tab="onEnter" maxlength="25">
-		<transition name="fade">
 
 
 			<div class="panel-footer autocomplete-results-panel">
@@ -19,7 +18,6 @@
 
 
 
-		</transition>
 		<input :id="input_name + 'Id'" :name="input_name + 'Id'" type="hidden" v-model="airportId">
 	</div>
 </template>
