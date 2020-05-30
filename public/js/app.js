@@ -2207,31 +2207,42 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.query.length < 1) {
         // hide loader
-        this.loader = false;
-      } else if (this.query.length == 2) {
+        this.loader = false; //} else if (this.query.length == 2){
+        //	// Show loader
+        //	this.loader = true;
+        //
+        //					// Search from Server
+        //					this.$store.dispatch('load_airports', this.query)
+        //
+        //					// this.$store.commit('SET_QUERY', {'query':this.query})
+        //
+        //					if (this.filteredAirports){
+        //						this.airports = this.filteredAirports;
+        //					}
+      } else if (this.query.length >= 2) {
         // Show loader
-        this.loader = true; // Search from Server
+        this.loader = true; // Search from Client
 
-        this.$store.dispatch('load_airports', this.query); // this.$store.commit('SET_QUERY', {'query':this.query})
-
-        if (this.filteredAirports) {
-          this.airports = this.filteredAirports;
-        }
-      } else if (this.query.length > 2) {
-        // this.$store.commit('SET_QUERY', {'query':this.query})
-        // Search from Client
-        if (this.removedrop) {
+        if (this.removedrop == true) {
+          // If user just selected an option, remove the dropdown
           this.removedrop = false;
+          this.loader = false;
         } else {
+          // 
           if (this.filteredAirports.length > 0) {
+            // if there is content from the database, filter based on current query
             var new_airports = this.filteredAirports;
             this.airports = new_airports.filter(function (new_airports) {
               return new_airports.name.toLowerCase().includes(_this2.query.toLowerCase()) || new_airports.city.toLowerCase().includes(_this2.query.toLowerCase());
             });
 
             if (this.airports.length > 0) {
+              // if there is content based on the current query, remove the loading image
               this.loader = false;
             }
+          } else {
+            // If there is no content from the database, get content
+            this.$store.dispatch('load_airports', this.query);
           }
         }
       }

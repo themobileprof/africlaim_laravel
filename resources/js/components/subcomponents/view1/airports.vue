@@ -128,29 +128,34 @@
 
 					// hide loader
 					this.loader = false;
-				} else if (this.query.length == 2){
+				//} else if (this.query.length == 2){
+				//	// Show loader
+				//	this.loader = true;
+//
+//					// Search from Server
+//					this.$store.dispatch('load_airports', this.query)
+//
+//					// this.$store.commit('SET_QUERY', {'query':this.query})
+//
+//					if (this.filteredAirports){
+//						this.airports = this.filteredAirports;
+//					}
+				} else if (this.query.length >= 2){
+
 					// Show loader
 					this.loader = true;
 
-					// Search from Server
-					this.$store.dispatch('load_airports', this.query)
-
-					// this.$store.commit('SET_QUERY', {'query':this.query})
-
-					if (this.filteredAirports){
-						this.airports = this.filteredAirports;
-					}
-				} else if (this.query.length > 2){
-
-					// this.$store.commit('SET_QUERY', {'query':this.query})
-
 					// Search from Client
 
-					if (this.removedrop){
+					if (this.removedrop == true){  // If user just selected an option, remove the dropdown
+						
 						this.removedrop = false;
-					} else {
+						this.loader = false;
+					
+					} else { 
+						// 
 
-						if (this.filteredAirports.length > 0){
+						if (this.filteredAirports.length > 0){ // if there is content from the database, filter based on current query
 
 							let new_airports = this.filteredAirports;
 							this.airports = new_airports.filter(
@@ -159,9 +164,12 @@
 									new_airports.city.toLowerCase().includes(this.query.toLowerCase())
 							);
 
-							if (this.airports.length > 0){
+							if (this.airports.length > 0){ // if there is content based on the current query, remove the loading image
 								this.loader = false;
 							}
+
+						} else { // If there is no content from the database, get content
+							this.$store.dispatch('load_airports', this.query)
 
 						}
 					}
