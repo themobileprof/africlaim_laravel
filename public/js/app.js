@@ -2205,18 +2205,17 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.query.length < 1) {
         // hide loader
-        this.loader = false; //				} else if (this.query.length == 2){
-        //					// Show loader
-        //					this.loader = true;
-        //
-        //					// Search from Server
-        //					this.$store.dispatch('load_airports', this.query)
-        //
-        //
-        //					if (this.filteredAirports){
-        //						this.airports = this.filteredAirports;
-        //					}
-      } else if (this.query.length >= 2) {
+        this.loader = false;
+      } else if (this.query.length <= 2) {
+        // Show loader
+        this.loader = true; // Search from Server
+
+        this.$store.dispatch('load_airports', this.query);
+
+        if (this.filteredAirports) {
+          this.airports = this.filteredAirports;
+        }
+      } else if (this.query.length > 2) {
         // Show loader
         this.loader = true; // Search from Client
 
@@ -2238,8 +2237,12 @@ __webpack_require__.r(__webpack_exports__);
               this.loader = false;
             }
           } else {
-            // If two characters are typed or there is no content from the database, get content
-            this.$store.dispatch('load_airports', this.query);
+            // If two characters are typed or there is no content from the database, try getting content again
+            this.loader = true;
+
+            if (this.query.length == 3) {
+              this.$store.dispatch('load_airports', this.query);
+            }
           }
         }
       }
