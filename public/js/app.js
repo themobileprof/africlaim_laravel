@@ -2116,8 +2116,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['input_text', 'placehold_text', 'airportParam'],
@@ -2207,14 +2205,13 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.query.length < 1) {
         // hide loader
-        this.loader = false; //} else if (this.query.length == 2){
-        //	// Show loader
-        //	this.loader = true;
+        this.loader = false; //				} else if (this.query.length == 2){
+        //					// Show loader
+        //					this.loader = true;
         //
         //					// Search from Server
         //					this.$store.dispatch('load_airports', this.query)
         //
-        //					// this.$store.commit('SET_QUERY', {'query':this.query})
         //
         //					if (this.filteredAirports){
         //						this.airports = this.filteredAirports;
@@ -2229,7 +2226,7 @@ __webpack_require__.r(__webpack_exports__);
           this.loader = false;
         } else {
           // 
-          if (this.filteredAirports.length > 0) {
+          if (this.filteredAirports.length > 0 && this.query.length != 2) {
             // if there is content from the database, filter based on current query
             var new_airports = this.filteredAirports;
             this.airports = new_airports.filter(function (new_airports) {
@@ -2241,7 +2238,7 @@ __webpack_require__.r(__webpack_exports__);
               this.loader = false;
             }
           } else {
-            // If there is no content from the database, get content
+            // If two characters are typed or there is no content from the database, get content
             this.$store.dispatch('load_airports', this.query);
           }
         }
@@ -44812,62 +44809,73 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("transition", { attrs: { name: "fade" } }, [
-        _c("div", { staticClass: "panel-footer autocomplete-results-panel" }, [
-          _vm.loader
-            ? _c("div", [
-                _c("img", {
-                  staticStyle: { height: "30px", "padding-left": "10px" },
-                  attrs: { src: "/img/turning.gif", alt: "loading..." }
-                })
-              ])
-            : _c(
-                "ul",
-                { staticClass: "list-group autocomplete-results" },
-                _vm._l(_vm.airports, function(airport, i) {
-                  return _c(
-                    "li",
-                    {
-                      key: i,
-                      staticClass: "list-group-item autocomplete-result",
-                      class: { "is-active": i === _vm.arrowCounter },
-                      on: {
-                        click: function($event) {
-                          return _vm.setResult(airport.name, airport.IATA)
-                        }
+      _c("div", { staticClass: "panel-footer autocomplete-results-panel" }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.loader,
+                expression: "loader"
+              }
+            ]
+          },
+          [
+            _c("img", {
+              staticStyle: { height: "30px", "padding-left": "10px" },
+              attrs: { src: "/img/turning.gif", alt: "loading..." }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _vm.airports.length
+          ? _c(
+              "ul",
+              { staticClass: "list-group autocomplete-results" },
+              _vm._l(_vm.airports, function(airport, i) {
+                return _c(
+                  "li",
+                  {
+                    key: i,
+                    staticClass: "list-group-item autocomplete-result",
+                    class: { "is-active": i === _vm.arrowCounter },
+                    on: {
+                      click: function($event) {
+                        return _vm.setResult(airport.name, airport.IATA)
                       }
-                    },
-                    [
-                      _vm._v(
-                        "\n                         " +
-                          _vm._s(airport.name) +
-                          " "
-                      ),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c(
-                        "small",
-                        {
-                          staticClass: "text-secondary",
-                          staticStyle: { "font-weight": "bold" }
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-map-marker-alt" }),
-                          _vm._v(
-                            " " +
-                              _vm._s(airport.city) +
-                              ", " +
-                              _vm._s(airport.country_id) +
-                              " "
-                          )
-                        ]
-                      )
-                    ]
-                  )
-                }),
-                0
-              )
-        ])
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                         " + _vm._s(airport.name) + " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "small",
+                      {
+                        staticClass: "text-secondary",
+                        staticStyle: { "font-weight": "bold" }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-map-marker-alt" }),
+                        _vm._v(
+                          " " +
+                            _vm._s(airport.city) +
+                            ", " +
+                            _vm._s(airport.country_id) +
+                            " "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("input", {
@@ -44894,8 +44902,7 @@ var render = function() {
           }
         }
       })
-    ],
-    1
+    ]
   )
 }
 var staticRenderFns = []
