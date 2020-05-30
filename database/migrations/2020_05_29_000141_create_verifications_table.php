@@ -15,7 +15,7 @@ class CreateVerificationsTable extends Migration
 	{
 		Schema::create('verifications', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('claim_id');
+			$table->foreignId('claim_id')->constrained()->unique();
 			$table->enum('verified', ['1', '0'])->default('0');
 			$table->enum('mode', ['auto', 'manual'])->default('auto');
 			$table->timestamps();

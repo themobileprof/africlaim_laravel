@@ -19,6 +19,8 @@ class VerifyClaim
 	public $recorded_flightIncident;
 	//public $recorded_moreOptions;
 	public $recorded_hoursDelayed;
+	public $recorded_departureTime;
+	public $recorded_arrivalTime;
 	public $recorded_incidentReason;
 
 	function __construct($claim)
@@ -39,9 +41,11 @@ class VerifyClaim
 		// 
 		$flight = Flight::find($flight_id);
 
-		$this->recorded_flightIncident = $flight->status;
+		$this->recorded_flightIncident = $flight->flight_status;
 
 		$this->recorded_hoursDelayed = ceil($flight->departure_delay / 60);
+		$this->recorded_departureTime = $flight->departure_actual;
+		$this->recorded_arrivalTime = $flight->airline_actual;
 	}
 
 	function process_flightIncidence()
@@ -60,8 +64,8 @@ class VerifyClaim
 
 	function process_hoursDelayed()
 	{
-		// if User's claimed delay and reported delay is not more than 1 hour (User most likely truthful)
-		if (abs($this->user_hoursDelayed - $this->recorded_hoursDelayed) <= 1) {
+		// if User's claimed delay and reported delay is not more than 1 hour (User most likely truthful) OR no record of either departure time or arrival time, believe the User
+		if (abs($this->user_hoursDelayed - $this->recorded_hoursDelayed) <= 1 || (empty($this->recorded_departureTime) || empty($this->recorded_arrivalTime))) {
 			if ($this->user_hoursDelayed >= 3) {
 				$this->verified = 1;
 			} else {
@@ -104,14 +108,17 @@ class VerifyClaim
 				default:
 					$this->verified = 1;
 			}
+		} else {
+			$this->verified = 0;
 		}
 	}
 
 	function verify()
 	{
-		$verification = new Verification;
-		$verification->claim_id = $this->claim->id;
-		$verification->verified = $this->verified;
+		$verification = Verification::updateOrCreate(
+			['claim_id' => $this->claim->id],
+			['verified' => str_replace(" ", "", $this->verified)]
+		);
 
 		$verification->save();
 

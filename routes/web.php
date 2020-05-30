@@ -62,7 +62,8 @@ Route::get('/eligibility/{Claim}', 'ClaimController@editEligibility')->name('eli
 
 
 // VERIFY CLAIM
-Route::get('/verify', 'VerificationController@index')->name('verify');
+Route::get('/verify', 'VerificationController@index')->name('verify.claims'); // Latest 100 entries
+Route::get('/verify_claim/{Claim}', 'VerificationController@verifyOne')->name('verify.claim');
 
 
 
