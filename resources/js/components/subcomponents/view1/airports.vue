@@ -120,7 +120,6 @@
 		watch: {
 			query: function (){
 				let b = this;
-
 				
 				if (this.query.length < 1){
 
