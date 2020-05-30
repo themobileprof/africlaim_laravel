@@ -44753,14 +44753,6 @@ var render = function() {
     },
     [
       _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.query,
-            expression: "query"
-          }
-        ],
         staticClass: "autocomplete-input",
         attrs: {
           id: _vm.input_name,
@@ -44770,6 +44762,9 @@ var render = function() {
         },
         domProps: { value: _vm.query },
         on: {
+          input: function($event) {
+            _vm.query = $event.target.value
+          },
           keydown: [
             function($event) {
               if (
@@ -44801,13 +44796,7 @@ var render = function() {
               }
               return _vm.onEnter($event)
             }
-          ],
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.query = $event.target.value
-          }
+          ]
         }
       }),
       _vm._v(" "),

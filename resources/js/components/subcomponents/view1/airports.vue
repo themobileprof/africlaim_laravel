@@ -1,6 +1,6 @@
 <template>
 	<div class="col-12" style="padding-left: 0px; padding-right: 0px;">		
-		<input :id="input_name" :name="input_name" v-model="query" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.tab="onEnter">
+		<input :id="input_name" :name="input_name" v-bind:value="query" v-on:input="query= $event.target.value" class="autocomplete-input" type="text" :placeholder="placehold" v-on:keydown.down="onArrowDown" v-on:keydown.up="onArrowUp" v-on:keydown.tab="onEnter">
 
 
 			<div class="panel-footer autocomplete-results-panel">
