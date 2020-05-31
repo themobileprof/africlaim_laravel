@@ -48,10 +48,8 @@ class HomeController extends Controller
 				->first();
 			//print_r($eligible);
 			if (isset($eligible->eligible)) {
-
 				$claimActive->eligible = $eligible->eligible;
 			} else {
-
 				$claimActive->eligible = NULL;
 			}
 		} else {
