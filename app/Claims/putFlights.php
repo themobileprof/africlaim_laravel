@@ -32,6 +32,9 @@ class putFlights
 
 			$api_result = json_decode($json, true);
 
+			if ($api_result['success'] == false) {
+				return false;
+			}
 
 			if ($api_result['pagination']['count'] > 0) {
 				$this->process($api_result['data']);
@@ -63,10 +66,12 @@ class putFlights
 			$formattedOutput[$i]['departure_iata'] = $flight['departure']['iata'];
 			$formattedOutput[$i]['departure_scheduled'] = $this->get_time($flight['departure']['scheduled']);
 			$formattedOutput[$i]['departure_actual'] = $this->get_time($flight['departure']['actual']);
+			$formattedOutput[$i]['departure_delay'] = $this->get_time($flight['departure']['delay']);
 			$formattedOutput[$i]['arrival_airport'] = $flight['arrival']['airport'];
 			$formattedOutput[$i]['arrival_iata'] = $flight['arrival']['iata'];
 			$formattedOutput[$i]['arrival_scheduled'] = $this->get_time($flight['arrival']['scheduled']);
 			$formattedOutput[$i]['arrival_actual'] = $this->get_time($flight['arrival']['actual']);
+			$formattedOutput[$i]['arrival_delay'] = $this->get_time($flight['arrival']['delay']);
 			$formattedOutput[$i]['airline_name'] = $flight['airline']['name'];
 			$formattedOutput[$i]['airline_iata'] = $flight['arrival']['iata'];
 
@@ -114,10 +119,12 @@ class putFlights
 						'departure_iata' => $flight['departure_iata'],
 						'departure_scheduled' => $flight['departure_scheduled'],
 						'departure_actual' => $flight['departure_actual'],
+						'departure_delay' => $flight['departure_delay'],
 						'arrival_airport' => $flight['arrival_airport'],
 						'arrival_iata' => $flight['arrival_iata'],
 						'arrival_scheduled' => $flight['arrival_scheduled'],
 						'arrival_actual' => $flight['arrival_actual'],
+						'arrival_delay' => $flight['arrival_delay'],
 						'airline_name' => $flight['airline_name'],
 						'airline_iata' => $flight['airline_iata'],
 
@@ -135,10 +142,12 @@ class putFlights
 					//$f->departure_iata = $flight['departure_iata'];
 					//$f->departure_scheduled = $flight['departure_scheduled'];
 					//$f->departure_actual = $flight['departure_actual'];
+					//$f->departure_delay = $flight['departure_delay'];
 					//$f->arrival_airport = $flight['arrival_airport'];
 					//$f->arrival_iata = $flight['arrival_iata'];
 					//$f->arrival_scheduled = $flight['arrival_scheduled'];
 					//$f->arrival_actual = $flight['arrival_actual'];
+					//$f->arrival_delay = $flight['arrival_delay'];
 					//$f->airline_name = $flight['airline_name'];
 					//$f->airline_iata = $flight['airline_iata'];
 

@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Claim;
+
+use Mail;
+use App\Mail\WelcomeEmail;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
+
+
 
 class ClaimController extends Controller
 {
@@ -252,6 +258,20 @@ class ClaimController extends Controller
 
 
 
+	public function sendMail()
+	{
+		//Mail::to($to_email)->send(new WelcomeEmail);
+		Mail::send('mail.welcome', ['data' => 'data'], function ($message) {
+
+			$message->from('themobileprof.com@gmail.com', 'The Mobile Prof');
+			$message->subject('Your Airline Claims Processor');
+			$message->to('info@themobileprof.com');
+		});
+
+
+
+		return "E-mail has been sent Successfully";
+	}
 
 
 

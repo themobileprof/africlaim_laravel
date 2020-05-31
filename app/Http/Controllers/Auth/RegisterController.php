@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
+use App\Jobs\SendEmail;
+
 class RegisterController extends Controller
 {
 	/*
@@ -56,6 +58,7 @@ class RegisterController extends Controller
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 			'phone' => ['required', 'string', 'max:255'],
 			'password' => ['required', 'string', 'min:8', 'confirmed'],
+			'terms' => ['accepted'],
 		]);
 	}
 
@@ -78,7 +81,12 @@ class RegisterController extends Controller
 		]);
 
 		if (!empty($data['claim'])) {
+			//Update the Claims table with this user id
 			DB::table('claims')->where('id', $data['claim'])->update(['user_id' => $user->id]);
+
+			// Send welcome email
+			$details = ['email' => $data['email'], 'name' => $data['first_name']];
+			SendEmail::dispatch($details);
 		}
 
 		return $user;

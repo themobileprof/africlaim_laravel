@@ -21,11 +21,14 @@
 			 v-if="loaded"
 			:flightsData="flightsData"
 			 @route="setRoute"
-			 @tof="setRoute"
 			 >
 			 </flights>
 			<div v-else>
-			  <img :src="'/img/turning.gif'" style="height:50px; padding-left:10px;" alt="loading...">
+				<div v-if="showOption" class="list-group-item">
+					What was your scheduled departure time? <input type="time" class="form-control" v-model="tof" value="00:00"> 
+				</div>			  
+
+			<img :src="'/img/turning.gif'" style="height:50px; padding-left:10px;" alt="loading...">
 			</div>
 		</div>
 	</div>
@@ -51,10 +54,12 @@
 			flightsData: [],
 			loaded: false,
 			route: false,
+			tof: '',
+			showOption: false,
 		  }
 		},
         async mounted() {
-
+				this.callSetTime()
 				const params = {
 					flight_date: this.$store.getters.getFields.flightdate,
 					departure: this.$store.getters.getFields.departure,
@@ -87,6 +92,24 @@
 			setRoute(){
 				this.route = true
 			},
+			callSetTime: function () {
+
+				var v = this;
+
+				setTimeout(function () {
+
+					v.showOption = true;
+
+				}, 60000);
+
+			}
+		},
+		watch: {
+			tof: function (){
+				this.$store.commit('ADD_FIELD', { 'tof': this.tof });
+				this.setRoute();
+			}
+
 		},
 		computed: {
 			showNext : function() {

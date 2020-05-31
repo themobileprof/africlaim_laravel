@@ -2373,13 +2373,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['flightsData'],
   data: function data() {
     return {
       flights: this.flightsData,
-      tof: '',
       route: null,
       lst: {
         '0': 1,
@@ -2432,12 +2430,6 @@ __webpack_require__.r(__webpack_exports__);
         'route': this.route
       });
       this.$emit('route');
-    },
-    tof: function tof() {
-      this.$store.commit('ADD_FIELD', {
-        'tof': this.tof
-      });
-      this.$emit('tof');
     }
   },
   computed: {}
@@ -2940,6 +2932,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2951,7 +2946,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       testing: '',
       flightsData: [],
       loaded: false,
-      route: false
+      route: false,
+      tof: '',
+      showOption: false
     };
   },
   mounted: function mounted() {
@@ -2963,6 +2960,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _this.callSetTime();
+
               params = {
                 flight_date: _this.$store.getters.getFields.flightdate,
                 departure: _this.$store.getters.getFields.departure,
@@ -2976,13 +2975,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               //   
               //});
 
-              _context.prev = 1;
-              _context.next = 4;
+              _context.prev = 2;
+              _context.next = 5;
               return axios.get('/api/flights', {
                 params: params
               });
 
-            case 4:
+            case 5:
               response = _context.sent;
               _this.flightsData = response.data;
               _this.loaded = true; //if (this.flightsData.length == 0 || this.flightsData == "" || this.flightsData == undefined || this.flightsData == null){
@@ -2990,26 +2989,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               //	this.$router.push({name: 'complaint'})
               //}
 
-              _context.next = 12;
+              _context.next = 13;
               break;
 
-            case 9:
-              _context.prev = 9;
-              _context.t0 = _context["catch"](1);
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](2);
               // error
               console.log("No Flight Info");
 
-            case 12:
+            case 13:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 9]]);
+      }, _callee, null, [[2, 10]]);
     }))();
   },
   methods: {
     setRoute: function setRoute() {
       this.route = true;
+    },
+    callSetTime: function callSetTime() {
+      var v = this;
+      setTimeout(function () {
+        v.showOption = true;
+      }, 60000);
+    }
+  },
+  watch: {
+    tof: function tof() {
+      this.$store.commit('ADD_FIELD', {
+        'tof': this.tof
+      });
+      this.setRoute();
     }
   },
   computed: {
@@ -11982,7 +11995,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* The container */\n.flight_label[data-v-435246ae] {\n  cursor: pointer;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  margin-bottom: 0;\n  font-size: 12px;\n}\n\n/* Hide the browser's default radio button */\n.flight_label input[data-v-435246ae] {\n  position: absolute;\n  opacity: 0;\n  cursor: pointer;\n}\n\n/* Create a custom radio button */\n.checkmark[data-v-435246ae] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 20px;\n  width: 20px;\n  background-color: #eee;\n  border-radius: 50%;\n}\n\n/* On mouse-over, add a grey background color */\n.flight_label:hover input ~ .checkmark[data-v-435246ae] {\n  background-color: #FFFFFF;\n}\n\n/* When the radio button is checked, add a blue background */\n.flight_label input:checked ~ .checkmark[data-v-435246ae] {\n  background-color: #2196F3;\n}\n\n/* Create the indicator (the dot/circle - hidden when not checked) */\n.checkmark[data-v-435246ae]:after {\n  content: \"\";\n  position: absolute;\n  display: none;\n}\n\n/* Show the indicator (dot/circle) when checked */\n.flight_label input:checked ~ .checkmark[data-v-435246ae]:after {\n  display: block;\n}\n\n/* Style the indicator (dot/circle) */\n.flight_label .checkmark[data-v-435246ae]:after {\n \ttop: 6px;\n\tleft: 6px;\n\twidth: 8px;\n\theight: 8px;\n\tborder-radius: 50%;\n\tbackground: white;\n}\n.load[data-v-435246ae] {\n\tcolor: #0000FF;\n\tcursor:pointer;\n\ttext-decoration: underline;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* The container */\n.flight_label[data-v-435246ae] {\n  cursor: pointer;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  margin-bottom: 0;\n  font-size: 12px;\n}\n\n/* Hide the browser's default radio button */\n.flight_label input[data-v-435246ae] {\n  position: absolute;\n  opacity: 0;\n  cursor: pointer;\n}\n\n/* Create a custom radio button */\n.checkmark[data-v-435246ae] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 20px;\n  width: 20px;\n  background-color: #eee;\n  border-radius: 50%;\n}\n\n/* On mouse-over, add a grey background color */\n.flight_label:hover input ~ .checkmark[data-v-435246ae] {\n  background-color: #FFFFFF;\n}\n\n/* When the radio button is checked, add a blue background */\n.flight_label input:checked ~ .checkmark[data-v-435246ae] {\n  background-color: #2196F3;\n}\n\n/* Create the indicator (the dot/circle - hidden when not checked) */\n.checkmark[data-v-435246ae]:after {\n  content: \"\";\n  position: absolute;\n  display: none;\n}\n\n/* Show the indicator (dot/circle) when checked */\n.flight_label input:checked ~ .checkmark[data-v-435246ae]:after {\n  display: block;\n}\n\n/* Style the indicator (dot/circle) */\n.flight_label .checkmark[data-v-435246ae]:after {\n \ttop: 6px;\n\tleft: 6px;\n\twidth: 8px;\n\theight: 8px;\n\tborder-radius: 50%;\n\tbackground: white;\n}\n.load[data-v-435246ae] {\n\tcolor: #0000FF;\n\tcursor:pointer;\n\ttext-decoration: underline;\n}\n", ""]);
 
 // exports
 
@@ -45011,114 +45024,85 @@ var render = function() {
     _c(
       "ul",
       { staticClass: "list-group" },
-      [
-        _vm._l(_vm.flights.main, function(flight, i) {
-          return _c(
-            "li",
-            {
-              key: i,
-              staticClass:
-                "list-group-item list-group-item-action list-group-item-success"
-            },
-            [
-              _c(
-                "label",
-                { staticClass: "flight_label row", attrs: { for: flight.id } },
-                [
-                  _c("div", { staticClass: "flight_input col-1" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.route,
-                          expression: "route"
-                        }
-                      ],
-                      attrs: { type: "radio", name: "route", id: flight.id },
-                      domProps: {
-                        value: flight.id,
-                        checked: _vm._q(_vm.route, flight.id)
-                      },
-                      on: {
-                        change: function($event) {
-                          _vm.route = flight.id
-                        }
+      _vm._l(_vm.flights.main, function(flight, i) {
+        return _c(
+          "li",
+          {
+            key: i,
+            staticClass:
+              "list-group-item list-group-item-action list-group-item-success"
+          },
+          [
+            _c(
+              "label",
+              { staticClass: "flight_label row", attrs: { for: flight.id } },
+              [
+                _c("div", { staticClass: "flight_input col-1" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.route,
+                        expression: "route"
                       }
-                    }),
-                    _c("span", { staticClass: "checkmark" })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flight_time col-6" }, [
-                    _c(
-                      "div",
-                      { staticClass: "text-uppercase font-weight-bold" },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t  " +
-                            _vm._s(flight.departure_airport) +
-                            " "
-                        ),
-                        _c("i", { staticClass: "fas fa-arrow-right fa-xs" }),
-                        _vm._v(
-                          " " +
-                            _vm._s(flight.arrival_airport) +
-                            "\n\t\t\t\t\t\t  "
-                        )
-                      ]
-                    ),
-                    _vm._v(
-                      "\n\t\t\t\t\t\t  " +
-                        _vm._s(flight.departure_scheduled) +
-                        " "
-                    ),
-                    _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
-                    _vm._v(
-                      " " + _vm._s(flight.arrival_scheduled) + "\n\t\t\t\t\t  "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "airline col-3" }, [
-                    _vm._v(_vm._s(flight.airline_name))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flight_number col-2" }, [
-                    _vm._v(_vm._s(flight.flight_iata))
-                  ])
-                ]
-              )
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _vm.flights.main.length == 0
-          ? _c("li", { staticClass: "list-group-item" }, [
-              _vm._v("\n\t\t\tWhat was your scheduled departure time? "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.tof,
-                    expression: "tof"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "time", value: "00:00" },
-                domProps: { value: _vm.tof },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                    ],
+                    attrs: { type: "radio", name: "route", id: flight.id },
+                    domProps: {
+                      value: flight.id,
+                      checked: _vm._q(_vm.route, flight.id)
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.route = flight.id
+                      }
                     }
-                    _vm.tof = $event.target.value
-                  }
-                }
-              })
-            ])
-          : _vm._e()
-      ],
-      2
+                  }),
+                  _c("span", { staticClass: "checkmark" })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flight_time col-6" }, [
+                  _c(
+                    "div",
+                    { staticClass: "text-uppercase font-weight-bold" },
+                    [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t  " +
+                          _vm._s(flight.departure_airport) +
+                          " "
+                      ),
+                      _c("i", { staticClass: "fas fa-arrow-right fa-xs" }),
+                      _vm._v(
+                        " " +
+                          _vm._s(flight.arrival_airport) +
+                          "\n\t\t\t\t\t\t  "
+                      )
+                    ]
+                  ),
+                  _vm._v(
+                    "\n\t\t\t\t\t\t  " +
+                      _vm._s(flight.departure_scheduled) +
+                      " "
+                  ),
+                  _c("i", { staticClass: "fas fa-plane-departure fa-xs" }),
+                  _vm._v(
+                    " " + _vm._s(flight.arrival_scheduled) + "\n\t\t\t\t\t  "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "airline col-3" }, [
+                  _vm._v(_vm._s(flight.airline_name))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flight_number col-2" }, [
+                  _vm._v(_vm._s(flight.flight_iata))
+                ])
+              ]
+            )
+          ]
+        )
+      }),
+      0
     ),
     _vm._v(" "),
     _c("div", { staticClass: "claims-desc" }, [_vm._v("Others:")]),
@@ -46064,9 +46048,38 @@ var render = function() {
           _vm.loaded
             ? _c("flights", {
                 attrs: { flightsData: _vm.flightsData },
-                on: { route: _vm.setRoute, tof: _vm.setRoute }
+                on: { route: _vm.setRoute }
               })
             : _c("div", [
+                _vm.showOption
+                  ? _c("div", { staticClass: "list-group-item" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\tWhat was your scheduled departure time? "
+                      ),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.tof,
+                            expression: "tof"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "time", value: "00:00" },
+                        domProps: { value: _vm.tof },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.tof = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("img", {
                   staticStyle: { height: "50px", "padding-left": "10px" },
                   attrs: { src: "/img/turning.gif", alt: "loading..." }
