@@ -33,7 +33,7 @@ class putFlights
 			$api_result = json_decode($json, true);
 
 			if ($api_result['success'] == false) {
-				return false;
+				return "";
 			}
 
 			if ($api_result['pagination']['count'] > 0) {
