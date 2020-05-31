@@ -32,6 +32,9 @@ class putFlights
 
 			$api_result = json_decode($json, true);
 
+			if ($api_result['success'] == false) {
+				return false;
+			}
 
 			if ($api_result['pagination']['count'] > 0) {
 				$this->process($api_result['data']);

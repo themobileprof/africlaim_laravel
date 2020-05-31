@@ -91,7 +91,13 @@ Route::get('/test', function () {
 	return view('formtest');
 });
 
-// Test Mail
-Route::get('send-mail', 'ClaimController@sendMail');
 
 //Route::get('/test/{claim}', 'ClaimController@tester');
+
+
+
+
+
+
+// Test Mail
+Route::get('send-mail', 'ClaimController@sendMail');

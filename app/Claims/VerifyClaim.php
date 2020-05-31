@@ -116,6 +116,7 @@ class VerifyClaim
 	function verify()
 	{
 		$verification = Verification::updateOrCreate(
+			//$verification = Verification::firstOrNew(
 			['claim_id' => $this->claim->id],
 			['verified' => str_replace(" ", "", $this->verified)]
 		);

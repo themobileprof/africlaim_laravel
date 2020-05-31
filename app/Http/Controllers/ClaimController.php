@@ -260,9 +260,16 @@ class ClaimController extends Controller
 
 	public function sendMail()
 	{
-		$to_email = 'info@themobileprof.com';
+		//Mail::to($to_email)->send(new WelcomeEmail);
+		Mail::send('mail.welcome', ['data' => 'data'], function ($message) {
 
-		Mail::to($to_email)->send(new WelcomeEmail);
+			$message->from('themobileprof.com@gmail.com', 'The Mobile Prof');
+			$message->subject('Your Airline Claims Processor');
+			$message->to('info@themobileprof.com');
+		});
+
+
+
 		return "E-mail has been sent Successfully";
 	}
 

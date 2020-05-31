@@ -116,6 +116,17 @@
 							</div>
 						</div>
 
+
+						<div class="form-group row">
+							<div class="col-md-4 text-md-right col-form-label">
+								<input id="terms" type="checkbox" name="terms" required>
+							</div>
+
+							<div class="col-md-6">
+								<label for="terms" class="col-form-label" style="font-size:14px; font-weight:bold;">I agree to terms and conditions</label>
+							</div>
+						</div>
+
 						<div class="form-group row mb-0">
 							<div class="col-md-6 offset-md-4">
 								<button type="submit" class="btn btn-primary">
