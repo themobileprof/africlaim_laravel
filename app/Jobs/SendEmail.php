@@ -37,7 +37,7 @@ class SendEmail implements ShouldQueue
 	{
 		//
 		$email = new EmailForQueuing($this->user, $this->type);
-		Mail::to('samuelanyaele@gmail.com')->send($email);
+		Mail::to($this->user['email'])->send($email);
 		//Mail::to($this->user['email'])->send($email);
 	}
 }
