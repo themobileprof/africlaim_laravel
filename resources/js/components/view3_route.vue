@@ -21,6 +21,7 @@
 			 v-if="loaded"
 			:flightsData="flightsData"
 			 @route="setRoute"
+			 @tof="setRoute"
 			 >
 			 </flights>
 			<div v-else>
@@ -28,8 +29,9 @@
 					What was your scheduled departure time? <input type="time" class="form-control" v-model="tof" value="00:00"> 
 				</div>			  
 
-			<img :src="'/img/turning.gif'" style="height:50px; padding-left:10px;" alt="loading...">
+				<img :src="'/img/turning.gif'" style="height:50px; padding-left:10px;" alt="loading...">
 			</div>
+
 		</div>
 	</div>
 	<div class="row">
@@ -76,13 +78,19 @@
                //});
 				try {
 					let response = await axios.get('/api/flights', {params})
-					this.flightsData = response.data;
-					this.loaded = true;
 
-					//if (this.flightsData.length == 0 || this.flightsData == "" || this.flightsData == undefined || this.flightsData == null){
+					if (this.flightsData.length == 0 || this.flightsData == "" || this.flightsData == undefined || this.flightsData == null){
 					//	// If Route is not found, Load next page
 					//	this.$router.push({name: 'complaint'})
-					//}
+					
+						
+						this.flightsData = {'main':'','others':''};
+					} else {
+						this.flightsData = response.data;
+					}
+
+					this.loaded = true;
+
 				  } catch(error) {
 					 // error
 					 console.log("No Flight Info");

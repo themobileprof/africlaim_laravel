@@ -2,6 +2,9 @@
 <div>
 
 			 <ul class="list-group">
+			  <li v-if="flights.length === undefined || flights.main.length === undefined" class="list-group-item">
+				What was your scheduled departure time? <input type="time" class="form-control" v-model="tof" value="00:00"> 
+			</li>			  
 			  <li class="list-group-item list-group-item-action list-group-item-success" v-for="(flight, i) in flights.main" v-bind:key="i">
 				  <label class="flight_label row" :for="flight.id">
 					  <div class="flight_input col-1"><input type="radio" name="route" :id="flight.id" v-model="route" :value="flight.id"><span class="checkmark"></span></div>
@@ -55,7 +58,8 @@ export default {
 			lst: {'0':1, '1':1, '2':1, '3':1, '4':1, '5':1, '6':1, '7':1, '8':1, '9':1},
 			offset: 10,
 			size: 10,
-			test: ''
+			test: '',
+			tof: '',
 		}
 	},
 	methods: {
@@ -92,6 +96,10 @@ export default {
 			this.$emit('route')
 		},
 
+		tof: function (){
+			this.$store.commit('ADD_FIELD', { 'tof': this.tof })
+			this.$emit('tof')
+		}
 	},
 	computed: {
 
