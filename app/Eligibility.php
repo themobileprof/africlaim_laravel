@@ -17,5 +17,11 @@ class Eligibility extends Model
 	 *
 	 * @var string
 	 */
+
+	public function claim()
+	{
+		return $this->hasOne('App\Claim');
+	}
+
 	protected $table = 'eligibilities';
 }

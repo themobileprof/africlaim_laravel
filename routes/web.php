@@ -37,7 +37,6 @@ Auth::routes();
 
 // Dashboards
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
 
@@ -52,11 +51,8 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 
 // Claims Routes
 Route::post('/claim/processor', 'ClaimController@store')->name('process');
-
 Route::get('/claim/{Claim}', 'ClaimController@show')->name('show.claim');
-
 Route::get('/claim/delete/{Claim}', 'ClaimController@destroy')->name('delete.claim');
-
 Route::get('/eligibility/{Claim}', 'ClaimController@editEligibility')->name('eligibility')->middleware('is_admin');
 
 
@@ -66,7 +62,10 @@ Route::get('/verify', 'VerificationController@index')->name('verify.claims'); //
 Route::get('/verify_claim/{Claim}', 'VerificationController@verifyOne')->name('verify.claim');
 
 
-
+// CLAIMS DOCUMENT
+Route::get('/document', 'DocumentController@index')->name('document.index');
+Route::get('/document/{Claim}', 'DocumentController@create')->name('document.create');
+Route::post('/document/process', 'DocumentController@store')->name('document.store');
 
 
 

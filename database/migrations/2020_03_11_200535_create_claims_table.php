@@ -19,6 +19,7 @@ class CreateClaimsTable extends Migration
 			$table->foreignId('flight_id')->nullable();
 			$table->foreignId('departure_id');
 			$table->foreignId('arrival_id');
+			$table->string('claim_jurisdiction')->default('flight')->nullable();
 			$table->string('connecting')->nullable();
 			$table->date('dof');
 			$table->time('tof');

@@ -50,10 +50,10 @@ class Claim extends Model
 		return $this->belongsTo('App\Airport', 'departure_id');
 	}
 
-	//public function eligibility()
-	//{
-	//return $this->hasOne('App\Eligibility');
-	//}
+	public function eligibility()
+	{
+		return $this->hasOne('App\Eligibility');
+	}
 
 	protected $table = 'claims';
 }
