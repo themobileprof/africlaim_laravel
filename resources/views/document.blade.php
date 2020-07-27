@@ -24,16 +24,17 @@
 
 <body>
 	<div class="p-4">
-		<h1>Claims Documents</h1>
+		<h1>Upload Claims Documents</h1>
 		<div class="row">
 			If your claim passes validation and eligibility, the next step is to provide us documents that will help us process your claim.
 			<p>We would be needing you to upload a PDF copy of your initial eTicket, booking confirmation by email or a boarding pass. You do not need the three documents, because usually one is enough.</p>
 		</div>
 		<div>
-			<form action="{{ route('document.store') }}" method="post">
+			<form action="{{ route('document.store') }}" method="POST" enctype="multipart/form-data">
 				@csrf
 				<div class="row m-2 p-3">
-					<div class="col-md-4">What ment are you submitting?</div>
+					<div class="col-md-4">What Document are you submitting?</div>
+					<input type="hidden" name="claim" value="{{ $claim->id }}">
 					<div class="col-md-8">
 						<select id="document_type" name="document_type" class="form-control">
 							<option value="ticket">eTicket</option>

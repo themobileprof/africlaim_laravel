@@ -15,11 +15,12 @@ class CreateDocumentsTable extends Migration
 	{
 		Schema::create('documents', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('user_id');
+			$table->foreignId('claim_id');
 			$table->string('document');
 			$table->string('path');
 			$table->string('status')->default('Submitted'); //submitted, approved, rejected
 			$table->timestamps();
+			$table->unique(['claim_id', 'document']);
 		});
 	}
 

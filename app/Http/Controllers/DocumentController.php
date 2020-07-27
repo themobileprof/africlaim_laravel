@@ -62,16 +62,21 @@ class DocumentController extends Controller
 			'document' => 'required|mimes:pdf,doc,docx|max:2048',
 		]);
 
-		$docPath = $request->file('document')->store('documents');
+		if ($request->file('document')->isValid()) {
+			//
+			$fileName = time() . '_' . $request->document->getClientOriginalName();
+			$docPath = $request->file('document')->storeAs('documents', $fileName, 'public');
 
-		//Update record with document details
-		$document = new Document;
+			//Update record with document details
+			//dd($request->claim);
+			$document = Document::updateOrCreate(
+				['claim_id' => $request->claim, 'document' => $request->document_type],
+				['path' => $docPath]
+			);
+		}
 
-		$document->claim_id = $request->claim;
-		$document->document = $request->document_type;
-		$document->path = $docPath;
 
-		$document->save();
+		return redirect('/document');
 	}
 
 	/**

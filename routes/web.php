@@ -65,7 +65,7 @@ Route::get('/verify_claim/{Claim}', 'VerificationController@verifyOne')->name('v
 // CLAIMS DOCUMENT
 Route::get('/document', 'DocumentController@index')->name('document.index');
 Route::get('/document/{Claim}', 'DocumentController@create')->name('document.create');
-Route::post('/document/process', 'DocumentController@store')->name('document.store');
+Route::post('/document', 'DocumentController@store')->name('document.store');
 
 
 
