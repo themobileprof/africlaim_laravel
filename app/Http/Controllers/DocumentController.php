@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Claim;
 use App\Eligibility;
 use Illuminate\Support\Facades\Auth;
@@ -17,12 +18,16 @@ class DocumentController extends Controller
 	 */
 	public function index()
 	{
-		//$claims = Claim::select("id")->where('user_id', Auth::id())->get();
-		$documents = Document::select(['document', 'path', 'claim_id', 'flight_date' => Claim::select('dof')->whereColumn('claim_id', 'id')->where('user_id', Auth::id())])->get();
-		//dd($claimer);
-		//$document = Document::where('claim_id', $claims->toArray())->get();
+		$claims = Claim::where('user_id', Auth::id())->get();
+		//$documents = Document::select(['document', 'path', 'claim_id', 'flight_date' => Claim::select('dof')->whereColumn('claim_id', 'id')->where('user_id', Auth::id())])->get();
+		//Claim::select('flight_id')->where('user_id', Auth::id())->lists('id')->toArray();
 
-		return view('document-home', ["documents" => $documents]);
+		$claim_col = array_column($claims->toArray(), 'id');
+		$documents = Document::where('claim_id', $claim_col)->get();
+
+		//dd($documents);
+
+		return view('document-home', ["documents" => $documents, 'claims' => $claims]);
 	}
 
 	/**
@@ -64,8 +69,15 @@ class DocumentController extends Controller
 
 		if ($request->file('document')->isValid()) {
 			//
-			$fileName = time() . '_' . $request->document->getClientOriginalName();
+			$fileName = $request->document_type . '_' . Auth::id() . "_" . time() . "." . $request->document->getClientOriginalExtension();
 			$docPath = $request->file('document')->storeAs('documents', $fileName, 'public');
+
+			//$docPath = Storage::putFileAs(
+			//'documents',
+			//$request->file('document'),
+			//$fileName
+			//);
+			//Storage::setVisibility($fileName, 'public');
 
 			//Update record with document details
 			//dd($request->claim);
@@ -122,5 +134,10 @@ class DocumentController extends Controller
 	public function destroy(Document $document)
 	{
 		//
+		Document::destroy($document->id);
+
+		unlink('storage/' . $document->path);
+
+		return redirect('/document');
 	}
 }

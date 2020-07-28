@@ -10,7 +10,7 @@ class Claim extends Model
 	//
 	use SoftDeletes;
 
-	protected $appends = ['eligibility'];
+	//protected $appends = ['eligibility'];
 
 	protected $fillable = [
 		'user_id',

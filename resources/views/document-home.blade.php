@@ -25,21 +25,25 @@
 
 <body>
 	<div class="p-4">
-		<h1>Claims Documents </h1>
+		<h1>Documents Required to Process Claims</h1>
 		<div class="row h4">
-			Your Claims documents
+			Eligible Claims
 		</div>
 		<div>
+			@foreach ($claims as $claim)
 
+			Document(s) for: <b>{{ $claim->departure->name }}</b> to <b>{{ $claim->arrival->name }}</b> on {{ $claim->dof }} <a href="{{ url('/document') }}/{{ $claim->id }}" class="text-primary"><i class="fas fa-plus"></i> Add</a>
 			<ul>
 				@foreach ($documents as $doc)
+				@if ($doc->claim_id == $claim->id)
 				<li>
-					Document for Claim: {{ $doc->claim_id }} <a href="{{ url('/document') }}/{{ $doc->claim_id }}"><i class="fas fa-plus"></i></a>
-					<br>
-					{{ $doc->document }} (<a href="{{ $doc->path }}">Download</a>)
+					{{ $doc->document }} (<a href="/storage/{{ $doc->path }}" target="_blank">Download</a>) <a class="text-danger" href="{{ route('document.delete', ['document' => $doc->id]) }}" onclick="return confirm('Are you sure you want to delete this file?')"><i class="fa fa-times"></i></a>
+
 				</li>
+				@endif
 				@endforeach
 			</ul>
+			@endforeach
 		</div>
 	</div>
 </body>
