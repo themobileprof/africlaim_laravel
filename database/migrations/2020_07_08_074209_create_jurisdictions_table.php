@@ -16,8 +16,7 @@ class CreateJurisdictionsTable extends Migration
 		Schema::create('jurisdictions', function (Blueprint $table) {
 			$table->id();
 			$table->foreignId('claim_id');
-			$table->string('juridiction_type')->default('airline'); //airline, airport
-			$table->unsignedBigInteger('claim_jurisdiction_id');
+			$table->string('status')->default('sent'); //sent, rejected, appealed
 			$table->timestamps();
 		});
 	}

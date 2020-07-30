@@ -24,10 +24,14 @@
 
 <body>
 	<div class="p-4">
-		<h1>WHERE TO CLAIM</h1>
+		<h1>Claims Additional Info</h1>
 		<div class="row">
-			If your claim passes validation and eligibility, the next step is to provide us documents that will help us process your claim.
-			<p>We would be needing you to upload a PDF copy of your initial eTicket, booking confirmation by email or a boarding pass. You do not need the three documents, because usually one is enough.</p>
+			<p>
+				Based on our Calculation, the distance between {{ $claim->destination->name }} and {{ $claim->arrival->name }} is
+			</p>
+			<p>This qualifies you for between ${{ $claim->amount1 }} and ${{ $claim->amount2 }}, kindly confirm the hours of delay you experienced</p>
+			<button class></button>
+			<a href="" class="btn btn-primary btn-lg">2</a>
 		</div>
 		<div>
 			{{ $claim }}

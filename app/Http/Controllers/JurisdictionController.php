@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Jurisdiction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 use App\Claim;
-use App\Eligibility;
 
 class JurisdictionController extends Controller
 {
@@ -18,20 +16,7 @@ class JurisdictionController extends Controller
 	 */
 	public function index($claim)
 	{
-		// Check if this Claim is Eligible before proceeding
-		$eligible = Eligibility::where('claim_id', $claim)->first();
-		if ($eligible === null) {
-			return ("This Claim is not available");
-		} else {
-			if ($eligible->eligible != 1) {
-				return ("This Claim is not eligible for this Step");
-			}
-		}
-
-		// Get Claim details
-		$claim_detail = Claim::find($claim);
-
-		return view('jurisdiction', ["claim" => $claim_detail->complaint]);
+		//
 	}
 
 	/**
@@ -53,14 +38,6 @@ class JurisdictionController extends Controller
 	public function store(Request $request)
 	{
 		//
-		$request->validate([
-			'document' => 'required|mimes:pdf,doc,docx|max:2048',
-		]);
-
-		$docPath = $request->file('document')->store('documents');
-
-		//Update record with document path
-		$user = User::find(Auth::user()->id);
 	}
 
 	/**
