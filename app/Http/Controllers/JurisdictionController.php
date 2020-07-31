@@ -6,6 +6,7 @@ use App\Jurisdiction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Claim;
+use App\Compensation;
 
 class JurisdictionController extends Controller
 {
@@ -24,9 +25,44 @@ class JurisdictionController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
+	public function create(Claim $claim)
 	{
 		//
+		$distance = new \App\Claims\GetDistance($claim->id);
+		$dist = $distance->distance(); // get distance between airports
+
+		$compensation = Compensation::all();
+
+		foreach ($compensation as $comp) {
+			if ($comp->hours == '<4') { // Less than 4 hours
+
+				if ($dist < 1500) {
+					// Short distance
+					$claim['amount1'] = $comp->short;
+				} else if ($dist < 3500) {
+					// Medium Distance
+					$claim['amount1'] = $comp->medium;
+				} else {
+					// Long Distance
+					$claim['amount1'] = $comp->long;
+				}
+			}
+
+			if ($comp->hours == '>4') { // More than 4 hours
+				if ($dist < 1500) {
+					// Short distance
+					$claim['amount2'] = $comp->short;
+				} else if ($dist < 3500) {
+					// Medium Distance
+					$claim['amount2'] = $comp->medium;
+				} else {
+					// Long Distance
+					$claim['amount2'] = $comp->long;
+				}
+			}
+		}
+
+		return view('jurisdiction', ['claim' => $claim]);
 	}
 
 	/**

@@ -10,7 +10,8 @@ class GetDistance
 	public $lat2;
 	public $lon1;
 	public $lon2;
-	public $distance; // Kilometers
+
+
 	public function __construct($claim_id)
 	{
 		$claim = Claim::find($claim_id);
@@ -30,9 +31,8 @@ class GetDistance
 			$dist = sin(deg2rad($this->lat1)) * sin(deg2rad($this->lat2)) +  cos(deg2rad($this->lat1)) * cos(deg2rad($this->lat2)) * cos(deg2rad($lonDelta));
 			$dist = acos($dist);
 			$dist = rad2deg($dist);
-			$this->distance = $dist * 60 * 1.1515 * 1.609344; // Distance in Kilometers
-
+			$dist = $dist * 60 * 1.1515 * 1.609344; // Distance in Kilometers
+			return $dist;
 		}
 	}
 }
-

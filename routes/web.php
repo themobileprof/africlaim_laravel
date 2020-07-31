@@ -69,6 +69,9 @@ Route::post('/document', 'DocumentController@store')->name('document.store');
 Route::get('/document/delete/{document}', 'DocumentController@destroy')->name('document.delete');
 
 
+// JURISDICTION
+Route::get('/jurisdiction/{Claim}', 'JurisdictionController@create')->name('jurisdiction.create');
+Route::post('/jurisdiction', 'JurisdictionController@store')->name('jurisdiction.store');
 
 
 

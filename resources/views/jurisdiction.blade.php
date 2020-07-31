@@ -24,37 +24,16 @@
 
 <body>
 	<div class="p-4">
-		<h1>Claims Additional Info</h1>
+		<h1>Claims Jurisdiction</h1>
 		<div class="row">
 			<p>
 				Based on our Calculation, the distance between {{ $claim->destination->name }} and {{ $claim->arrival->name }} is
 			</p>
 			<p>This qualifies you for between ${{ $claim->amount1 }} and ${{ $claim->amount2 }}, kindly confirm the hours of delay you experienced</p>
-			<button class></button>
-			<a href="" class="btn btn-primary btn-lg">2</a>
+			<a href="" class="btn btn-primary btn-lg">Yes</a>
+			<a href="" class="btn btn-primary btn-lg">No</a>
 		</div>
-		<div>
-			{{ $claim }}
-			<form action="{{ url('where.store') }}">
-				@csrf
-				<div class="row m-2 p-3">
-					<div class="col-md-4">What Document are you submitting?</div>
-					<div class="col-md-8">
-						<select id="document_type" name="document_type" class="form-control">
-							<option value="ticket">eTicket</option>
-							<option value="booking">Booking Confirmation</option>
-							<option value="boarding">Boarding Pass</option>
-						</select>
-					</div>
-				</div>
-				<div class="row m-2 p-3">
-					<div class="col-md-4">Upload</div>
-					<div class="col-md-8">
-						<input id="document" type="file" name="document" class="form-control">
-					</div>
-				</div>
-			</form>
-		</div>
+
 	</div>
 </body>
 
